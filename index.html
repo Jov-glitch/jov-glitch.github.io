@@ -5,37 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Portafolio</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/gsap.min.js"></script>
 </head>
 <body>
-    <header>
-        <img src="img/V.png" alt="Foto de Perfil">
-        <h1>¡Hola, soy Jose Ortiz!</h1>
-        <p>Desarrollador Web | Diseñador</p>
-    </header>
-
-    <section>
-        <h2>Sobre mí</h2>
-        <p>Soy un desarrollador web apasionado por crear soluciones innovadoras y eficientes. Tengo experiencia en HTML, JavaScript, y PHP.</p>
-    </section>
-
-    <section>
-        <h2>Proyectos</h2>
-        <div class="proyectos">
-            <div class="proyecto">
-                <h3>Proyecto 1</h3>
-                <p>Descripción del proyecto 1.</p>
-                <a href="https://github.com/tu-usuario/proyecto1" target="_blank">Ver proyecto</a>
+    <div class="content">
+        <header>
+            <div class="row">
+                <div class="col-1-2">
+                    <div class="profile-img">
+                        <img src="img/V.png" alt="Foto de Perfil">
+                    </div>
+                    <div class="profile-info">
+                        <h1>¡Hola, soy Jose Ortiz!</h1>
+                        <p>Desarrollador Web | Diseñador</p>
+                    </div>
+                </div>
             </div>
-            <div class="proyecto">
-                <h3>Proyecto 2</h3>
-                <p>Descripción del proyecto 2.</p>
-                <a href="https://github.com/tu-usuario/proyecto2" target="_blank">Ver proyecto</a>
+        </header>        
+        <div class="container">
+            <section>
+                <h2>Sobre mí</h2>
+                <p>Soy un desarrollador web apasionado por crear soluciones innovadoras y eficientes. Tengo experiencia en HTML, JavaScript, y PHP.</p>
+            </section>
+
+            <section>
+                <h2>Habilidades</h2>
+                <ul>
+                    <li>HTML</li>
+                    <li>JavaScript</li>
+                    <li>PHP</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Experiencia Profesional</h2>
+            
+                <!-- Información General -->
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card-tile">
+                            <div class="card-header">
+                                <h2>🔧 Desarrollador Integral</h3>
+                            </div>
+                            <div class="card-body">
+                                <h3>Universidad de Pedagogía Unidad ***</h4>
+                                <h4><strong>Febrero 2024 - Presente</strong></p>
+                                <p>Encargado del desarrollo completo de la plataforma de préstamos de equipos, abarcando desde la codificación en PHP hasta el diseño de la interfaz y la implementación de ideas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Diseño y Gestión -->
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>🎨 Rediseño de Interfaz</h5>
+                                <p>Rediseño y desarrollo de la interfaz de usuario, mejorando la experiencia general y la accesibilidad del sistema.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>🛠️ Panel de Información</h5>
+                                <p>Creación de un "Panel de Información del Usuario" para facilitar el acceso a datos y opciones de administración personal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>📜 Certificados Personalizados</h5>
+                                <p>Creación de certificados personalizados para estudiantes, con un diseño profesional adaptado a datos académicos y logros individuales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Sistema y Desarrollo -->
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>📈 Sistema de Préstamos</h5>
+                                <p>Implementación de un sistema integral de gestión de préstamos de equipos, incluyendo funcionalidades para solicitud y seguimiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>🔗 API de Datos</h5>
+                                <p>Desarrollo de una API para la obtención de datos sobre alumnos, profesores, equipos de cómputo y solicitudes, optimizando la integración y el análisis de datos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>⚙️ Mantenimiento de Equipos</h5>
+                                <p>Desarrollo de un sistema de mantenimiento de equipos, con funcionalidades para la programación de mantenimientos y seguimiento de reparaciones.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Actualización y Dirección -->
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>🔄 Actualización de Base de Datos</h5>
+                                <p>Actualización de una base de datos antigua basada en el sistema Dolphin, mejorando el rendimiento y la funcionalidad del sistema.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>🎯 Dirección de Proyectos</h5>
+                                <p>Dirección de proyectos, incluyendo la definición de requisitos, la implementación de ideas y la supervisión de todas las fases del desarrollo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!--MODALES-->
+            <div id="ModalContacto" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Encabezado del Modal</h2>
+                    <p>Contenido del modal...</p>
+                </div>
+            </div>
+
+
+            <div id="footer">
+                <!-- Aquí se cargará el contenido de Contacto.html -->
+            </div>
+
+            <section>
+                <h2>Contacto</h2>
+                <div>
+                    <label id="email-text">iscjvega066@accitesz.com</label>
+                    <button id="copy-button" class="btn">Copiar Email</button>
+                    <div id="copy-message" class="copy-message box"></div> <!-- Mensaje de éxito -->
+                </div>
+            </section>   
+
+            <button id="boton-modal-contacto" class="btn btn-mail">Conctacto Directo</button>
+
+
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetch('Contacto.html')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => document.getElementById('footer').innerHTML = data)
+                        .catch(error => console.error('Error loading content:', error));
+                });
+
+                
+            </script>
+            
+            
             </div>
         </div>
-    </section>
 
     <footer>
         <p>© 2024 Jose Ortiz. Todos los derechos reservados.</p>
     </footer>
+
+ 
+
+    <script src="js/style.js"></script>
 </body>
 </html>

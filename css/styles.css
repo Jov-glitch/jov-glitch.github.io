@@ -11,7 +11,7 @@ body {
 }
 
 header {
-    background-color: #3e5f7d; /* Rose Pine Pine color */
+    background-color: #2a273f; /* Rose Pine Pine color */
     color: #e0def4; /* Rose Pine text color */
     padding: 20px;
 }
@@ -26,25 +26,306 @@ section {
     margin: 20px;
 }
 
-.proyectos {
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+.proyectos, .blog {
     display: flex;
     justify-content: center;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
-.proyecto {
-    background-color: #232136; /* Rose Pine base color */
-    border: 1px solid #6e6a86; /* Rose Pine subtle color */
-    padding: 20px;
-    width: 200px;
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #191724; /* Rose Pine base color */
     color: #e0def4; /* Rose Pine text color */
 }
 
+.content {
+    padding-bottom: 100px; /* Ajusta este valor según la altura del footer */
+}
+
 footer {
-    background-color: #3e5f7d; /* Rose Pine Pine color */
+    background-color: #2a273f; /* Rose Pine Pine color */
     color: #e0def4; /* Rose Pine text color */
     padding: 10px;
     position: fixed;
     width: 100%;
     bottom: 0;
+}
+
+.container {
+    width: 80%; /* Ancho del contenedor */
+    max-width: 1800px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    padding: 20px; /* Espacio interior del contenedor */
+    background-color: #232136; /* Color de fondo del contenedor */
+    border-radius: 8px; /* Bordes redondeados (opcional) */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra del contenedor (opcional) */
+}
+
+
+.proyecto, .entrada {
+    background-color: #232136; /* Rose Pine base color */
+    border: 1px solid #6e6a86; /* Rose Pine subtle color */
+    padding: 20px;
+    width: 200px;
+    color: #e0def4; /* Rose Pine text color */
+    margin: 10px;
+}
+
+.experiencia, .testimonios {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trabajo, .testimonio {
+    background-color: #232136; /* Rose Pine base color */
+    border: 1px solid #26233a; /* Rose Pine subtle color */
+    padding: 20px;
+    width: 80%;
+    color: #e0def4; /* Rose Pine text color */
+    margin: 10px;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    margin: 5px 0;
+}
+
+form input, form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+}
+
+footer {
+    background-color: #2a273f; /* Rose Pine Pine color */
+    color: #e0def4; /* Rose Pine text color */
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .proyectos, .blog {
+        flex-direction: column;
+    }
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.col-md-4, .col-md-6, .col-md-8, .col-md-12 {
+    padding: 15px;
+}
+.col-1-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido en la columna */
+    justify-content: center; /* Centra horizontalmente el contenido en la columna */
+}
+
+.col-1-3 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+}
+
+.card-tile {
+    background-color: #2a273f;
+    border: 1px solid #3d3a5a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: 100%; /* Ajusta el tamaño al contenedor */
+    word-wrap: break-word; /* Permite ajustar el texto largo */
+    margin-bottom: 15px; /* Espacio inferior entre tarjetas */
+}
+.card {
+    background-color: #2a273f;
+    border: 1px solid #3d3a5a;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    max-width: 500px; /* Ajusta el tamaño al contenedor */
+    word-wrap: break-word; /* Permite ajustar el texto largo */
+    margin-bottom: 15px; /* Espacio inferior entre tarjetas */
+}
+.card-header, .card-footer {
+    background-color: #3d3a5a;
+    color: #f5e0f0;
+    padding: 15px;
+    text-align: center;
+}
+.card-body {
+    padding: 15px;
+    color: #e0def4;
+}
+.card-body h5 {
+    color: #f5e0f0;
+}
+.profile-img img {
+    width: 100%; /* Asegura que la imagen se ajuste al contenedor */
+    max-width: 150px; /* Ajusta el tamaño máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    display: block;
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+    object-fit: cover; /* Ajusta la imagen para llenar el contenedor sin distorsionar */
+}
+.profile-info {
+    margin-left: 1rem;
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+.btn {
+    color: #ffffff; /* Color del texto */
+    background-color: #2a273f; /* Color de fondo del botón */
+    border-radius: 10px; /* Bordes redondeados */
+    border: 2px solid #2a273f; /* Borde del botón (más visible) */
+    padding: 1rem; /* Espaciado interno del botón */
+    width: 10rem; /* Ancho fijo del botón */
+    text-align: center; /* Alineación horizontal del texto */
+    line-height: 1.5; /* Altura de la línea para centrar verticalmente el texto */
+    font-size: 1.1rem; /* Tamaño del texto */
+    font-weight: bold; /* Negrita en el texto */
+    text-decoration: none; /* Elimina el subrayado en los enlaces */
+}
+
+.btn:hover {
+    background-color: #33263d; /* Color de fondo al pasar el mouse */
+    border-color: #33263d; /* Color del borde al pasar el mouse */
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #eb6f92;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-mail {
+    display: inline-block;
+    padding: 0.75rem 1.5rem; /* Ajusta el tamaño del botón */
+    font-size: 1rem; /* Tamaño del texto */
+    font-weight: bold; /* Negrita en el texto */
+    color: #ffffff; /* Color del texto */
+    background-color: #eb6f92; /* Color de fondo del botón */
+    border: 2px solid #eb6f92; /* Borde del botón */
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center; /* Centra el texto dentro del botón */
+    text-decoration: none; /* Elimina el subrayado en los enlaces */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s, border-color 0.3s; /* Efecto de transición */
+}
+
+.btn-mail:hover {
+    background-color: #d55d7a; /* Color de fondo al pasar el mouse */
+    border-color: #d55d7a; /* Color del borde al pasar el mouse */
+}
+/* Estilo general para el modal */
+.modal {
+    display: none; /* Oculta el modal por defecto */
+    position: fixed; /* Fija el modal en la pantalla */
+    z-index: 1; /* Asegura que el modal esté sobre otros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ocupa toda la pantalla */
+    height: 100%; /* Ocupa toda la pantalla */
+    overflow: auto; /* Agrega scroll si es necesario */
+    background-color: rgba(15, 15, 22, 0.7); /* Fondo semitransparente acorde a Rose Pine */
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transición para la opacidad y visibilidad */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: #1f1d2e; /* Color de fondo del modal */
+    color: #e0def4; /* Color del texto */
+    margin: 15% auto; /* Centra el modal vertical y horizontalmente */
+    padding: 20px;
+    border: 1px solid #3b2e5a; /* Color del borde acorde a Rose Pine */
+    width: 80%; /* Ancho del modal */
+    max-width: 600px; /* Ancho máximo del modal */
+    border-radius: 8px; /* Bordes redondeados */
+    transform: scale(0.8); /* Escala inicial del contenido */
+    transition: transform 0.3s ease; /* Transición para la escala */
+}
+
+/* Mostrar el modal */
+.modal.show {
+    display: block; /* Muestra el modal */
+    opacity: 1; /* Haciendo el modal visible */
+}
+
+/* Mostrar el contenido del modal */
+.modal-content.show {
+    transform: scale(1); /* Escala completa del contenido */
+}
+
+/* Estilo para el botón de cerrar */
+.close {
+    color: #c0aeb4; /* Color del botón de cerrar acorde a Rose Pine */
+    float: right; /* Posiciona el botón en la esquina superior derecha */
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #e0def4; /* Color del botón de cerrar al pasar el mouse */
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Estilo base para el mensaje de éxito */
+.copy-message {
+    display: none; /* Oculta el mensaje por defecto */
+    margin-top: 10px; /* Espacio encima del mensaje */
+    padding: 10px;
+    background-color: #eb6f92; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 0.875rem; /* Tamaño de fuente */
+    opacity: 0; /* Inicialmente oculto */
+    transform: translateY(-10px); /* Mueve el mensaje hacia arriba para la animación */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones para opacidad y movimiento */
+    width: 20%;
+
+}
+
+/* Clase añadida cuando el mensaje está visible */
+.copy-message.show {
+    display: block; /* Muestra el mensaje */
+    opacity: 1; /* Totalmente opaco */
+    transform: translateY(0); /* Mueve el mensaje a su posición original */
 }
