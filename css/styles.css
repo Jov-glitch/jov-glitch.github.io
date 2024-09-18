@@ -186,7 +186,6 @@ footer {
     color: #f5e0f0;
 }
 .profile-img img {
-    width: 100%; /* Asegura que la imagen se ajuste al contenedor */
     max-width: 150px; /* Ajusta el tamaño máximo de la imagen */
     height: auto; /* Mantiene la proporción de la imagen */
     border-radius: 50%; /* Hace que la imagen sea redonda */
@@ -309,7 +308,8 @@ footer {
 }
 /* Estilo base para el mensaje de éxito */
 .copy-message {
-    display: none; /* Oculta el mensaje por defecto */
+    display: flex; /* Oculta el mensaje por defecto */
+    justify-content: center;
     margin-top: 10px; /* Espacio encima del mensaje */
     padding: 10px;
     background-color: #eb6f92; /* Color de fondo */
@@ -328,4 +328,17 @@ footer {
     display: block; /* Muestra el mensaje */
     opacity: 1; /* Totalmente opaco */
     transform: translateY(0); /* Mueve el mensaje a su posición original */
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}   
+.col-1-1 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    align-items: center; /* Centra verticalmente el contenido en la columna */
+    justify-content: center; /* Centra horizontalmente el contenido en la columna */
 }
