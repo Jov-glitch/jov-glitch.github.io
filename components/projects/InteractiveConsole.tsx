@@ -124,7 +124,7 @@ export function InteractiveConsole({ logs, command }: InteractiveConsoleProps) {
     }
 
     if (cmd === "help") {
-      response = "Available commands: help, status, restart, clear, neofetch, whoami, matrix, sudo rm -rf /";
+      response = "Available commands: help, status, restart, clear, neofetch, fastfetch, whoami, matrix, stacks, sudo rm -rf /";
     } else if (cmd === "status") {
       response = "SYSTEM: STABLE // CONTAINERS: ACTIVE (3/3) // HEALTH: 100%";
     } else if (cmd === "restart") {
@@ -139,7 +139,7 @@ export function InteractiveConsole({ logs, command }: InteractiveConsoleProps) {
       return;
     } else if (cmd === "whoami") {
       response = "guest@jessvega.me // Role: Tech Explorer";
-    } else if (cmd === "neofetch") {
+    } else if (cmd === "neofetch" || cmd === "fastfetch") {
       response = `  .---.      jessvega@homelab
  /     \\     OS: Fedora Server 41 (Server Edition)
  \\   🖳 /     Host: Ryzen 5 2600X Bare-Metal
@@ -148,6 +148,12 @@ export function InteractiveConsole({ logs, command }: InteractiveConsoleProps) {
              Containers: 14 (Docker Swarm)
              CPU: AMD Ryzen 5 2600X (12) @ 3.60GHz
              Memory: 15.61 GiB / 31.28 GiB (50%)`;
+    } else if (cmd === "stacks" || cmd === "docker compose" || cmd === "docker-compose") {
+      response = `🐳 DOCKER COMPOSE VAULT: 14 active stacks detected.
+- Work: Outline Wiki, Planka Kanban, Central Services (NPM, Nextcloud, Gitea, BookStack, Homepage)
+- HomeLab: Immich, MySQL, RustDesk, FileBrowser, Gitea, Uptime Kuma, OwnCloud, Dashy, HomeAssistant, NPM Gateway, AdGuard Home
+
+[ACTION] Scroll down to the "DOCKER COMPOSE REPOSITORY" section below to inspect files interactively!`;
     } else if (cmd === "matrix") {
       setMatrixActive(true);
       response = "LINKING TO MATRIX GRID... INITIALIZING STREAM.";

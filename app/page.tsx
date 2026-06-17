@@ -16,6 +16,7 @@ import { Timeline } from "@/components/experience/Timeline";
 import { Footer } from "@/components/common/Footer";
 import { Dossier } from "@/components/common/Dossier";
 import { KpisSection } from "@/components/common/KpisSection";
+import { ComposeHub } from "@/components/projects/ComposeHub";
 
 // Data imports
 import * as dataEn from "@/data";
@@ -134,6 +135,7 @@ export default function Home() {
       <KpisSection kpis={activeData.kpis} lang={lang} />
       <GridProyectos projects={activeData.projects} lang={lang} />
       <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />
+      <ComposeHub lang={lang} />
       <Telemetry minecraftEvent={activeData.minecraftEvent} lang={lang} />
       <Timeline experience={activeData.experience} lang={lang} />
       <Footer

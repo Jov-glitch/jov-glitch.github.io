@@ -332,6 +332,49 @@ ufw --force enable
 
 systemctl restart sshd
 echo "[SUCCESS] Hardening aplicado con seguridad."`
+    },
+    {
+        title: "FeDots-43 (Linux Dotfiles)",
+        description: "Mi configuración personalizada de entorno de trabajo Linux. Incluye la configuración del gestor de ventanas Hyprland, playbooks de Ansible y scripts utilitarios para entornos Fedora/Debian.",
+        stack: ["Bash", "Ansible", "Hyprland", "Fedora", "Lua"],
+        purpose: "Estandarización del despliegue de estaciones de trabajo y automatización de interfaces de usuario.",
+        link: "https://github.com/JessVolet/FeDots-43",
+        iacCode: `# Configuración de atajos de teclado de Hyprland
+$mainMod = SUPER
+bind = $mainMod, Q, exec, alacritty
+bind = $mainMod, C, killactive,
+bind = $mainMod, M, exit,
+bind = $mainMod, E, exec, dolphin
+bind = $mainMod, V, togglefloating,
+bind = $mainMod, R, exec, wofi --show drun
+
+# Script bash de auto-instalación
+echo "[DOTFILES] Copiando configuraciones a ~/.config/hypr..."
+mkdir -p ~/.config/hypr
+cp -r ./hypr/* ~/.config/hypr/
+echo "[DOTFILES] Configuraciones del Gestor de Ventanas aplicadas."`
+    },
+    {
+        title: "Prueba Técnica (FrontEnd)",
+        description: "Aplicación interactiva desarrollada en React que demuestra maquetación basada en componentes, hooks personalizados y optimización de renderizado.",
+        stack: ["React", "TypeScript", "TailwindCSS", "Vite", "REST APIs"],
+        purpose: "Evaluación técnica de desarrollo interactivo y consumo optimizado de endpoints.",
+        link: "https://github.com/JessVolet/PruebaTecnicaUPN-FrontEnd",
+        iacCode: `// Hook personalizado de React para filtrado dinámico
+import { useState, useMemo } from 'react';
+
+export function useDataFilter<T>(items: T[], key: keyof T) {
+  const [query, setQuery] = useState('');
+  
+  const filteredItems = useMemo(() => {
+    if (!query) return items;
+    return items.filter(item => 
+      String(item[key]).toLowerCase().includes(query.toLowerCase())
+    );
+  }, [items, key, query]);
+  
+  return { query, setQuery, filteredItems };
+}`
     }
 ];
 

@@ -4,6 +4,16 @@ import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import * as dockerData from "../../docker_stacks";
+
+interface StackData {
+  name: string;
+  title: string;
+  tag: string;
+  environment: string;
+  description: string;
+  compose: string;
+}
 
 interface DossierProps {
   profile: {
@@ -74,6 +84,7 @@ export function Dossier({
       "d-ecosystem",
       "d-stack",
       "d-projects",
+      "d-stacks",
       "d-vision",
       "d-contact",
     ];
@@ -104,6 +115,7 @@ export function Dossier({
       ecosystem: "Proyecto Destacado: Ecosistema CEV",
       stack: "Competencias Técnicas",
       projects: "Otros Proyectos",
+      stacks: "Orquestación Docker (Stacks)",
       vision: "Visión Técnica",
       contact: "Contacto & Enlaces",
       export: "Exportar PDF (Imprimir)",
@@ -114,6 +126,7 @@ export function Dossier({
       navEcosystem: "Ecosistema CEV",
       navStack: "Habilidades",
       navProjects: "Proyectos",
+      navStacks: "Docker Stacks",
       navVision: "Visión",
       navContact: "Contacto",
       back: "Volver a Modo Creativo ↩",
@@ -124,6 +137,7 @@ export function Dossier({
       ecosystem: "Featured Project: CEV Ecosystem",
       stack: "Technical Expertise",
       projects: "Other Projects",
+      stacks: "Docker Orchestration Stacks",
       vision: "Operational Vision",
       contact: "Contact & Links",
       export: "Export PDF (Print)",
@@ -134,6 +148,7 @@ export function Dossier({
       navEcosystem: "CEV Ecosystem",
       navStack: "Skills",
       navProjects: "Projects",
+      navStacks: "Docker Stacks",
       navVision: "Vision",
       navContact: "Contact",
       back: "Back to Creative Mode ↩",
@@ -309,6 +324,17 @@ export function Dossier({
               )}
             >
               📦 {t.navProjects}
+            </a>
+            <a
+              href="#d-stacks"
+              className={cn(
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                activeSection === "d-stacks"
+                  ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
+                  : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
+              )}
+            >
+              🐳 {t.navStacks}
             </a>
             <a
               href="#d-vision"
@@ -561,6 +587,47 @@ export function Dossier({
                     </div>
                   </div>
                 ))}
+              </div>
+            </section>
+
+            {/* Docker Stacks */}
+            <section id="d-stacks" className="space-y-6 scroll-mt-6">
+              <h2 className="text-xl sm:text-2xl font-bold font-mono tracking-tight uppercase text-brutal-red border-b border-slate-200 dark:border-slate-800 pb-2">
+                {t.stacks}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {(() => {
+                  const allStacks: StackData[] = Object.keys(dockerData)
+                    .filter((key) => key.startsWith("docker_"))
+                    .map((key) => (dockerData as any)[key] as StackData);
+                  
+                  return allStacks.map((stack) => (
+                    <div
+                      key={stack.name}
+                      className="p-6 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-sm flex flex-col justify-between h-full"
+                    >
+                      <div className="space-y-3">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-4 mb-2">
+                          <h3 className="font-bold font-mono text-base text-slate-900 dark:text-slate-100 uppercase">
+                            {stack.title}
+                          </h3>
+                          <Badge variant="outline" className="text-[9px] font-mono tracking-wider uppercase bg-transparent text-slate-500 dark:text-slate-400 border-slate-300 dark:border-slate-700 w-fit">
+                            {stack.environment}
+                          </Badge>
+                        </div>
+                        <p className="text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                          {stack.description}
+                        </p>
+                      </div>
+                      <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-800">
+                        <span className="block text-[10px] text-slate-400 dark:text-slate-500 font-mono uppercase font-black mb-1 select-none">Docker Compose File Preview</span>
+                        <pre className="text-[10px] font-mono leading-relaxed bg-slate-200 dark:bg-slate-950 p-3 rounded-sm overflow-x-auto text-slate-800 dark:text-slate-200 max-h-48 border border-slate-300 dark:border-slate-900 scrollbar-thin">
+                          {stack.compose}
+                        </pre>
+                      </div>
+                    </div>
+                  ));
+                })()}
               </div>
             </section>
 
