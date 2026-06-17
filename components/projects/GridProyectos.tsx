@@ -6,7 +6,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BrutalWindow } from "@/components/ui/BrutalWindow";
-import { InteractiveConsole } from "@/components/projects/InteractiveConsole";
 import {
   staggerContainerVariants,
   staggerItemVariants,
@@ -26,60 +25,7 @@ interface GridProyectosProps {
   lang: "es" | "en";
 }
 
-// Map each project to its appropriate command and simulated terminal logs
-const PROJECT_LOG_DATA: Record<string, { command: string; logs: string[] }> = {
-  "Minecraft Distributed Node (GCP)": {
-    command: "docker compose up -d mc-server",
-    logs: [
-      "[INFO] pulling paper-minecraft:1.20.4 container image...",
-      "[INFO] container mc-server-violet created.",
-      "[INFO] spawning reverse-proxy (nginx container)...",
-      "[INFO] binding cloudflare-ddns service...",
-      "[SUCCESS] reverse-proxy successfully routing mc.jessvega.me -> port 25565",
-      "[INFO] starting minecraft server core...",
-      "[INFO] loading properties, world seed: -1938592948",
-      "[INFO] preparing spawn area: 24%... 56%... 98%... Done!",
-      "[INFO] BlueMap 3D Web Renderer initialized on port 8100",
-      "[SUCCESS] node mc-server running in GCP Compute Engine (Ubuntu 25.10)",
-      "[INFO] player check: guest connected from 127.0.0.1"
-    ]
-  },
-  "Ryzen Bare-Metal HomeLab": {
-    command: "ansible-playbook -i hosts deploy-swarm.yml",
-    logs: [
-      "PLAY [Deploy Docker Swarm Services to Fedora Server] ************************",
-      "TASK [Gathering Facts] *******************************************************",
-      "ok: [ryzen-node-1]",
-      "TASK [Verify Docker Daemon is running] **************************************",
-      "ok: [ryzen-node-1]",
-      "TASK [Deploy Stack (Portainer, Prometheus, Grafana, Nginx)] ******************",
-      "changed: [ryzen-node-1]",
-      "TASK [Configure Prometheus Target Scrapers] **********************************",
-      "changed: [ryzen-node-1]",
-      "TASK [Verify HTTP Endpoints Health] ******************************************",
-      "ok: [ryzen-node-1] => (item=http://localhost:9090/graph)",
-      "ok: [ryzen-node-1] => (item=http://localhost:3000/login)",
-      "PLAY RECAP *******************************************************************",
-      "ryzen-node-1               : ok=5    changed=2    unreachable=0    failed=0"
-    ]
-  },
-  "Infrastructure as Code (IaC) Workflows": {
-    command: "./setup-workstation.sh --hyprland",
-    logs: [
-      "[INFO] Initializing Hyprland & Fedora Auto-Provisioning Script...",
-      "[INFO] Checking user privileges... [OK] running as root",
-      "[INFO] Updating DNF packages cache...",
-      "[INFO] Installing dependencies: hyprland, waybar, kitty, rofi, dunst...",
-      "[SUCCESS] 42 packages installed successfully.",
-      "[INFO] Copying dotfiles from /git/dotfiles/hypr to ~/.config/hypr...",
-      "[INFO] Hardening SSH config (/etc/ssh/sshd_config)...",
-      "[WARN] PasswordAuthentication is set to YES. Disabling it now... [OK]",
-      "[INFO] Hardening Nginx config & Systemd service limits... [OK]",
-      "[SUCCESS] Hardening complete. System is zero-trust ready.",
-      "[SUCCESS] Hyprland desktop environment configured. Restarting display manager..."
-    ]
-  }
-};
+// Project logs config removed (moved to global terminal modal)
 
 export function GridProyectos({ projects, lang }: GridProyectosProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -100,10 +46,7 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
     setTimeout(() => setSelectedProject(null), 300);
   };
 
-  // Find standard logs based on project title, or fallback to Minecraft as generic template
-  const getLogData = (title: string) => {
-    return PROJECT_LOG_DATA[title] || PROJECT_LOG_DATA["Minecraft Distributed Node (GCP)"];
-  };
+  // Logs helper removed
 
   const copyCodeToClipboard = (code: string) => {
     navigator.clipboard.writeText(code);
@@ -200,19 +143,11 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
                 </button>
                 <button
                   onClick={() => setActiveTab("code")}
-                  className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer ${
+                  className={`px-4 py-2 transition-colors cursor-pointer ${
                     activeTab === "code" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
                   {lang === "es" ? "📜 Código IaC" : "📜 IaC Code"}
-                </button>
-                <button
-                  onClick={() => setActiveTab("console")}
-                  className={`px-4 py-2 transition-colors cursor-pointer ${
-                    activeTab === "console" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
-                  }`}
-                >
-                  {lang === "es" ? "📡 Consola" : "📡 Console"}
                 </button>
               </div>
 
@@ -240,7 +175,11 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
 
                     {selectedProject.link && (
                       <div className="pt-6 border-t-2 border-brutal-black">
-                        <a href={selectedProject.link} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={selectedProject.link}
+                          target={selectedProject.link.startsWith("/") ? "_self" : "_blank"}
+                          rel={selectedProject.link.startsWith("/") ? "" : "noopener noreferrer"}
+                        >
                           <Button variant="default" className="w-full font-mono font-bold cursor-pointer rounded-sm">
                             {lang === "es" ? "Explorar Proyecto en Línea ↗" : "Explore Project Online ↗"}
                           </Button>
@@ -287,15 +226,6 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
                         {lang === "es" ? "No hay scripts de automatización disponibles." : "No automation scripts available."}
                       </p>
                     )}
-                  </div>
-                )}
-
-                {activeTab === "console" && (
-                  <div className="space-y-4">
-                    <InteractiveConsole
-                      command={getLogData(selectedProject.title).command}
-                      logs={getLogData(selectedProject.title).logs}
-                    />
                   </div>
                 )}
               </div>

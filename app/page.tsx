@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
@@ -17,6 +18,8 @@ import { Footer } from "@/components/common/Footer";
 import { Dossier } from "@/components/common/Dossier";
 import { KpisSection } from "@/components/common/KpisSection";
 import { ComposeHub } from "@/components/projects/ComposeHub";
+import { InteractiveConsole } from "@/components/projects/InteractiveConsole";
+import { BrutalWindow } from "@/components/ui/BrutalWindow";
 
 // Data imports
 import * as dataEn from "@/data";
@@ -28,6 +31,7 @@ export default function Home() {
   const [lang, setLang] = useState<"es" | "en">("es");
   const [mode, setMode] = useState<"creativo" | "serio">("creativo");
   const [mounted, setMounted] = useState(false);
+  const [isConsoleOpen, setIsConsoleOpen] = useState(false);
 
   useEffect(() => {
     // Read selections on client mount
@@ -144,6 +148,54 @@ export default function Home() {
         linkedin={activeData.profile.linkedin}
         lang={lang}
       />
+
+      {/* Floating System Console Button (Creative Mode Only) */}
+      {mode === "creativo" && (
+        <div className="fixed bottom-6 right-6 z-40 print:hidden select-none">
+          <motion.div
+            whileHover={{ y: -3, boxShadow: "6px 6px 0px rgba(0,0,0,1)" }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <button
+              onClick={() => setIsConsoleOpen(true)}
+              className="bg-brutal-green text-brutal-black border-4 border-brutal-black font-mono font-black text-sm px-5 py-3 shadow-brutal flex items-center gap-2 cursor-pointer hover:bg-brutal-white transition-colors"
+              title={lang === "es" ? "Abrir consola del sistema" : "Open system console"}
+            >
+              <span>📟</span>
+              <span>SYSTEM_CONSOLE</span>
+            </button>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Global Console Modal */}
+      {isConsoleOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brutal-black/40 backdrop-blur-xs select-none">
+          <div className="w-full max-w-3xl">
+            <BrutalWindow
+              title={lang === "es" ? "CONSOLA DE DIAGNÓSTICO // JV_SYSTEM" : "DIAGNOSTIC CONSOLE // JV_SYSTEM"}
+              isOpen={isConsoleOpen}
+              onClose={() => setIsConsoleOpen(false)}
+              statusBarText="STATUS: INTERACTIVE_SHELL"
+            >
+              <div className="text-left">
+                <InteractiveConsole
+                  command="docker compose up -d"
+                  logs={[
+                    "[INFO] Booting JV_SYSTEM_v2.0.4 on Ryzen 5 2600X...",
+                    "[INFO] Connecting to secure Zero-Trust Tailscale mesh network...",
+                    "[OK] Connection established. Gateway IP: 100.64.0.1",
+                    "[INFO] Loading docker container stacks from local storage...",
+                    "[OK] 14 containers loaded and checked. Health: 100%",
+                    "[INFO] Deploying portfolio frontend using Next.js Turbopack...",
+                    "[SUCCESS] JV_SYSTEM operational. Type 'help' to see available commands."
+                  ]}
+                />
+              </div>
+            </BrutalWindow>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

@@ -247,6 +247,7 @@ export const projects = [
         description: "Deployment of a productive Minecraft server using Google Cloud. Includes Nginx reverse proxy, 3D web visualization (BlueMap), and optimized mod pack.",
         stack: ["Docker", "GCP", "Nginx", "Cloudflare"],
         purpose: "Community event with real-time monitoring and secure network architecture.",
+        link: "/minecraft-project",
         iacCode: `version: "3.8"
 services:
   mc-server:
