@@ -43,6 +43,9 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-6 text-sm font-bold">
+          <a href="#experience" className="hover:text-brutal-red hover:underline transition-all">
+            {t.experience}
+          </a>
           <a href="#skills" className="hover:text-brutal-red hover:underline transition-all">
             {t.skills}
           </a>
@@ -51,9 +54,6 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
           </a>
           <a href="#ecosystem" className="hover:text-brutal-red hover:underline transition-all">
             {t.ecosystem}
-          </a>
-          <a href="#experience" className="hover:text-brutal-red hover:underline transition-all">
-            {t.experience}
           </a>
 
           <div className="h-6 w-0.5 bg-brutal-black mx-2" />
@@ -135,6 +135,13 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
       {isOpen && (
         <div className="md:hidden border-t-2 border-brutal-black bg-brutal-white p-4 flex flex-col gap-4 text-center font-bold text-base shadow-inner">
           <a
+            href="#experience"
+            onClick={() => setIsOpen(false)}
+            className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all"
+          >
+            {t.experience}
+          </a>
+          <a
             href="#skills"
             onClick={() => setIsOpen(false)}
             className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all"
@@ -154,13 +161,6 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
             className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all"
           >
             {t.ecosystem}
-          </a>
-          <a
-            href="#experience"
-            onClick={() => setIsOpen(false)}
-            className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all"
-          >
-            {t.experience}
           </a>
         </div>
       )}

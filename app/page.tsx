@@ -141,13 +141,13 @@ export default function Home() {
         location={activeData.profile.location}
         lang={lang}
       />
+      <Timeline experience={activeData.experience} lang={lang} />
       <SkillsGrid skills={activeData.skills} lang={lang} />
-      <KpisSection kpis={activeData.kpis} lang={lang} />
       <GridProyectos projects={activeData.projects} lang={lang} />
       <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />
       <ComposeHub lang={lang} />
       <Telemetry minecraftEvent={activeData.minecraftEvent} lang={lang} />
-      <Timeline experience={activeData.experience} lang={lang} />
+      <KpisSection kpis={activeData.kpis} lang={lang} />
       <Footer
         email={activeData.profile.email}
         github={activeData.profile.github}
