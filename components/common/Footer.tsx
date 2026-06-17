@@ -29,7 +29,7 @@ export function Footer({ email, github, linkedin, lang }: FooterProps) {
       skills: "Habilidades",
       projects: "Proyectos",
       experience: "Experiencia",
-      ecosystem: "Ecosistema UPN",
+      ecosystem: "Ecosistema CEV",
     },
     en: {
       cta: "Let's Work Together",
@@ -44,7 +44,7 @@ export function Footer({ email, github, linkedin, lang }: FooterProps) {
       skills: "Skills",
       projects: "Projects",
       experience: "Experience",
-      ecosystem: "UPN Ecosystem",
+      ecosystem: "CEV Ecosystem",
     },
   }[lang];
 

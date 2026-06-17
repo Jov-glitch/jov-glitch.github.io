@@ -8,7 +8,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/jose-vega-a477b13a3/",
     about: `Soy un Ingeniero en Sistemas en formación (8vo Semestre, TecNM Zamora) apasionado por la Infraestructura como Código (IaC) y la automatización de sistemas Linux. Mi enfoque profesional se centra en eliminar la intervención manual mediante el uso de herramientas de orquestación y provisión, bajo la premisa de que si un sistema se configura manualmente por SSH, es una falla de diseño.
 
-Actualmente gestiono la infraestructura crítica de la Universidad Pedagógica Nacional (UPN), donde lidero la migración de servicios legacy hacia arquitecturas containerizadas, optimizando la resiliencia y escalabilidad de los sistemas académicos.`,
+Actualmente gestiono la infraestructura crítica de una institución pública de educación superior, donde lidero la migración de servicios legacy hacia arquitecturas containerizadas, optimizando la resiliencia y escalabilidad de los sistemas académicos.`,
     vision: "Mi meta a corto plazo es obtener la certificación Google Cloud Associate (GCP ACE) y profundizar en el ecosistema de Kubernetes (Helm) para la orquestación a gran escala. Creo firmemente que en la era de la IA, el valor diferencial de un ingeniero radica en la capacidad de garantizar la confiabilidad, seguridad y persistencia de la infraestructura que soporta los modelos."
 };
 
@@ -42,7 +42,7 @@ export const skills = [
 export const experience = [
     {
         role: "Administrador de Sistemas & Líder de Proyecto",
-        company: "UPN-162 (CEV Environment)",
+        company: "CEV Environment (Universidad Pública)",
         period: "2024 - Actual",
         link: "#ecosystem",
         achievements: [
@@ -87,7 +87,7 @@ export const kpis = [
 ];
 
 export const upnEcosystem = {
-    title: "Ecosistema Digital UPN-162",
+    title: "Ecosistema Digital CEV",
     subtitle: "Infraestructura Crítica y Gestión Académica Distribuida",
     tagline: "Modernización de sistemas legacy mediante arquitecturas híbridas y seguridad Zero-Trust.",
     stack: ["PHP 8.2", "Laravel 11", "Docker", "DDEV", "Tailscale", "Proxmox", "OPNsense"],
@@ -156,7 +156,7 @@ services:
     volumes:
       - ./src:/var/www/html
     networks:
-      - upn-middleware-net
+      - cev-middleware-net
     restart: unless-stopped
 
   diana-api-db:
@@ -167,11 +167,11 @@ services:
     volumes:
       - diana_db:/var/lib/mysql
     networks:
-      - upn-middleware-net
+      - cev-middleware-net
     restart: unless-stopped
 
 networks:
-  upn-middleware-net:
+  cev-middleware-net:
 
 volumes:
   diana_db:`

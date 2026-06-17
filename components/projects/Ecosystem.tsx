@@ -172,7 +172,7 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
         <motion.div variants={staggerItemVariants} className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
             <span className="mr-2 sm:mr-3 inline-block">🏢</span>
-            {lang === "es" ? "Ecosistema Digital UPN-162" : "UPN-162 Digital Ecosystem"}
+            {lang === "es" ? "Ecosistema Digital CEV" : "CEV Digital Ecosystem"}
           </h2>
           <p className="text-base sm:text-lg md:text-xl font-mono text-brutal-gray uppercase tracking-widest max-w-3xl mx-auto mb-6">
             {ecosystem.subtitle}
@@ -277,7 +277,7 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                   <span>{activeTab === "architecture" ? (lang === "es" ? "PLANO DE RED VIRTUAL" : "VIRTUAL NETWORK BLUEPRINT") : selectedModule.title.toUpperCase()}</span>
                 </div>
                 <div className="text-[10px] text-brutal-gray font-mono uppercase hidden sm:block">
-                  {activeTab === "architecture" ? "UPN-162_TOPOLOGY" : selectedModule.subtitle}
+                  {activeTab === "architecture" ? "CEV_TOPOLOGY" : selectedModule.subtitle}
                 </div>
               </div>
 
@@ -455,7 +455,7 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                     >
                       <div className="flex-1 bg-brutal-black text-brutal-green font-mono p-4 text-xs rounded-brutal h-[260px] overflow-y-auto flex flex-col gap-1.5 border border-brutal-black shadow-inner" ref={scrollRef}>
                         <div className="text-brutal-gray pb-2 border-b border-brutal-dark/40 text-[10px]">
-                          UPN-162 CORE SYSTEM // MODULE: {selectedModule.id.toUpperCase()}
+                          CEV CORE SYSTEM // MODULE: {selectedModule.id.toUpperCase()}
                         </div>
                         
                         {consoleLogs.map((log, idx) => {

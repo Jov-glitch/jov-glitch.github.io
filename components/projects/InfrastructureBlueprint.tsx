@@ -21,7 +21,7 @@ export function InfrastructureBlueprint({ lang }: BlueprintProps) {
 
   const t = {
     es: {
-      title: "Plano del Ecosistema de Red UPN-162",
+      title: "Plano del Ecosistema de Red CEV",
       subtitle: "Pasa el cursor sobre los nodos de infraestructura para ver detalles operativos en tiempo real.",
       sidebarHeader: "CONSOLA DE MONITOREO DE RED",
       defaultSidebar: "APUNTAR CURSOR A UN NODO DE INFRAESTRUCTURA PARA DESPLEGAR MÉTRICAS Y POLÍTICAS DE SEGURIDAD...",
@@ -31,7 +31,7 @@ export function InfrastructureBlueprint({ lang }: BlueprintProps) {
       status: "Estado:",
     },
     en: {
-      title: "UPN-162 Network Ecosystem Blueprint",
+      title: "CEV Network Ecosystem Blueprint",
       subtitle: "Hover over infrastructure nodes to inspect real-time operational details and telemetry.",
       sidebarHeader: "NETWORK MONITORING CONSOLE",
       defaultSidebar: "HOVER AN INFRASTRUCTURE NODE TO DEPLOY METRICS AND SECURITY POLICIES...",

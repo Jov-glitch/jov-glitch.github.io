@@ -65,7 +65,7 @@ function render() {
   const dossierText = {
     summary: currentLang === 'es' ? 'Resumen Profesional' : 'Executive Summary',
     footprint: currentLang === 'es' ? 'Trayectoria Profesional' : 'Professional Footprint',
-    ecosystem: currentLang === 'es' ? 'Ecosistema UPN-162' : 'UPN-162 Ecosystem',
+    ecosystem: currentLang === 'es' ? 'Ecosistema CEV' : 'CEV Ecosystem',
     stack: currentLang === 'es' ? 'Stack Principal' : 'Core Stack',
     projects: currentLang === 'es' ? 'Proyectos Destacados' : 'Featured Projects',
     vision: currentLang === 'es' ? 'Visión Operativa' : 'Operational Vision',

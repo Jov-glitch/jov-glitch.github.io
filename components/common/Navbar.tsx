@@ -17,7 +17,7 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
     es: {
       skills: "Habilidades",
       projects: "Proyectos",
-      ecosystem: "Ecosistema UPN",
+      ecosystem: "Ecosistema CEV",
       experience: "Experiencia",
       creative: "CREATIVO",
       serious: "SERIO",
@@ -25,7 +25,7 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
     en: {
       skills: "Skills",
       projects: "Projects",
-      ecosystem: "UPN Ecosystem",
+      ecosystem: "CEV Ecosystem",
       experience: "Experience",
       creative: "CREATIVE",
       serious: "SERIOUS",

@@ -8,7 +8,7 @@ export const profile = {
     linkedin: "https://www.linkedin.com/in/jose-vega-a477b13a3/",
     about: `I am a Systems Engineer in training (8th Semester, TecNM Zamora) passionate about Infrastructure as Code (IaC) and Linux system automation. My professional focus centers on eliminating manual intervention through orchestration and provisioning tools, under the premise that if a system is manual configured via SSH, it is a design failure.
 
-Currently, I manage critical infrastructure at the National Pedagogical University (UPN), where I lead the migration of legacy services to containerized architectures, optimizing the resilience and scalability of academic systems.`,
+Currently, I manage critical infrastructure at a public higher education institution, where I lead the migration of legacy services to containerized architectures, optimizing the resilience and scalability of academic systems.`,
     vision: "My short-term goal is to obtain the Google Cloud Associate certification (GCP ACE) and deepen my knowledge in the Kubernetes ecosystem (Helm) for large-scale orchestration. I firmly believe that in the AI era, an engineer's competitive edge lies in the ability to guarantee the reliability, security, and persistence of the infrastructure supporting the models."
 };
 
@@ -42,7 +42,7 @@ export const skills = [
 export const experience = [
     {
         role: "Systems Administrator & Project Lead",
-        company: "UPN-162 (CEV Environment)",
+        company: "CEV Environment (Public University)",
         period: "2024 - Present",
         link: "#ecosystem",
         achievements: [
@@ -87,7 +87,7 @@ export const kpis = [
 ];
 
 export const upnEcosystem = {
-    title: "UPN-162 Digital Ecosystem",
+    title: "CEV Digital Ecosystem",
     subtitle: "Critical Infrastructure & Distributed Academic Management",
     tagline: "Modernizing legacy systems through hybrid architectures and Zero-Trust security.",
     stack: ["PHP 8.2", "Laravel 11", "Docker", "DDEV", "Tailscale", "Proxmox", "OPNsense"],
@@ -156,7 +156,7 @@ services:
     volumes:
       - ./src:/var/www/html
     networks:
-      - upn-middleware-net
+      - cev-middleware-net
     restart: unless-stopped
 
   diana-api-db:
@@ -167,11 +167,11 @@ services:
     volumes:
       - diana_db:/var/lib/mysql
     networks:
-      - upn-middleware-net
+      - cev-middleware-net
     restart: unless-stopped
 
 networks:
-  upn-middleware-net:
+  cev-middleware-net:
 
 volumes:
   diana_db:`

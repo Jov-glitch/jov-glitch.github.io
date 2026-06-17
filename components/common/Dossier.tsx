@@ -101,7 +101,7 @@ export function Dossier({
     es: {
       summary: "Resumen Profesional",
       footprint: "Trayectoria Profesional",
-      ecosystem: "Proyecto Destacado: UPN-162",
+      ecosystem: "Proyecto Destacado: Ecosistema CEV",
       stack: "Competencias Técnicas",
       projects: "Otros Proyectos",
       vision: "Visión Técnica",
@@ -111,7 +111,7 @@ export function Dossier({
       focused: "Orquestación & Cloud",
       navSummary: "Resumen",
       navExperience: "Experiencia",
-      navEcosystem: "Ecosistema UPN",
+      navEcosystem: "Ecosistema CEV",
       navStack: "Habilidades",
       navProjects: "Proyectos",
       navVision: "Visión",
@@ -121,7 +121,7 @@ export function Dossier({
     en: {
       summary: "Professional Summary",
       footprint: "Professional Footprint",
-      ecosystem: "Featured Project: UPN-162",
+      ecosystem: "Featured Project: CEV Ecosystem",
       stack: "Technical Expertise",
       projects: "Other Projects",
       vision: "Operational Vision",
@@ -131,7 +131,7 @@ export function Dossier({
       focused: "Orchestration & Cloud",
       navSummary: "Summary",
       navExperience: "Experience",
-      navEcosystem: "UPN Ecosystem",
+      navEcosystem: "CEV Ecosystem",
       navStack: "Skills",
       navProjects: "Projects",
       navVision: "Vision",
@@ -403,7 +403,7 @@ export function Dossier({
               </div>
             </section>
 
-            {/* UPN-162 Digital Ecosystem */}
+            {/* CEV Digital Ecosystem */}
             <section id="d-ecosystem" className="space-y-6 scroll-mt-6">
               <h2 className="text-xl sm:text-2xl font-bold font-mono tracking-tight uppercase text-brutal-red border-b border-slate-200 dark:border-slate-800 pb-2">
                 {t.ecosystem}
