@@ -276,7 +276,10 @@
   aside,
   header + div > aside,
   [role="tablist"],
-  div.fixed.top-0.left-0.right-0 {
+  div.fixed.top-0.left-0.right-0,
+  .crt-overlay,
+  .crt-vignette,
+  canvas {
     display: none !important;
   }
 

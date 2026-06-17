@@ -24,11 +24,11 @@ export function Timeline({ experience, lang }: TimelineProps) {
   const t = {
     es: {
       title: "Experiencia Profesional",
-      explore: "Explorar Ecosistema 🔗",
+      explore: "Explorar Ecosistema",
     },
     en: {
       title: "Experience",
-      explore: "Explore Ecosystem 🔗",
+      explore: "Explore Ecosystem",
     },
   }[lang];
 
@@ -37,7 +37,8 @@ export function Timeline({ experience, lang }: TimelineProps) {
       <div className="w-full max-w-3xl mx-auto">
         {/* Section Title */}
         <div className="mb-16 md:mb-24 text-center">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-briefcase"></i>
             {t.title}
           </h2>
           <div className="h-1 w-20 bg-brutal-red mx-auto" />
@@ -67,9 +68,14 @@ export function Timeline({ experience, lang }: TimelineProps) {
                   {job.link ? (
                     <a
                       href={job.link}
-                      className="text-base sm:text-lg md:text-xl font-mono font-bold text-brutal-red hover:underline hover:text-brutal-black inline-block transition-all"
+                      className="text-base sm:text-lg md:text-xl font-mono font-bold text-brutal-red hover:underline hover:text-brutal-black inline-flex items-center gap-1 transition-all"
                     >
-                      {job.company} {job.link.startsWith("#") && <span className="text-xs">({t.explore})</span>}
+                      <span>{job.company}</span>
+                      {job.link.startsWith("#") && (
+                        <span className="text-xs font-normal opacity-90 inline-flex items-center gap-0.5 ml-1">
+                          ({t.explore} <i className="ph ph-link-simple text-xs"></i>)
+                        </span>
+                      )}
                     </a>
                   ) : (
                     <p className="text-base sm:text-lg md:text-xl font-mono font-bold text-brutal-dark">
