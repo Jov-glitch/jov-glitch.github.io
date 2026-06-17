@@ -149,7 +149,7 @@ export function InteractiveConsole({ logs, command }: InteractiveConsoleProps) {
              CPU: AMD Ryzen 5 2600X (12) @ 3.60GHz
              Memory: 15.61 GiB / 31.28 GiB (50%)`;
     } else if (cmd === "stacks" || cmd === "docker compose" || cmd === "docker-compose") {
-      response = `🐳 DOCKER COMPOSE VAULT: 14 active stacks detected.
+      response = `DOCKER COMPOSE VAULT: 14 active stacks detected.
 - Work: Outline Wiki, Planka Kanban, Central Services (NPM, Nextcloud, Gitea, BookStack, Homepage)
 - HomeLab: Immich, MySQL, RustDesk, FileBrowser, Gitea, Uptime Kuma, OwnCloud, Dashy, HomeAssistant, NPM Gateway, AdGuard Home
 
@@ -187,7 +187,11 @@ export function InteractiveConsole({ logs, command }: InteractiveConsoleProps) {
         <div className="absolute inset-0 bg-brutal-red/25 z-40 animate-pulse flex flex-col items-center justify-center text-center p-4">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-xs z-0 pointer-events-none" />
           <div className="relative z-10 space-y-3 text-brutal-red font-black tracking-widest text-sm animate-bounce">
-            <p>⚠️ CRITICAL CORRUPTION ALERT ⚠️</p>
+            <p className="flex items-center justify-center gap-2 font-bold uppercase">
+              <i className="ph ph-warning text-base animate-pulse"></i>
+              <span>CRITICAL CORRUPTION ALERT</span>
+              <i className="ph ph-warning text-base animate-pulse"></i>
+            </p>
             <p className="text-brutal-white bg-brutal-red px-2 py-1 select-none text-xs">SUDO RM -RF / EXECUTED</p>
             <p className="text-[10px] text-yellow-400 font-mono animate-pulse">DELETING ROOT SECTOR DIRECTORY...</p>
           </div>

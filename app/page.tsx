@@ -88,7 +88,7 @@ export default function Home() {
     return (
       <div className="min-h-screen bg-brutal-white text-brutal-black flex flex-col items-center justify-center font-mono font-bold text-lg select-none">
         <div className="flex items-center gap-3">
-          <span className="animate-spin text-brutal-red">🔄</span>
+          <i className="ph ph-arrows-clockwise animate-spin text-brutal-red text-xl"></i>
           <span>BOOTING JV_SYSTEM_v2.0.4...</span>
         </div>
         <div className="text-xs text-brutal-gray mt-2 uppercase tracking-widest">
@@ -161,7 +161,7 @@ export default function Home() {
               className="bg-brutal-green text-brutal-black border-4 border-brutal-black font-mono font-black text-sm px-5 py-3 shadow-brutal flex items-center gap-2 cursor-pointer hover:bg-brutal-white transition-colors"
               title={lang === "es" ? "Abrir consola del sistema" : "Open system console"}
             >
-              <span>📟</span>
+              <i className="ph ph-terminal text-lg"></i>
               <span>SYSTEM_CONSOLE</span>
             </button>
           </motion.div>

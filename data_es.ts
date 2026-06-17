@@ -70,19 +70,19 @@ export const kpis = [
         metric: "4.8s",
         label: "RTO (Tiempo de Recuperación)",
         detail: "Motor de restauración 100% automatizado (ETL)",
-        icon: "⚡"
+        icon: "ph ph-lightning"
     },
     {
         metric: "0",
         label: "Puertos WAN Expuestos",
         detail: "Red Mesh VPN privada y perímetro Zero-Trust",
-        icon: "🛡️"
+        icon: "ph ph-shield-check"
     },
     {
         metric: "<10ms",
         label: "Latencia del Middleware",
         detail: "Capa de abstracción de base de datos de Diana API",
-        icon: "📡"
+        icon: "ph ph-broadcast"
     }
 ];
 

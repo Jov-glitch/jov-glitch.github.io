@@ -39,8 +39,8 @@ export function KpisSection({ kpis, lang }: KpisSectionProps) {
       >
         {/* Section Header */}
         <motion.div variants={staggerItemVariants} className="mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
-            <span className="mr-2 sm:mr-3 inline-block">📈</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-2">
+            <i className="ph ph-chart-line-up"></i>
             {t.title}
           </h2>
           <p className="text-sm sm:text-base font-mono text-brutal-gray uppercase tracking-widest max-w-2xl mx-auto">
@@ -71,7 +71,7 @@ export function KpisSection({ kpis, lang }: KpisSectionProps) {
                 </h3>
                 {/* Metric icon */}
                 <span className="text-3xl bg-brutal-light w-12 h-12 flex items-center justify-center border-2 border-brutal-black rounded-sm shadow-brutal-sm group-hover:-translate-y-1 transition-transform">
-                  {kpi.icon}
+                  <i className={kpi.icon}></i>
                 </span>
               </div>
 

@@ -170,8 +170,8 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
       >
         {/* Section Title */}
         <motion.div variants={staggerItemVariants} className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
-            <span className="mr-2 sm:mr-3 inline-block">🏢</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-buildings"></i>
             {lang === "es" ? "Ecosistema Digital CEV" : "CEV Digital Ecosystem"}
           </h2>
           <p className="text-base sm:text-lg md:text-xl font-mono text-brutal-gray uppercase tracking-widest max-w-3xl mx-auto mb-6">
@@ -357,8 +357,9 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                       </div>
 
                       <div className="bg-brutal-light border-l-4 border-l-brutal-black p-4 mt-6">
-                        <h4 className="font-mono font-bold text-xs uppercase tracking-wider text-brutal-dark mb-1">
-                          ⚡ {lang === "es" ? "Justificación de Ingeniería" : "Solution Rationale"}
+                        <h4 className="font-mono font-bold text-xs uppercase tracking-wider text-brutal-dark mb-1 flex items-center gap-2">
+                          <i className="ph ph-lightning text-sm"></i>
+                          {lang === "es" ? "Justificación de Ingeniería" : "Solution Rationale"}
                         </h4>
                         <p className="text-sm italic text-brutal-dark font-serif">
                           "{selectedModule.solution_rationale}"
@@ -471,8 +472,9 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                         })}
 
                         {isConsoleRunning && (
-                          <div className="text-brutal-white animate-pulse">
-                            ⏳ Fetching subsystem buffers...
+                          <div className="text-brutal-white animate-pulse flex items-center gap-2">
+                            <i className="ph ph-spinner animate-spin"></i>
+                            <span>Fetching subsystem buffers...</span>
                           </div>
                         )}
                       </div>
@@ -481,9 +483,10 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                         <button
                           onClick={runConsoleSim}
                           disabled={isConsoleRunning}
-                          className="bg-brutal-black text-brutal-white hover:bg-brutal-red hover:text-brutal-white border-2 border-brutal-black font-mono font-bold text-xs px-4 py-2 cursor-pointer uppercase transition-colors disabled:opacity-50 rounded-sm"
+                          className="bg-brutal-black text-brutal-white hover:bg-brutal-red hover:text-brutal-white border-2 border-brutal-black font-mono font-bold text-xs px-4 py-2 cursor-pointer uppercase transition-colors disabled:opacity-50 rounded-sm flex items-center gap-1.5"
                         >
-                          {lang === "es" ? "▷ Reiniciar Registro" : "▷ Restart Console"}
+                          <i className="ph ph-play"></i>
+                          <span>{lang === "es" ? "Reiniciar Registro" : "Restart Console"}</span>
                         </button>
                       </div>
                     </motion.div>

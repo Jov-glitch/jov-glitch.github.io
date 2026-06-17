@@ -37,8 +37,8 @@ export default function MinecraftProjectPage() {
 
   const t = {
     es: {
-      backBtn: "← Volver al Inicio",
-      pageTitle: "🧱 Archivo del Servidor Minecraft",
+      backBtn: "Volver al Inicio",
+      pageTitle: "Archivo del Servidor Minecraft",
       pageSubtitle: "Detalles técnicos, reglas y documentación de la infraestructura temporal.",
       aboutTitle: "Sobre el Evento",
       modpackTitle: "ModPack Oficial",
@@ -51,8 +51,8 @@ export default function MinecraftProjectPage() {
       copiedIpBtn: "¡COPIADO!",
     },
     en: {
-      backBtn: "← Back to Home",
-      pageTitle: "🧱 Minecraft Server Archive",
+      backBtn: "Back to Home",
+      pageTitle: "Minecraft Server Archive",
       pageSubtitle: "Technical details, rules, and documentation of the temporary infrastructure.",
       aboutTitle: "About the Event",
       modpackTitle: "Official ModPack",
@@ -79,7 +79,8 @@ export default function MinecraftProjectPage() {
       {/* Top Bar Navigation */}
       <div className="max-w-6xl mx-auto flex justify-between items-center mb-12 border-b-4 border-brutal-black pb-4 select-none">
         <a href="/">
-          <Button variant="default" className="font-mono font-bold text-xs cursor-pointer border-2 border-brutal-black shadow-brutal-sm hover:-translate-y-0.5">
+          <Button variant="default" className="font-mono font-bold text-xs cursor-pointer border-2 border-brutal-black shadow-brutal-sm hover:-translate-y-0.5 flex items-center gap-1.5">
+            <i className="ph ph-arrow-left"></i>
             {t.backBtn}
           </Button>
         </a>
@@ -113,8 +114,9 @@ export default function MinecraftProjectPage() {
         variants={staggerContainerVariants}
       >
         {/* Header Titles */}
-        <motion.div variants={staggerItemVariants} className="text-center mb-16 select-none">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter mb-4">
+        <motion.div variants={staggerItemVariants} className="text-center mb-16 select-none flex flex-col items-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-cube text-brutal-red"></i>
             {t.pageTitle}
           </h1>
           <p className="text-sm sm:text-base md:text-lg font-mono text-brutal-gray uppercase tracking-widest max-w-3xl mx-auto">
@@ -161,11 +163,12 @@ export default function MinecraftProjectPage() {
                     </h4>
                     <p className="text-sm leading-relaxed font-sans font-medium text-slate-700">{minecraftEvent.modpack.description}</p>
                     <div className="bg-yellow-50 border-2 border-yellow-500/30 p-3 text-xs text-yellow-900 font-mono shadow-brutal-sm">
-                      <span className="font-black">💡 {t.instructions}</span> {minecraftEvent.modpack.instructions}
+                      <span className="font-black"><i className="ph ph-lightbulb mr-1.5"></i>{t.instructions}</span> {minecraftEvent.modpack.instructions}
                     </div>
                     <a href={minecraftEvent.modpack.link} target="_blank" rel="noopener noreferrer" className="block">
-                      <Button variant="outline" className="w-full font-mono text-xs cursor-pointer border-2 border-brutal-black shadow-brutal-sm hover:-translate-y-0.5">
-                        📥 {t.downloadZip}
+                      <Button variant="outline" className="w-full font-mono text-xs cursor-pointer border-2 border-brutal-black shadow-brutal-sm hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                        <i className="ph ph-download-simple"></i>
+                        {t.downloadZip}
                       </Button>
                     </a>
                   </div>
@@ -177,8 +180,9 @@ export default function MinecraftProjectPage() {
             <motion.div variants={staggerItemVariants}>
               <Card brutal className="bg-brutal-black text-brutal-white border-2 border-brutal-black shadow-brutal select-text">
                 <CardHeader>
-                  <CardTitle className="text-xl text-brutal-red font-mono uppercase tracking-wider">
-                    🎮 {t.gamerTitle}
+                  <CardTitle className="text-xl text-brutal-red font-mono uppercase tracking-wider flex items-center gap-2">
+                    <i className="ph ph-game-controller"></i>
+                    {t.gamerTitle}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-sm leading-relaxed text-brutal-light font-serif italic text-justify">
@@ -195,7 +199,8 @@ export default function MinecraftProjectPage() {
               <Card brutal className="bg-brutal-white border-2 border-brutal-black shadow-brutal">
                 <CardHeader>
                   <CardTitle className="text-xl uppercase tracking-wider flex items-center gap-2">
-                    <span>📜</span> {t.rulesTitle}
+                    <i className="ph ph-scroll"></i>
+                    {t.rulesTitle}
                   </CardTitle>
                   <div className="h-0.5 w-12 bg-brutal-red mt-2" />
                 </CardHeader>
@@ -222,7 +227,8 @@ export default function MinecraftProjectPage() {
               <Card brutal className="bg-brutal-white border-2 border-brutal-black shadow-brutal">
                 <CardHeader>
                   <CardTitle className="text-xl uppercase tracking-wider flex items-center gap-2">
-                    <span>⚙️</span> {t.archTitle}
+                    <i className="ph ph-cpu"></i>
+                    {t.archTitle}
                   </CardTitle>
                   <div className="h-0.5 w-12 bg-brutal-red mt-2" />
                 </CardHeader>

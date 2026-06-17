@@ -45,7 +45,7 @@ export function Telemetry({ minecraftEvent, lang }: TelemetryProps) {
 
   const t = {
     es: {
-      sectionTitle: "📊 Telemetría en Vivo",
+      sectionTitle: "Telemetría en Vivo",
       sectionSubtitle: "Visualización en tiempo real del estado de nodos y servidores de homelab.",
       yamlHeader: "VIRTUAL_TELEMETRY // TELEMETRY_DASHBOARD",
       sysCpu: "Carga del CPU",
@@ -55,7 +55,7 @@ export function Telemetry({ minecraftEvent, lang }: TelemetryProps) {
       deployBtn: "[+ Desplegar Telemetría]",
     },
     en: {
-      sectionTitle: "📊 Live Telemetry",
+      sectionTitle: "Live Telemetry",
       sectionSubtitle: "Real-time state and telemetry for homelab nodes and systems.",
       yamlHeader: "VIRTUAL_TELEMETRY // TELEMETRY_DASHBOARD",
       sysCpu: "CPU Load",
@@ -77,8 +77,8 @@ export function Telemetry({ minecraftEvent, lang }: TelemetryProps) {
       >
         {/* Section Header */}
         <motion.div variants={staggerItemVariants} className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
-            <span className="mr-2 sm:mr-3 inline-block">📊</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-chart-bar"></i>
             {t.sectionTitle}
           </h2>
           <p className="text-base sm:text-lg md:text-xl font-mono text-brutal-gray uppercase tracking-widest max-w-3xl mx-auto mb-6">
@@ -149,7 +149,7 @@ export function Telemetry({ minecraftEvent, lang }: TelemetryProps) {
                       </Button>
                       <a href={mon.dashboard_url} target="_blank" rel="noopener noreferrer" className="block w-auto">
                         <Button variant="outline" className="font-mono text-xs cursor-pointer flex items-center justify-center gap-1 border-2 border-brutal-black shadow-brutal-sm">
-                          <span>↗</span>
+                          <i className="ph ph-arrow-square-out text-sm"></i>
                         </Button>
                       </a>
                     </div>

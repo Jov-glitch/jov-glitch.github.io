@@ -54,7 +54,7 @@ export function ComposeHub({ lang }: ComposeHubProps) {
 
   const t = {
     es: {
-      sectionTitle: "🐳 Repositorio Docker Compose",
+      sectionTitle: "Repositorio Docker Compose",
       sectionSubtitle: "Catálogo interactivo de infraestructura como código auto-hospedada.",
       tabWork: "Trabajo / Entorno Institucional",
       tabHomelab: "HomeLab / Red Personal",
@@ -65,7 +65,7 @@ export function ComposeHub({ lang }: ComposeHubProps) {
       yamlHeader: "VIRTUAL_TERMINAL // DOCKER_COMPOSE.YML",
     },
     en: {
-      sectionTitle: "🐳 Docker Compose Repository",
+      sectionTitle: "Docker Compose Repository",
       sectionSubtitle: "Interactive catalog of self-hosted infrastructure as code.",
       tabWork: "Work / Institutional Environment",
       tabHomelab: "HomeLab / Personal Net",
@@ -88,8 +88,8 @@ export function ComposeHub({ lang }: ComposeHubProps) {
       >
         {/* Section Header */}
         <motion.div variants={staggerItemVariants} className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
-            <span className="mr-2 sm:mr-3 inline-block">🐳</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-cube"></i>
             {t.sectionTitle}
           </h2>
           <p className="text-base sm:text-lg md:text-xl font-mono text-brutal-gray uppercase tracking-widest max-w-3xl mx-auto mb-6">

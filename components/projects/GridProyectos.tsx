@@ -64,8 +64,8 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
         variants={staggerContainerVariants}
       >
         <motion.div variants={staggerItemVariants} className="mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
-            <span className="mr-2 sm:mr-3 inline-block">📦</span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-package"></i>
             {lang === "es" ? "Proyectos Destacados" : "Featured Projects"}
           </h2>
           <div className="h-1 w-20 bg-brutal-red mx-auto" />
@@ -127,27 +127,30 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
               <div className="flex flex-wrap border-b-2 border-brutal-black mb-6 font-mono text-xs font-bold bg-brutal-light self-start">
                 <button
                   onClick={() => setActiveTab("overview")}
-                  className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer ${
+                  className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "overview" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
-                  {lang === "es" ? "📋 Resumen" : "📋 Overview"}
+                  <i className="ph ph-clipboard-text text-sm"></i>
+                  <span>{lang === "es" ? "Resumen" : "Overview"}</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("stack")}
-                  className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer ${
+                  className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "stack" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
-                  {lang === "es" ? "⚙️ Stack" : "⚙️ Stack"}
+                  <i className="ph ph-gear text-sm"></i>
+                  <span>{lang === "es" ? "Stack" : "Stack"}</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("code")}
-                  className={`px-4 py-2 transition-colors cursor-pointer ${
+                  className={`px-4 py-2 transition-colors cursor-pointer flex items-center gap-1.5 ${
                     activeTab === "code" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
-                  {lang === "es" ? "📜 Código IaC" : "📜 IaC Code"}
+                  <i className="ph ph-scroll text-sm"></i>
+                  <span>{lang === "es" ? "Código IaC" : "IaC Code"}</span>
                 </button>
               </div>
 

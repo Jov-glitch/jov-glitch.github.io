@@ -183,29 +183,27 @@ export function Dossier({
         {/* Toggle Theme */}
         <button
           onClick={toggleTheme}
-          className={`px-3 py-1.5 text-xs font-mono font-bold border-2 border-current hover:bg-current hover:text-white transition-colors cursor-pointer rounded-sm ${
-            dossierTheme === "light" ? "text-slate-900" : "text-slate-100"
-          }`}
+          className="px-3 py-1.5 text-xs font-mono font-bold border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white transition-colors cursor-pointer rounded-sm flex items-center gap-1"
         >
-          <span className="sm:hidden">🌓</span>
+          <span className="sm:hidden flex items-center justify-center"><i className="ph ph-moon text-base"></i></span>
           <span className="hidden sm:inline">{dossierTheme === "light" ? "DARK_MODE" : "LIGHT_MODE"}</span>
         </button>
 
         {/* Export to PDF */}
         <button
           onClick={() => window.print()}
-          className="px-3 py-1.5 text-xs font-mono font-bold border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors cursor-pointer rounded-sm"
+          className="px-3 py-1.5 text-xs font-mono font-bold border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-colors cursor-pointer rounded-sm flex items-center gap-1"
         >
-          <span className="sm:hidden">📥 PDF</span>
+          <span className="sm:hidden flex items-center justify-center"><i className="ph ph-download-simple text-base"></i></span>
           <span className="hidden sm:inline">{t.export}</span>
         </button>
 
         {/* Back to Creative Mode */}
         <button
           onClick={onClose}
-          className="px-3 py-1.5 text-xs font-mono font-bold border-2 border-brutal-red text-brutal-red hover:bg-brutal-red hover:text-white transition-colors cursor-pointer rounded-sm"
+          className="px-3 py-1.5 text-xs font-mono font-bold border-2 border-brutal-red text-brutal-red hover:bg-brutal-red hover:text-white transition-colors cursor-pointer rounded-sm flex items-center gap-1"
         >
-          <span className="sm:hidden">↩ Volver</span>
+          <span className="sm:hidden flex items-center justify-center"><i className="ph ph-arrow-left text-base"></i></span>
           <span className="hidden sm:inline">{t.back}</span>
         </button>
       </div>
@@ -223,8 +221,9 @@ export function Dossier({
             <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 font-serif italic max-w-2xl">
               "{profile.tagline}"
             </p>
-            <p className="text-xs sm:text-sm text-slate-400 font-mono">
-              📍 {profile.location}
+            <p className="text-xs sm:text-sm text-slate-400 font-mono flex items-center gap-1.5">
+              <i className="ph ph-map-pin"></i>
+              {profile.location}
             </p>
           </div>
           <div className="flex gap-8 border-l-2 border-slate-200 dark:border-slate-800 pl-6 h-fit py-1.5 font-mono">
@@ -246,8 +245,8 @@ export function Dossier({
               key={kpi.label}
               className="p-5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-sm flex items-start gap-4 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-200"
             >
-              <div className="w-10 h-10 flex items-center justify-center bg-slate-200 dark:bg-slate-800 rounded-sm font-mono text-xl flex-shrink-0">
-                {kpi.icon}
+              <div className="w-10 h-10 flex items-center justify-center bg-slate-200 dark:bg-slate-800 rounded-sm font-mono text-xl flex-shrink-0 text-slate-800 dark:text-slate-200">
+                <i className={kpi.icon}></i>
               </div>
               <div className="space-y-1">
                 <div className="flex items-baseline gap-2">
@@ -273,90 +272,90 @@ export function Dossier({
             <a
               href="#d-summary"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-summary"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              👤 {t.navSummary}
+              <i className="ph ph-user text-base"></i> {t.navSummary}
             </a>
             <a
               href="#d-experience"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-experience"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              💼 {t.navExperience}
+              <i className="ph ph-briefcase text-base"></i> {t.navExperience}
             </a>
             <a
               href="#d-ecosystem"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-ecosystem"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              🏢 {t.navEcosystem}
+              <i className="ph ph-buildings text-base"></i> {t.navEcosystem}
             </a>
             <a
               href="#d-stack"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-stack"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              🛠️ {t.navStack}
+              <i className="ph ph-wrench text-base"></i> {t.navStack}
             </a>
             <a
               href="#d-projects"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-projects"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              📦 {t.navProjects}
+              <i className="ph ph-package text-base"></i> {t.navProjects}
             </a>
             <a
               href="#d-stacks"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-stacks"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              🐳 {t.navStacks}
+              <i className="ph ph-cube text-base"></i> {t.navStacks}
             </a>
             <a
               href="#d-vision"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-vision"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              🎯 {t.navVision}
+              <i className="ph ph-target text-base"></i> {t.navVision}
             </a>
             <a
               href="#d-contact"
               className={cn(
-                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2",
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
                 activeSection === "d-contact"
                   ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
                   : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
               )}
             >
-              📞 {t.navContact}
+              <i className="ph ph-identification-card text-base"></i> {t.navContact}
             </a>
           </aside>
 
