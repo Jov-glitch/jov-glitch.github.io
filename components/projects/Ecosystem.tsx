@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { staggerContainerVariants, staggerItemVariants } from "@/lib/animations";
+import { InfrastructureBlueprint } from "@/components/projects/InfrastructureBlueprint";
 
 interface Module {
   id: string;
@@ -13,11 +14,7 @@ interface Module {
   stack: string[];
   description: string;
   solution_rationale: string;
-  implementation?: {
-    architecture: string;
-    automation: string;
-    reporting: string;
-  };
+  iacCode?: string;
   engineering?: Record<
     string,
     {
@@ -92,7 +89,8 @@ const MODULE_LOGS: Record<string, string[]> = {
 
 export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
   const [selectedModule, setSelectedModule] = useState<Module>(ecosystem.modules[0]);
-  const [activeTab, setActiveTab] = useState<"overview" | "engineering" | "console">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "architecture" | "engineering" | "console" | "code">("overview");
+  const [copiedCode, setCopiedCode] = useState(false);
   
   // Console state
   const [consoleLogs, setConsoleLogs] = useState<string[]>([]);
@@ -152,6 +150,14 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
   };
 
   const currentColors = getColors(getModuleIndex(selectedModule.id));
+
+  const copyCodeToClipboard = () => {
+    if (selectedModule.iacCode) {
+      navigator.clipboard.writeText(selectedModule.iacCode);
+      setCopiedCode(true);
+      setTimeout(() => setCopiedCode(false), 2000);
+    }
+  };
 
   return (
     <section id="ecosystem" className="py-24 px-4 bg-brutal-white border-t-4 border-brutal-black w-full">
@@ -237,7 +243,13 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
               return (
                 <button
                   key={mod.id}
-                  onClick={() => setSelectedModule(mod)}
+                  onClick={() => {
+                    setSelectedModule(mod);
+                    // Don't auto-reset architecture tab, since it's global
+                    if (activeTab !== "architecture") {
+                      setActiveTab("overview");
+                    }
+                  }}
                   className={`w-full text-left p-4 border-2 border-brutal-black shadow-brutal-sm cursor-pointer transition-all ${
                     isSelected
                       ? `${colors.bg} text-brutal-white -translate-y-1 shadow-brutal`
@@ -262,10 +274,10 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
               <div className="bg-brutal-black text-brutal-white p-3 flex justify-between items-center border-b-2 border-brutal-black select-none">
                 <div className="font-mono text-xs font-bold tracking-widest flex items-center gap-2">
                   <span className="w-2.5 h-2.5 bg-brutal-green rounded-full animate-pulse inline-block"></span>
-                  <span>{selectedModule.title.toUpperCase()}</span>
+                  <span>{activeTab === "architecture" ? (lang === "es" ? "PLANO DE RED VIRTUAL" : "VIRTUAL NETWORK BLUEPRINT") : selectedModule.title.toUpperCase()}</span>
                 </div>
                 <div className="text-[10px] text-brutal-gray font-mono uppercase hidden sm:block">
-                  {selectedModule.subtitle}
+                  {activeTab === "architecture" ? "UPN-162_TOPOLOGY" : selectedModule.subtitle}
                 </div>
               </div>
 
@@ -280,26 +292,42 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                 </div>
 
                 {/* Tabs */}
-                <div className="flex border border-brutal-black text-xs font-mono font-bold self-start sm:self-auto">
+                <div className="flex flex-wrap border border-brutal-black text-xs font-mono font-bold self-start sm:self-auto">
                   <button
                     onClick={() => setActiveTab("overview")}
-                    className={`px-3 py-1 cursor-pointer transition-colors border-r border-brutal-black ${
+                    className={`px-3 py-1.5 cursor-pointer transition-colors border-r border-brutal-black ${
                       activeTab === "overview" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                     }`}
                   >
                     {lang === "es" ? "Resumen" : "Overview"}
                   </button>
                   <button
+                    onClick={() => setActiveTab("architecture")}
+                    className={`px-3 py-1.5 cursor-pointer transition-colors border-r border-brutal-black ${
+                      activeTab === "architecture" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
+                    }`}
+                  >
+                    {lang === "es" ? "Arquitectura" : "Architecture"}
+                  </button>
+                  <button
                     onClick={() => setActiveTab("engineering")}
-                    className={`px-3 py-1 cursor-pointer transition-colors border-r border-brutal-black ${
+                    className={`px-3 py-1.5 cursor-pointer transition-colors border-r border-brutal-black ${
                       activeTab === "engineering" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                     }`}
                   >
                     {lang === "es" ? "Ingeniería" : "Engineering"}
                   </button>
                   <button
+                    onClick={() => setActiveTab("code")}
+                    className={`px-3 py-1.5 cursor-pointer transition-colors border-r border-brutal-black ${
+                      activeTab === "code" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
+                    }`}
+                  >
+                    {lang === "es" ? "Código IaC" : "IaC Code"}
+                  </button>
+                  <button
                     onClick={() => setActiveTab("console")}
-                    className={`px-3 py-1 cursor-pointer transition-colors ${
+                    className={`px-3 py-1.5 cursor-pointer transition-colors ${
                       activeTab === "console" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                     }`}
                   >
@@ -309,7 +337,7 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
               </div>
 
               {/* Tab Contents */}
-              <div className="flex-1 p-6 overflow-y-auto bg-brutal-white">
+              <div className="flex-1 p-6 overflow-y-auto bg-brutal-white flex flex-col">
                 <AnimatePresence mode="wait">
                   {activeTab === "overview" && (
                     <motion.div
@@ -336,6 +364,18 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                           "{selectedModule.solution_rationale}"
                         </p>
                       </div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === "architecture" && (
+                    <motion.div
+                      key="architecture"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="w-full flex-1 flex flex-col justify-center"
+                    >
+                      <InfrastructureBlueprint lang={lang} />
                     </motion.div>
                   )}
 
@@ -371,6 +411,36 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                               </div>
                             );
                           })}
+                        {!selectedModule.engineering && (
+                          <div className="col-span-2 p-6 border border-dashed border-brutal-gray/50 text-center font-mono text-xs text-brutal-gray">
+                            {lang === "es" ? "Consulte el diagrama de red o la configuración de código para ver especificaciones." : "See network diagram or code configuration tabs for architecture specs."}
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === "code" && selectedModule.iacCode && (
+                    <motion.div
+                      key="code"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="space-y-4 flex-1 flex flex-col"
+                    >
+                      <h4 className="font-mono font-bold text-xs uppercase tracking-wider text-brutal-gray">
+                        [ {lang === "es" ? "CONFIGURACIÓN INFRAESTRUCTURA COMO CÓDIGO (IaC)" : "INFRASTRUCTURE AS CODE (IaC) CONFIGURATION"} ]
+                      </h4>
+                      <div className="relative border-2 border-brutal-black bg-brutal-black text-brutal-white font-mono p-4 text-xs rounded-brutal shadow-inner flex-1 max-h-[300px] overflow-y-auto">
+                        <pre className="whitespace-pre-wrap leading-relaxed select-text font-mono text-[11px]">
+                          <code>{selectedModule.iacCode}</code>
+                        </pre>
+                        <button
+                          onClick={copyCodeToClipboard}
+                          className="absolute top-2 right-2 bg-brutal-light text-brutal-black border-2 border-brutal-black font-mono text-[9px] px-2 py-1 hover:bg-brutal-red hover:text-brutal-white transition-all cursor-pointer font-bold rounded-sm"
+                        >
+                          {copiedCode ? (lang === "es" ? "¡COPIADO!" : "COPIED!") : "COPY_CODE"}
+                        </button>
                       </div>
                     </motion.div>
                   )}
@@ -381,9 +451,9 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="h-full flex flex-col justify-between"
+                      className="h-full flex flex-col justify-between flex-1"
                     >
-                      <div className="flex-1 bg-brutal-black text-brutal-green font-mono p-4 text-xs rounded-brutal h-[300px] overflow-y-auto flex flex-col gap-1.5 border border-brutal-black shadow-inner" ref={scrollRef}>
+                      <div className="flex-1 bg-brutal-black text-brutal-green font-mono p-4 text-xs rounded-brutal h-[260px] overflow-y-auto flex flex-col gap-1.5 border border-brutal-black shadow-inner" ref={scrollRef}>
                         <div className="text-brutal-gray pb-2 border-b border-brutal-dark/40 text-[10px]">
                           UPN-162 CORE SYSTEM // MODULE: {selectedModule.id.toUpperCase()}
                         </div>
@@ -411,7 +481,7 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
                         <button
                           onClick={runConsoleSim}
                           disabled={isConsoleRunning}
-                          className="bg-brutal-black text-brutal-white hover:bg-brutal-red hover:text-brutal-white border-2 border-brutal-black font-mono font-bold text-xs px-4 py-2 cursor-pointer uppercase transition-colors disabled:opacity-50"
+                          className="bg-brutal-black text-brutal-white hover:bg-brutal-red hover:text-brutal-white border-2 border-brutal-black font-mono font-bold text-xs px-4 py-2 cursor-pointer uppercase transition-colors disabled:opacity-50 rounded-sm"
                         >
                           {lang === "es" ? "▷ Reiniciar Registro" : "▷ Restart Console"}
                         </button>
@@ -422,7 +492,7 @@ export function Ecosystem({ ecosystem, lang }: EcosystemProps) {
               </div>
 
               {/* Status Bar */}
-              <div className="bg-brutal-light border-t-2 border-brutal-black p-2 flex justify-between items-center text-[10px] font-mono font-bold text-brutal-dark">
+              <div className="bg-brutal-light border-t-2 border-brutal-black p-2 flex justify-between items-center text-[10px] font-mono font-bold text-brutal-dark select-none">
                 <div className="flex items-center gap-1">
                   <span className={`w-2 h-2 rounded-full ${isConsoleRunning ? "bg-yellow-400" : "bg-brutal-green"} inline-block`}></span>
                   <span>STATUS: {isConsoleRunning ? "BUSY" : "ONLINE"}</span>

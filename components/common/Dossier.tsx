@@ -43,6 +43,12 @@ interface DossierProps {
     purpose: string;
     link?: string;
   }[];
+  kpis: {
+    metric: string;
+    label: string;
+    detail: string;
+    icon: string;
+  }[];
   lang: "es" | "en";
   onClose: () => void;
 }
@@ -53,6 +59,7 @@ export function Dossier({
   experience,
   upnEcosystem,
   projects,
+  kpis,
   lang,
   onClose,
 }: DossierProps) {
@@ -216,6 +223,33 @@ export function Dossier({
             </div>
           </div>
         </header>
+
+        {/* Metric Highlights Row (KPIs) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 border-b-2 border-slate-200 dark:border-slate-800 pb-10">
+          {kpis.map((kpi) => (
+            <div
+              key={kpi.label}
+              className="p-5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-sm flex items-start gap-4 hover:border-slate-400 dark:hover:border-slate-600 transition-all duration-200"
+            >
+              <div className="w-10 h-10 flex items-center justify-center bg-slate-200 dark:bg-slate-800 rounded-sm font-mono text-xl flex-shrink-0">
+                {kpi.icon}
+              </div>
+              <div className="space-y-1">
+                <div className="flex items-baseline gap-2">
+                  <span className="text-2xl font-black font-mono tracking-tight text-slate-900 dark:text-slate-100">
+                    {kpi.metric}
+                  </span>
+                  <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+                    {kpi.label}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-sans leading-normal">
+                  {kpi.detail}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

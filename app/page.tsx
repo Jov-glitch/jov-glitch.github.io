@@ -15,6 +15,7 @@ import { Telemetry } from "@/components/projects/Telemetry";
 import { Timeline } from "@/components/experience/Timeline";
 import { Footer } from "@/components/common/Footer";
 import { Dossier } from "@/components/common/Dossier";
+import { KpisSection } from "@/components/common/KpisSection";
 
 // Data imports
 import * as dataEn from "@/data";
@@ -103,6 +104,7 @@ export default function Home() {
         experience={activeData.experience}
         upnEcosystem={activeData.upnEcosystem}
         projects={activeData.projects}
+        kpis={activeData.kpis}
         lang={lang}
         onClose={() => handleModeChange("creativo")}
       />
@@ -129,6 +131,7 @@ export default function Home() {
         lang={lang}
       />
       <SkillsGrid skills={activeData.skills} lang={lang} />
+      <KpisSection kpis={activeData.kpis} lang={lang} />
       <GridProyectos projects={activeData.projects} lang={lang} />
       <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />
       <Telemetry minecraftEvent={activeData.minecraftEvent} lang={lang} />

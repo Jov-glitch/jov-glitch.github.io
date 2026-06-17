@@ -18,6 +18,7 @@ interface Project {
   stack: string[];
   purpose: string;
   link?: string;
+  iacCode?: string;
 }
 
 interface GridProyectosProps {
@@ -83,7 +84,8 @@ const PROJECT_LOG_DATA: Record<string, { command: string; logs: string[] }> = {
 export function GridProyectos({ projects, lang }: GridProyectosProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<"overview" | "stack" | "console">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "stack" | "code" | "console">("overview");
+  const [copiedCode, setCopiedCode] = useState(false);
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
@@ -101,6 +103,12 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
   // Find standard logs based on project title, or fallback to Minecraft as generic template
   const getLogData = (title: string) => {
     return PROJECT_LOG_DATA[title] || PROJECT_LOG_DATA["Minecraft Distributed Node (GCP)"];
+  };
+
+  const copyCodeToClipboard = (code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(true);
+    setTimeout(() => setCopiedCode(false), 2000);
   };
 
   return (
@@ -173,14 +181,14 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
               statusBarText={`RUNNING: ${selectedProject.purpose}`}
             >
               {/* Window Internal Tabs */}
-              <div className="flex border-b-2 border-brutal-black mb-6 font-mono text-xs font-bold bg-brutal-light self-start">
+              <div className="flex flex-wrap border-b-2 border-brutal-black mb-6 font-mono text-xs font-bold bg-brutal-light self-start">
                 <button
                   onClick={() => setActiveTab("overview")}
                   className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer ${
                     activeTab === "overview" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
-                  {lang === "es" ? "📋 Descripción" : "📋 Overview"}
+                  {lang === "es" ? "📋 Resumen" : "📋 Overview"}
                 </button>
                 <button
                   onClick={() => setActiveTab("stack")}
@@ -188,7 +196,15 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
                     activeTab === "stack" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
-                  {lang === "es" ? "⚙️ Stack Técnico" : "⚙️ Tech Stack"}
+                  {lang === "es" ? "⚙️ Stack" : "⚙️ Stack"}
+                </button>
+                <button
+                  onClick={() => setActiveTab("code")}
+                  className={`px-4 py-2 border-r-2 border-brutal-black transition-colors cursor-pointer ${
+                    activeTab === "code" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
+                  }`}
+                >
+                  {lang === "es" ? "📜 Código IaC" : "📜 IaC Code"}
                 </button>
                 <button
                   onClick={() => setActiveTab("console")}
@@ -196,12 +212,12 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
                     activeTab === "console" ? "bg-brutal-black text-brutal-white" : "bg-brutal-white hover:bg-brutal-light"
                   }`}
                 >
-                  {lang === "es" ? "📡 Consola en Vivo" : "📡 Live Console"}
+                  {lang === "es" ? "📡 Consola" : "📡 Console"}
                 </button>
               </div>
 
               {/* Tab Contents */}
-              <div className="space-y-6">
+              <div className="space-y-6 text-left">
                 {activeTab === "overview" && (
                   <div className="space-y-4">
                     <div>
@@ -225,7 +241,7 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
                     {selectedProject.link && (
                       <div className="pt-6 border-t-2 border-brutal-black">
                         <a href={selectedProject.link} target="_blank" rel="noopener noreferrer">
-                          <Button variant="default" className="w-full font-mono font-bold cursor-pointer">
+                          <Button variant="default" className="w-full font-mono font-bold cursor-pointer rounded-sm">
                             {lang === "es" ? "Explorar Proyecto en Línea ↗" : "Explore Project Online ↗"}
                           </Button>
                         </a>
@@ -241,11 +257,36 @@ export function GridProyectos({ projects, lang }: GridProyectosProps) {
                     </h3>
                     <div className="flex flex-wrap gap-2">
                       {selectedProject.stack.map((tech) => (
-                        <Badge key={tech} variant="default" className="text-sm font-mono px-3 py-1 border-2 border-brutal-black bg-brutal-white text-brutal-black">
+                        <Badge key={tech} variant="default" className="text-sm font-mono px-3 py-1 border-2 border-brutal-black bg-brutal-white text-brutal-black rounded-sm">
                           {tech}
                         </Badge>
                       ))}
                     </div>
+                  </div>
+                )}
+
+                {activeTab === "code" && (
+                  <div className="space-y-4">
+                    <h3 className="font-mono font-bold text-xs uppercase tracking-wider text-brutal-gray mb-2">
+                      [ {lang === "es" ? "SCRIPTS DE AUTOMATIZACIÓN E INFRAESTRUCTURA" : "IaC & AUTOMATION WORKFLOWS"} ]
+                    </h3>
+                    {selectedProject.iacCode ? (
+                      <div className="relative border-2 border-brutal-black bg-brutal-black text-brutal-white font-mono p-4 text-xs rounded-brutal shadow-inner max-h-[300px] overflow-y-auto">
+                        <pre className="whitespace-pre-wrap leading-relaxed select-text font-mono text-[11px]">
+                          <code>{selectedProject.iacCode}</code>
+                        </pre>
+                        <button
+                          onClick={() => copyCodeToClipboard(selectedProject.iacCode || "")}
+                          className="absolute top-2 right-2 bg-brutal-light text-brutal-black border-2 border-brutal-black font-mono text-[9px] px-2 py-1 hover:bg-brutal-red hover:text-brutal-white transition-all cursor-pointer font-bold rounded-sm"
+                        >
+                          {copiedCode ? (lang === "es" ? "¡COPIADO!" : "COPIED!") : "COPY_CODE"}
+                        </button>
+                      </div>
+                    ) : (
+                      <p className="text-sm font-mono text-brutal-gray">
+                        {lang === "es" ? "No hay scripts de automatización disponibles." : "No automation scripts available."}
+                      </p>
+                    )}
                   </div>
                 )}
 

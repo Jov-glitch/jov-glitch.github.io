@@ -260,13 +260,94 @@
   }
 }
 
-/* Print styles for PDF export */
-@media print {
-  body {
-    @apply bg-brutal-white;
-  }
-
-  button {
-    display: none;
+/* Blueprint line dash flow animation */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
   }
 }
+
+/* Print styles for PDF export */
+@media print {
+  /* Hide interactive controls, buttons, sidebars, theme and close buttons */
+  button,
+  .mc-modal-header button,
+  .close-modal-creative-btn,
+  aside,
+  header + div > aside,
+  [role="tablist"],
+  div.fixed.top-0.left-0.right-0 {
+    display: none !important;
+  }
+
+  /* Expand main layout areas to full width */
+  .grid-cols-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  }
+
+  main, 
+  .lg\:col-span-9,
+  .print\:col-span-12 {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: span 12 / span 12 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Reset layout structure for print */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+  }
+
+  .dossier-grid-pattern {
+    background-image: none !important;
+  }
+
+  /* Force cards to show with a light background and border */
+  .bg-slate-100, 
+  .dark .bg-slate-900,
+  .bg-slate-100\/50,
+  .dark .bg-slate-900\/50 {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Avoid splitting timeline nodes and cards across pages */
+  #d-experience > div > div,
+  #d-stack > div > div,
+  #d-projects > div > div,
+  #d-ecosystem > div,
+  #d-summary > div,
+  header,
+  footer {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Make links readable and show URLs where useful */
+  a {
+    color: #000000 !important;
+    text-decoration: underline !important;
+  }
+
+  /* Ensure text colors are high-contrast black/grey for readability */
+  .text-slate-500,
+  .text-slate-400,
+  .dark .text-slate-400 {
+    color: #475569 !important;
+  }
+
+  .text-slate-900,
+  .dark .text-slate-100 {
+    color: #000000 !important;
+  }
+
+  .text-brutal-red {
+    color: #b91c1c !important;
+  }
+}
+

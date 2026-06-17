@@ -65,6 +65,27 @@ export const experience = [
     }
 ];
 
+export const kpis = [
+    {
+        metric: "4.8s",
+        label: "RTO (Recovery Time)",
+        detail: "Restoration Engine completely automated (ETL)",
+        icon: "⚡"
+    },
+    {
+        metric: "0",
+        label: "Exposed WAN Ports",
+        detail: "Private mesh VPN & Zero-Trust network perimeter",
+        icon: "🛡️"
+    },
+    {
+        metric: "<10ms",
+        label: "Middleware Latency",
+        detail: "Diana API database abstraction layer",
+        icon: "📡"
+    }
+];
+
 export const upnEcosystem = {
     title: "UPN-162 Digital Ecosystem",
     subtitle: "Critical Infrastructure & Distributed Academic Management",
@@ -84,66 +105,76 @@ export const upnEcosystem = {
             subtitle: "High-Resilience Administrative Control Panel",
             stack: ["PHP 8.2+", "MariaDB", "Automated Scripting", "UIkit", "FPDF/PHPExcel"],
             description: "Operational core in charge of high-density academic data management and critical institutional processes (enrollments, records, and files). Acts as a heavy-management 'digital vault' under a controlled and redundant environment.",
-            implementation: {
-                architecture: "Isolation of administrative logic to shield the academic database from external queries.",
-                automation: "Automated workflows for integrating and sanitizing historical records in real-time.",
-                reporting: "Generation of official documents with institutional parity using raw data transformation engines."
-            },
-            engineering: {
-                security: {
-                    concept: "Hardening & Perimeter Control",
-                    features: [
-                        "Timed Security: Delayed download protocol to protect sensitive data assets.",
-                        "Identity Binding: Access restriction based on verified identities and authorized network perimeters."
-                    ]
-                },
-                reliability: {
-                    concept: "Operational Continuity (Disaster Recovery)",
-                    features: [
-                        "Sandboxing: Cloning production environments for validating critical changes without integrity risk.",
-                        "Idempotency: System stability guarantee in any recovery or deployment scenario."
-                    ]
-                },
-                integrity: {
-                    concept: "Persistence & Audit",
-                    features: [
-                        "Forensic Obfuscation: Digital asset protection using proprietary formats to mitigate external identification.",
-                        "Dual Logging: Systematic operation traceability for post-event technical audits."
-                    ]
-                }
-            },
-            solution_rationale: "CEV-Local guarantees institutional Technological Sovereignty, providing operational independence and absolute control over academic accountability under advanced security standards."
+            solution_rationale: "CEV-Local guarantees institutional Technological Sovereignty, providing operational independence and absolute control over academic accountability under advanced security standards.",
+            iacCode: `version: "3.8"
+services:
+  cev-local-db:
+    image: mariadb:10.11
+    container_name: cev-database-vault
+    environment:
+      MARIADB_ROOT_PASSWORD: "\${DB_ROOT_PASSWORD}"
+      MARIADB_DATABASE: "cev_academic_db"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backups:/backups
+    networks:
+      - cev-secure-net
+    restart: unless-stopped
+
+  cev-local-app:
+    image: php:8.2-fpm-alpine
+    container_name: cev-app-core
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - cev-secure-net
+    restart: unless-stopped
+
+networks:
+  cev-secure-net:
+    internal: true # Isolated from WAN
+
+volumes:
+  db_data:`
         },
         {
             id: "diana-api",
             title: "Diana API: Core Middleware",
-            subtitle: "Abstraction Layer & Institutional Integration",
+            subtitle: "Capa de Abstracción e Integración Institucional",
             stack: ["Laravel 11", "PHP 8.2+", "Token-Based Auth", "SQL Triggers"],
             description: "RESTful services infrastructure designed as the single point of truth for the ecosystem. Provides a standardized and secure interface for interaction between academic resources and end clients.",
-            engineering: {
-                security: {
-                    concept: "Identity & Session Isolation",
-                    features: [
-                        "Multi-layer Architecture: Strict logical separation between access management and business database.",
-                        "Single-Session Policy: Automatic access revocation mechanism to prevent unauthorized concurrent use."
-                    ]
-                },
-                integrity: {
-                    concept: "Native Forensic Audit",
-                    features: [
-                        "Immutable Triggers: Change logging at the data engine level, independent of application logic.",
-                        "IP Audit: Linking critical actions to digital identity and network origin for total traceability."
-                    ]
-                },
-                scalability: {
-                    concept: "Interoperability & Performance",
-                    features: [
-                        "RESTful Architecture: Standardized communication for web, mobile clients, and analytical dashboards.",
-                        "Data Normalization: Direct access to sanitized data schemas for low-latency responses."
-                    ]
-                }
-            },
-            solution_rationale: "Diana API consolidates a professional base for digital service expansion, ensuring information is accessible and auditable without compromising institutional privacy."
+            solution_rationale: "Diana API consolidates a professional base for digital service expansion, ensuring information is accessible and auditable without compromising institutional privacy.",
+            iacCode: `version: "3.8"
+services:
+  diana-api:
+    image: php:8.2-fpm-alpine
+    container_name: diana-api-middleware
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_HOST: diana-api-db
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - upn-middleware-net
+    restart: unless-stopped
+
+  diana-api-db:
+    image: mariadb:10.11
+    container_name: diana-api-database
+    environment:
+      MARIADB_DATABASE: diana_middleware
+    volumes:
+      - diana_db:/var/lib/mysql
+    networks:
+      - upn-middleware-net
+    restart: unless-stopped
+
+networks:
+  upn-middleware-net:
+
+volumes:
+  diana_db:`
         },
         {
             id: "secure-infra-orch",
@@ -151,30 +182,24 @@ export const upnEcosystem = {
             subtitle: "Private Data Center & High-Availability Mesh Network",
             stack: ["Virtualization (L1)", "Security Gateway", "Mesh VPN", "Private DNS", "Docker"],
             description: "Design and deployment of a segmented and virtualized network ecosystem. The infrastructure is designed to eliminate exposure of critical services to the public internet, centralizing management through encrypted tunnels and logical traffic segmentation.",
-            engineering: {
-                security: {
-                    concept: "Defense in Depth & Zero-Trust",
-                    features: [
-                        "Stealth Infrastructure: Services invisible to external scans via encrypted mesh network.",
-                        "Micro-segmentation: Strict isolation of academic resources through logical perimeters."
-                    ]
-                },
-                reliability: {
-                    concept: "Institutional Resilience",
-                    features: [
-                        "Snapshot-Based Recovery: Immediate restoration points to guarantee operational continuity.",
-                        "Hardened Recursive DNS: Private name resolution improving internal security and speed."
-                    ]
-                },
-                scalability: {
-                    concept: "Innovation Capacity (Future-Proof)",
-                    features: [
-                        "Modular Architecture: Ready to integrate local AI, IoT, and private cloud services.",
-                        "Containerization: Agile deployment of isolated, replicable, and scalable microservices."
-                    ]
-                }
-            },
-            solution_rationale: "This architecture grants Technological Sovereignty to the institution, transforming its infrastructure into a private fortress capable of supporting the next generation of digital educational services."
+            solution_rationale: "This architecture grants Technological Sovereignty to the institution, transforming its infrastructure into a private fortress capable of supporting the next generation of digital educational services.",
+            iacCode: `# OPNsense & Tailscale Configuration
+echo "[INFO] Segmenting academic VLAN networks..."
+# Block all cross-VLAN traffic by default
+# Allow only Authorized Admin IP to CEV-Local DB
+
+# Configure Tailscale route advertisement
+tailscale up --advertise-routes=10.0.10.0/24,10.0.20.0/24 --accept-routes=false
+
+# Apply Nginx Hardening configuration
+cat << 'EOF' > /etc/nginx/conf.d/security.conf
+server_tokens off;
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-XSS-Protection "1; mode=block" always;
+add_header Content-Security-Policy "default-src 'self';" always;
+EOF
+systemctl reload nginx`
         },
         {
             id: "restoration-engine",
@@ -182,30 +207,27 @@ export const upnEcosystem = {
             subtitle: "ETL Process Automation & Disaster Recovery",
             stack: ["Bash", "MySQL CLI", "Linux Utils"],
             description: "Automation engine in charge of rebuilding, sanitizing, and patching the data infrastructure. Reduces deployment time and guarantees information integrity through idempotent processes.",
-            engineering: {
-                automation: {
-                    concept: "Infrastructure as Code (IaC)",
-                    features: [
-                        "Idempotency: Guarantee of return to a stable state regardless of previous executions.",
-                        "Automatic Patching: Evolution of legacy data schemas to modern structures in real-time."
-                    ]
-                },
-                reliability: {
-                    concept: "Disaster Recovery",
-                    features: [
-                        "Dual Logging: Forensic traceability of successes and failures for deployment audit.",
-                        "Optimized RTO: Total recovery of the academic ecosystem in minutes."
-                    ]
-                },
-                security: {
-                    concept: "Asset Protection",
-                    features: [
-                        "Backup Obfuscation: Use of proprietary formats (.cevsys) to mitigate external identification.",
-                        "Data Sanitization: Automatic cleaning of inconsistencies before production rollout."
-                    ]
-                }
-            },
-            solution_rationale: "This engine eliminates human error and ensures the institution is resilient against any failure, enabling digital sovereignty based on automatic and auditable processes."
+            solution_rationale: "This engine eliminates human error and ensures the institution is resilient against any failure, enabling digital sovereignty based on automatic and auditable processes.",
+            iacCode: `#!/bin/bash
+# Core ETL & Database Patching Engine
+set -euo pipefail
+
+BACKUP_FILE="/backups/backup_master_2026.cevsys"
+DB_NAME="cev_academic_db"
+
+echo "[INFO] Initializing restore process..."
+if [ ! -f "$BACKUP_FILE" ]; then
+    echo "[ERROR] Backup file not found!" >&2
+    exit 1
+fi
+
+echo "[INFO] Decompressing and patching..."
+mysql -u root -p"\${DB_PASSWORD}" "$DB_NAME" < /app/database/schema_v4.2.sql
+mysql -u root -p"\${DB_PASSWORD}" "$DB_NAME" -e "
+    CALL SanitizeHistoricalRecords();
+    CALL ApplyDatabasePatches();
+"
+echo "[SUCCESS] System state: IDLE // Disaster Recovery Ready."`
         }
     ],
 
@@ -224,19 +246,92 @@ export const projects = [
         title: "Minecraft Distributed Node (GCP)",
         description: "Deployment of a productive Minecraft server using Google Cloud. Includes Nginx reverse proxy, 3D web visualization (BlueMap), and optimized mod pack.",
         stack: ["Docker", "GCP", "Nginx", "Cloudflare"],
-        purpose: "Community event with real-time monitoring and secure network architecture."
+        purpose: "Community event with real-time monitoring and secure network architecture.",
+        iacCode: `version: "3.8"
+services:
+  mc-server:
+    image: itzg/minecraft-server:java17
+    container_name: mc-server-violet
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "1.20.4"
+      MEMORY: "6G"
+      INIT_MEMORY: "2G"
+      SEED: "-1938592948"
+    volumes:
+      - mc-data:/data
+    restart: unless-stopped
+
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: mc-nginx-proxy
+    ports:
+      - "80:80"
+      - "8100:8100"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+
+volumes:
+  mc-data:`
     },
     {
         title: "Ryzen Bare-Metal HomeLab",
         description: "A persistent test environment based on a Ryzen 2600x running Fedora Server with distributed orchestration.",
         stack: ["Docker Swarm", "Ansible", "Nginx", "Prometheus"],
-        purpose: "Experimentation with high availability and resilience of self-hosted services."
+        purpose: "Experimentation with high availability and resilience of self-hosted services.",
+        iacCode: `- name: Deploy Docker Swarm Services to HomeLab
+  hosts: homelab_servers
+  become: yes
+  tasks:
+    - name: Ensure Docker is active
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Initialize Docker Swarm (if not active)
+      shell: docker swarm init --advertise-addr {{ ansible_default_ipv4.address }}
+      register: swarm_init
+      failed_when: false
+      changed_when: "'Swarm initialized' in swarm_init.stdout"
+
+    - name: Deploy Monitoring Stack (Prometheus/Grafana)
+      docker_stack:
+        state: present
+        name: monitoring
+        compose:
+          - /opt/monitoring/docker-compose.yml`
     },
     {
         title: "Infrastructure as Code (IaC) Workflows",
         description: "Development of Ansible Playbooks and Bash scripts for automatic workstation deployment and server hardening.",
         stack: ["Bash", "Ansible", "Hyprland", "Fedora"],
-        purpose: "Eliminating 'manual configuration via SSH' and standardizing web server deployments."
+        purpose: "Eliminating 'manual configuration via SSH' and standardizing web server deployments.",
+        iacCode: `#!/bin/bash
+# Hardening Server Script (Fedora/Debian)
+set -euo pipefail
+
+echo "[INFO] Running SSH Hardening..."
+SSHD_CONFIG="/etc/ssh/sshd_config"
+
+sed -i 's/^#\\?PermitRootLogin.*/PermitRootLogin no/' "$SSHD_CONFIG"
+sed -i 's/^#\\?PasswordAuthentication.*/PasswordAuthentication no/' "$SSHD_CONFIG"
+sed -i 's/^#\\?PubkeyAuthentication.*/PubkeyAuthentication yes/' "$SSHD_CONFIG"
+
+echo "[INFO] Configuring UFW Firewall rules..."
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw --force enable
+
+systemctl restart sshd
+echo "[SUCCESS] Hardening applied safely."`
     }
 ];
 

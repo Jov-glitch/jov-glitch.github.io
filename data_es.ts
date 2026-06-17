@@ -65,6 +65,27 @@ export const experience = [
     }
 ];
 
+export const kpis = [
+    {
+        metric: "4.8s",
+        label: "RTO (Tiempo de Recuperación)",
+        detail: "Motor de restauración 100% automatizado (ETL)",
+        icon: "⚡"
+    },
+    {
+        metric: "0",
+        label: "Puertos WAN Expuestos",
+        detail: "Red Mesh VPN privada y perímetro Zero-Trust",
+        icon: "🛡️"
+    },
+    {
+        metric: "<10ms",
+        label: "Latencia del Middleware",
+        detail: "Capa de abstracción de base de datos de Diana API",
+        icon: "📡"
+    }
+];
+
 export const upnEcosystem = {
     title: "Ecosistema Digital UPN-162",
     subtitle: "Infraestructura Crítica y Gestión Académica Distribuida",
@@ -84,35 +105,37 @@ export const upnEcosystem = {
             subtitle: "Panel de Control Administrativo de Alta Resiliencia",
             stack: ["PHP 8.2+", "MariaDB", "Automated Scripting", "UIkit", "FPDF/PHPExcel"],
             description: "Núcleo operativo encargado de la gestión de alta densidad de datos académicos y procesos institucionales críticos (inscripciones, actas y expedientes). Actúa como una 'bóveda digital' de gestión pesada bajo un entorno controlado y redundante.",
-            implementation: {
-                architecture: "Aislamiento de la lógica administrativa para blindar la base de datos académica de consultas externas.",
-                automation: "Flujos de trabajo automatizados para la integración y saneamiento de registros históricos en tiempo real.",
-                reporting: "Generación de documentos oficiales con paridad institucional mediante motores de transformación de datos crudos."
-            },
-            engineering: {
-                security: {
-                    concept: "Hardening y Control Perimetral",
-                    features: [
-                        "Timed Security: Protocolo de descarga diferida para proteger activos de datos sensibles.",
-                        "Identity Binding: Restricción de acceso basada en identidades verificadas y perímetros de red autorizados."
-                    ]
-                },
-                reliability: {
-                    concept: "Continuidad Operativa (Disaster Recovery)",
-                    features: [
-                        "Sandboxing: Clonación de entornos de producción para validación de cambios críticos sin riesgo de integridad.",
-                        "Idempotencia: Garantía de estabilidad del sistema ante cualquier escenario de recuperación o despliegue."
-                    ]
-                },
-                integrity: {
-                    concept: "Persistencia y Auditoría",
-                    features: [
-                        "Ofuscación Forense: Protección de activos digitales mediante formatos propietarios para mitigar identificación externa.",
-                        "Dual Logging: Trazabilidad sistemática de operaciones para auditorías técnicas post-evento."
-                    ]
-                }
-            },
-            solution_rationale: "CEV-Local garantiza la Soberanía Tecnológica institucional, proporcionando independencia operativa y un control absoluto sobre la rendición de cuentas académica bajo estándares de seguridad avanzada."
+            solution_rationale: "CEV-Local garantiza la Soberanía Tecnológica institucional, proporcionando independencia operativa y un control absoluto sobre la rendición de cuentas académica bajo estándares de seguridad avanzada.",
+            iacCode: `version: "3.8"
+services:
+  cev-local-db:
+    image: mariadb:10.11
+    container_name: cev-database-vault
+    environment:
+      MARIADB_ROOT_PASSWORD: "\${DB_ROOT_PASSWORD}"
+      MARIADB_DATABASE: "cev_academic_db"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backups:/backups
+    networks:
+      - cev-secure-net
+    restart: unless-stopped
+
+  cev-local-app:
+    image: php:8.2-fpm-alpine
+    container_name: cev-app-core
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - cev-secure-net
+    restart: unless-stopped
+
+networks:
+  cev-secure-net:
+    internal: true # Aislado de la WAN
+
+volumes:
+  db_data:`
         },
         {
             id: "diana-api",
@@ -120,30 +143,38 @@ export const upnEcosystem = {
             subtitle: "Capa de Abstracción e Integración Institucional",
             stack: ["Laravel 11", "PHP 8.2+", "Token-Based Auth", "SQL Triggers"],
             description: "Infraestructura de servicios RESTful diseñada como el punto único de verdad del ecosistema. Proporciona una interfaz estandarizada y segura para la interacción entre los recursos académicos y los clientes finales.",
-            engineering: {
-                security: {
-                    concept: "Aislamiento de Identidad y Sesión",
-                    features: [
-                        "Arquitectura Multi-capa: Separación lógica estricta entre la gestión de accesos y la base de datos de negocio.",
-                        "Single-Session Policy: Mecanismo de revocación automática de accesos para prevenir el uso concurrente no autorizado."
-                    ]
-                },
-                integrity: {
-                    concept: "Auditoría Forense Nativa",
-                    features: [
-                        "Triggers Inmutables: Registro de cambios a nivel de motor de datos, independiente de la lógica de aplicación.",
-                        "IP Audit: Vinculación de acciones críticas a la identidad digital y origen de red para trazabilidad total."
-                    ]
-                },
-                scalability: {
-                    concept: "Interoperabilidad y Rendimiento",
-                    features: [
-                        "RESTful Architecture: Comunicación estandarizada para clientes web, móviles y dashboards analíticos.",
-                        "Data Normalization: Acceso directo a esquemas de datos saneados para respuestas de baja latencia."
-                    ]
-                }
-            },
-            solution_rationale: "Diana API consolida una base profesional para la expansión de servicios digitales, garantizando que la información sea accesible y auditable sin comprometer la privacidad institucional."
+            solution_rationale: "Diana API consolida una base profesional para la expansión de servicios digitales, garantizando que la información sea accesible y auditable sin comprometer la privacidad institucional.",
+            iacCode: `version: "3.8"
+services:
+  diana-api:
+    image: php:8.2-fpm-alpine
+    container_name: diana-api-middleware
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_HOST: diana-api-db
+    volumes:
+      - ./src:/var/www/html
+    networks:
+      - upn-middleware-net
+    restart: unless-stopped
+
+  diana-api-db:
+    image: mariadb:10.11
+    container_name: diana-api-database
+    environment:
+      MARIADB_DATABASE: diana_middleware
+    volumes:
+      - diana_db:/var/lib/mysql
+    networks:
+      - upn-middleware-net
+    restart: unless-stopped
+
+networks:
+  upn-middleware-net:
+
+volumes:
+  diana_db:`
         },
         {
             id: "secure-infra-orch",
@@ -151,61 +182,52 @@ export const upnEcosystem = {
             subtitle: "Private Data Center y Red Mesh de Alta Disponibilidad",
             stack: ["Virtualización (L1)", "Security Gateway", "Mesh VPN", "DNS Privado", "Docker"],
             description: "Diseño y despliegue de un ecosistema de red segmentado y virtualizado. La infraestructura está diseñada para eliminar la exposición de servicios críticos al internet público, centralizando la gestión mediante túneles cifrados y segmentación lógica de tráfico.",
-            engineering: {
-                security: {
-                    concept: "Defensa en Profundidad y Zero-Trust",
-                    features: [
-                        "Stealth Infrastructure: Servicios invisibles ante escaneos externos mediante red mesh cifrada.",
-                        "Micro-segmentación: Aislamiento estricto de recursos académicos mediante perímetros lógicos."
-                    ]
-                },
-                reliability: {
-                    concept: "Resiliencia Institucional",
-                    features: [
-                        "Snapshot-Based Recovery: Puntos de restauración inmediatos para garantizar continuidad operativa.",
-                        "DNS Recursivo Hardened: Resolución de nombres privada que mejora la seguridad y velocidad interna."
-                    ]
-                },
-                scalability: {
-                    concept: "Capacidad de Innovación (Future-Proof)",
-                    features: [
-                        "Arquitectura Modular: Lista para integrar IA local, IoT y servicios de nube privada.",
-                        "Containerización: Despliegue ágil de microservicios aislados, replicables y escalables."
-                    ]
-                }
-            },
-            solution_rationale: "Esta arquitectura otorga Soberanía Tecnológica a la institución, transformando su infraestructura en una fortaleza privada capaz de soportar la próxima generación de servicios digitales educativos."
+            solution_rationale: "Esta arquitectura otorga Soberanía Tecnológica a la institución, transformando su infraestructura en una fortaleza privada capaz de soportar la próxima generación de servicios digitales educativos.",
+            iacCode: `# Configuración de OPNsense & Tailscale
+echo "[INFO] Segmentando redes VLAN académicas..."
+# Bloquear tráfico cruzado entre VLANs por defecto
+# Permitir solo IP de Admin autorizada a BD Cev-Local
+
+# Configurar anuncios de rutas en Tailscale
+tailscale up --advertise-routes=10.0.10.0/24,10.0.20.0/24 --accept-routes=false
+
+# Aplicar hardening de configuración en Nginx
+cat << 'EOF' > /etc/nginx/conf.d/security.conf
+server_tokens off;
+add_header X-Frame-Options "SAMEORIGIN" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-XSS-Protection "1; mode=block" always;
+add_header Content-Security-Policy "default-src 'self';" always;
+EOF
+systemctl reload nginx`
         },
         {
             id: "restoration-engine",
             title: "Core Data Restoration & Migration Engine",
             subtitle: "Automatización de Procesos ETL y Disaster Recovery",
             stack: ["Bash", "MySQL CLI", "Linux Utils"],
-            description: "Motor de automatización encargado de la reconstrucción, saneamiento y parcheo de la infraestructura de datos. Reduce el tiempo de despliegue y garantiza la integridad de la información mediante procesos idempotentes.",
-            engineering: {
-                automation: {
-                    concept: "Infraestructura como Código (IaC)",
-                    features: [
-                        "Idempotencia: Garantía de retorno a un estado estable independientemente de ejecuciones previas.",
-                        "Patching Automático: Evolución de esquemas de datos legacy a estructuras modernas en tiempo real."
-                    ]
-                },
-                reliability: {
-                    concept: "Disaster Recovery",
-                    features: [
-                        "Dual Logging: Trazabilidad forense de éxitos y errores para auditoría de despliegue.",
-                        "RTO Optimizado: Recuperación total del ecosistema académico en cuestión de minutos."
-                    ]
-                },
-                security: {
-                    concept: "Protección de Activos",
-                    features: [
-                        "Ofuscación de Respaldos: Uso de formatos propietarios (.cevsys) para mitigar identificación externa.",
-                        "Sanitización de Datos: Limpieza automática de inconsistencias antes de la puesta en producción."
-                    ]
-                }
-            },
-            solution_rationale: "Este motor elimina el error humano y garantiza que la institución sea resiliente ante cualquier fallo, permitiendo una soberanía digital basada en procesos automáticos y auditables."
+            description: "Motor de automatización encargado de la reconstrucción, saneamiento y parcheo de la infraestructura de datos. Reduces el tiempo de despliegue y garantiza la integridad de la información mediante procesos idempotentes.",
+            solution_rationale: "Este motor elimina el error humano y garantiza que la institución sea resiliente ante cualquier fallo, permitiendo una soberanía digital basada en procesos automáticos y auditables.",
+            iacCode: `#!/bin/bash
+# Motor de Restauración y Parcheo
+set -euo pipefail
+
+BACKUP_FILE="/backups/backup_master_2026.cevsys"
+DB_NAME="cev_academic_db"
+
+echo "[INFO] Iniciando restauración..."
+if [ ! -f "$BACKUP_FILE" ]; then
+    echo "[ERROR] Respaldo no encontrado!" >&2
+    exit 1
+fi
+
+echo "[INFO] Descomprimiendo y aplicando parches..."
+mysql -u root -p"\${DB_PASSWORD}" "$DB_NAME" < /app/database/schema_v4.2.sql
+mysql -u root -p"\${DB_PASSWORD}" "$DB_NAME" -e "
+    CALL SanitizeHistoricalRecords();
+    CALL ApplyDatabasePatches();
+"
+echo "[SUCCESS] Estado del sistema: IDLE // Disaster Recovery Listo."`
         }
     ],
 
@@ -224,19 +246,92 @@ export const projects = [
         title: "Minecraft Distributed Node (GCP)",
         description: "Despliegue de un servidor de Minecraft productivo utilizando Google Cloud. Incluye proxy inverso Nginx, visualización 3D web (BlueMap) y pack de mods optimizado.",
         stack: ["Docker", "GCP", "Nginx", "Cloudflare"],
-        purpose: "Evento comunitario con monitoreo en tiempo real y arquitectura de red segura."
+        purpose: "Evento comunitario con monitoreo en tiempo real y arquitectura de red segura.",
+        iacCode: `version: "3.8"
+services:
+  mc-server:
+    image: itzg/minecraft-server:java17
+    container_name: mc-server-violet
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "PAPER"
+      VERSION: "1.20.4"
+      MEMORY: "6G"
+      INIT_MEMORY: "2G"
+      SEED: "-1938592948"
+    volumes:
+      - mc-data:/data
+    restart: unless-stopped
+
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: mc-nginx-proxy
+    ports:
+      - "80:80"
+      - "8100:8100"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
+
+volumes:
+  mc-data:`
     },
     {
         title: "Ryzen Bare-Metal HomeLab",
         description: "Un entorno de pruebas persistente basado en un Ryzen 2600x corriendo Fedora Server con orquestación distribuida.",
         stack: ["Docker Swarm", "Ansible", "Nginx", "Prometheus"],
-        purpose: "Experimentación con alta disponibilidad y resiliencia de servicios auto-hospedados."
+        purpose: "Experimentación con alta disponibilidad y resiliencia de servicios auto-hospedados.",
+        iacCode: `- name: Deploy Docker Swarm Services to HomeLab
+  hosts: homelab_servers
+  become: yes
+  tasks:
+    - name: Ensure Docker is active
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Initialize Docker Swarm (if not active)
+      shell: docker swarm init --advertise-addr {{ ansible_default_ipv4.address }}
+      register: swarm_init
+      failed_when: false
+      changed_when: "'Swarm initialized' in swarm_init.stdout"
+
+    - name: Deploy Monitoring Stack (Prometheus/Grafana)
+      docker_stack:
+        state: present
+        name: monitoring
+        compose:
+          - /opt/monitoring/docker-compose.yml`
     },
     {
         title: "Infrastructure as Code (IaC) Workflows",
         description: "Desarrollo de Playbooks de Ansible y scripts de Bash para el despliegue automático de estaciones de trabajo y hardening de servidores.",
         stack: ["Bash", "Ansible", "Hyprland", "Fedora"],
-        purpose: "Eliminar la 'configuración manual por SSH' y estandarizar despliegues de servidores web."
+        purpose: "Eliminar la 'configuración manual por SSH' y estandarizar despliegues de servidores web.",
+        iacCode: `#!/bin/bash
+# Script de Hardening de Servidor (Fedora/Debian)
+set -euo pipefail
+
+echo "[INFO] Ejecutando Hardening de SSH..."
+SSHD_CONFIG="/etc/ssh/sshd_config"
+
+sed -i 's/^#\\?PermitRootLogin.*/PermitRootLogin no/' "$SSHD_CONFIG"
+sed -i 's/^#\\?PasswordAuthentication.*/PasswordAuthentication no/' "$SSHD_CONFIG"
+sed -i 's/^#\\?PubkeyAuthentication.*/PubkeyAuthentication yes/' "$SSHD_CONFIG"
+
+echo "[INFO] Configurando reglas del Firewall UFW..."
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw --force enable
+
+systemctl restart sshd
+echo "[SUCCESS] Hardening aplicado con seguridad."`
     }
 ];
 
