@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import * as dockerData from "../../docker_stacks";
+import { RetroBackground } from "@/components/common/RetroBackground";
 
 interface StackData {
   name: string;
@@ -178,6 +179,8 @@ export function Dossier({
           : "bg-slate-950 text-slate-100 dark"
       )}
     >
+      <RetroBackground mode="serio" dossierTheme={dossierTheme} />
+
       {/* Floating control buttons (Hidden on Print) */}
       <div className="fixed top-0 left-0 right-0 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-end gap-2 z-50 print:hidden sm:fixed sm:top-6 sm:right-6 sm:left-auto sm:bg-transparent sm:dark:bg-transparent sm:border-0 sm:px-0 sm:py-0">
         {/* Toggle Theme */}

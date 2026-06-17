@@ -20,6 +20,7 @@ import { KpisSection } from "@/components/common/KpisSection";
 import { ComposeHub } from "@/components/projects/ComposeHub";
 import { InteractiveConsole } from "@/components/projects/InteractiveConsole";
 import { BrutalWindow } from "@/components/ui/BrutalWindow";
+import { RetroBackground } from "@/components/common/RetroBackground";
 
 // Data imports
 import * as dataEn from "@/data";
@@ -119,6 +120,11 @@ export default function Home() {
   // Render the brutalist creative layout
   return (
     <main className="pt-16 bg-brutal-white min-h-screen text-brutal-black relative selection:bg-brutal-red selection:text-brutal-white">
+      {/* Background canvas and CRT overlays */}
+      <RetroBackground mode="creativo" />
+      <div className="crt-overlay crt-flicker-animation" />
+      <div className="crt-vignette" />
+
       {/* Floating control bar */}
       <Navbar
         lang={lang}

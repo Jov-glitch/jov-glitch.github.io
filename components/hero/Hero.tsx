@@ -37,7 +37,7 @@ export function Hero({ profile, lang }: HeroProps) {
   }[lang];
 
   return (
-    <section className="bg-brutal-white flex items-center justify-center min-h-screen px-4 relative overflow-hidden">
+    <section className="bg-transparent flex items-center justify-center min-h-screen px-4 relative overflow-hidden">
       {/* Visual background details for premium layout */}
       <div className="absolute top-10 left-10 w-24 h-24 border-4 border-brutal-black/5 rounded-full pointer-events-none hidden md:block" />
       <div className="absolute bottom-10 right-10 w-32 h-32 border-4 border-brutal-black/5 rounded-brutal pointer-events-none hidden md:block" />
