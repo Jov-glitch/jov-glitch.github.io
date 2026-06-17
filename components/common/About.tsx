@@ -37,7 +37,8 @@ export function About({ about, vision, location, lang }: AboutProps) {
         variants={staggerContainerVariants}
       >
         <motion.div variants={staggerItemVariants} className="mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-user"></i>
             {t.title}
           </h2>
           <div className="h-1 w-20 bg-brutal-red mx-auto" />
@@ -74,7 +75,7 @@ export function About({ about, vision, location, lang }: AboutProps) {
           className="mt-16 flex flex-col sm:flex-row items-center gap-4 border-t border-brutal-black pt-8 justify-center"
         >
           <div className="w-12 h-12 bg-brutal-black flex items-center justify-center text-brutal-white font-bold text-xl flex-shrink-0">
-            📍
+            <i className="ph ph-map-pin text-xl text-brutal-white"></i>
           </div>
           <div className="text-center sm:text-left">
             <p className="font-mono font-bold text-xs uppercase tracking-widest text-brutal-gray">{t.based}</p>

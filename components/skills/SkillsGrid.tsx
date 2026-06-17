@@ -42,7 +42,8 @@ export function SkillsGrid({ skills, lang }: SkillsGridProps) {
         variants={staggerContainerVariants}
       >
         <motion.div variants={staggerItemVariants} className="mb-16">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
+            <i className="ph ph-wrench"></i>
             {t.title}
           </h2>
           <div className="h-1 w-20 bg-brutal-red mx-auto" />
