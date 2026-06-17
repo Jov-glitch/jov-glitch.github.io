@@ -1,0 +1,144 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+// Component imports
+import { Navbar } from "@/components/common/Navbar";
+import { Hero } from "@/components/hero/Hero";
+import { About } from "@/components/common/About";
+import { SkillsGrid } from "@/components/skills/SkillsGrid";
+import { GridProyectos } from "@/components/projects/GridProyectos";
+import { Ecosystem } from "@/components/projects/Ecosystem";
+import { Telemetry } from "@/components/projects/Telemetry";
+import { Timeline } from "@/components/experience/Timeline";
+import { Footer } from "@/components/common/Footer";
+import { Dossier } from "@/components/common/Dossier";
+
+// Data imports
+import * as dataEn from "@/data";
+import * as dataEs from "@/data_es";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Home() {
+  const [lang, setLang] = useState<"es" | "en">("es");
+  const [mode, setMode] = useState<"creativo" | "serio">("creativo");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Read selections on client mount
+    const savedLang = localStorage.getItem("portfolio_lang") as "es" | "en";
+    const savedMode = localStorage.getItem("portfolio_mode") as "creativo" | "serio";
+    if (savedLang) setLang(savedLang);
+    if (savedMode) setMode(savedMode);
+    
+    setMounted(true);
+  }, []);
+
+  const handleLangChange = (l: "es" | "en") => {
+    setLang(l);
+    localStorage.setItem("portfolio_lang", l);
+  };
+
+  const handleModeChange = (m: "creativo" | "serio") => {
+    setMode(m);
+    localStorage.setItem("portfolio_mode", m);
+  };
+
+  // GSAP animations for scroll reveal
+  useEffect(() => {
+    if (!mounted || mode === "serio") return;
+
+    // Timeout to ensure elements are rendered
+    const timer = setTimeout(() => {
+      const textElements = document.querySelectorAll(".text-reveal-line");
+      textElements.forEach((el) => {
+        gsap.fromTo(
+          el,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, [mounted, mode, lang]);
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-brutal-white text-brutal-black flex flex-col items-center justify-center font-mono font-bold text-lg select-none">
+        <div className="flex items-center gap-3">
+          <span className="animate-spin text-brutal-red">🔄</span>
+          <span>BOOTING JV_SYSTEM_v2.0.4...</span>
+        </div>
+        <div className="text-xs text-brutal-gray mt-2 uppercase tracking-widest">
+          Checking local registry keys
+        </div>
+      </div>
+    );
+  }
+
+  const activeData = lang === "es" ? dataEs : dataEn;
+
+  // Render the modern serious layout
+  if (mode === "serio") {
+    return (
+      <Dossier
+        profile={activeData.profile}
+        skills={activeData.skills}
+        experience={activeData.experience}
+        upnEcosystem={activeData.upnEcosystem}
+        projects={activeData.projects}
+        lang={lang}
+        onClose={() => handleModeChange("creativo")}
+      />
+    );
+  }
+
+  // Render the brutalist creative layout
+  return (
+    <main className="pt-16 bg-brutal-white min-h-screen text-brutal-black relative selection:bg-brutal-red selection:text-brutal-white">
+      {/* Floating control bar */}
+      <Navbar
+        lang={lang}
+        setLang={handleLangChange}
+        mode={mode}
+        setMode={handleModeChange}
+      />
+
+      {/* Sections */}
+      <Hero profile={activeData.profile} lang={lang} />
+      <About
+        about={activeData.profile.about}
+        vision={activeData.profile.vision}
+        location={activeData.profile.location}
+        lang={lang}
+      />
+      <SkillsGrid skills={activeData.skills} lang={lang} />
+      <GridProyectos projects={activeData.projects} lang={lang} />
+      <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />
+      <Telemetry minecraftEvent={activeData.minecraftEvent} lang={lang} />
+      <Timeline experience={activeData.experience} lang={lang} />
+      <Footer
+        email={activeData.profile.email}
+        github={activeData.profile.github}
+        linkedin={activeData.profile.linkedin}
+        lang={lang}
+      />
+    </main>
+  );
+}

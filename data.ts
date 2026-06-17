@@ -1,0 +1,298 @@
+export const profile = {
+    name: "Jose Vega",
+    title: "Junior Cloud Engineer | DevOps & IaC Specialist",
+    tagline: "Infrastructure is the limit of modern computing; I build the foundations.",
+    location: "Zamora, Michoacán, Mexico",
+    email: "contact@jessvega.me",
+    github: "https://github.com/Jov-glitch",
+    linkedin: "https://www.linkedin.com/in/jose-vega-a477b13a3/",
+    about: `I am a Systems Engineer in training (8th Semester, TecNM Zamora) passionate about Infrastructure as Code (IaC) and Linux system automation. My professional focus centers on eliminating manual intervention through orchestration and provisioning tools, under the premise that if a system is manual configured via SSH, it is a design failure.
+
+Currently, I manage critical infrastructure at the National Pedagogical University (UPN), where I lead the migration of legacy services to containerized architectures, optimizing the resilience and scalability of academic systems.`,
+    vision: "My short-term goal is to obtain the Google Cloud Associate certification (GCP ACE) and deepen my knowledge in the Kubernetes ecosystem (Helm) for large-scale orchestration. I firmly believe that in the AI era, an engineer's competitive edge lies in the ability to guarantee the reliability, security, and persistence of the infrastructure supporting the models."
+};
+
+export const skills = [
+    {
+        category: "Cloud & Orchestration",
+        items: [
+            { name: "Public Cloud", description: ["AWS (EC2, S3, IAM)", "GCP (Associate Cloud Engineer Candidate)"] },
+            { name: "Containers", description: ["Docker", "Docker Swarm", "Portainer", "Proxmox VE"] },
+            { name: "IaC & Automation", description: ["Terraform", "Advanced Bash Scripting"] },
+            { name: "Networking", description: ["Tailscale (Mesh VPN)", "OPNsense", "Zero-Trust Architecture"] }
+        ]
+    },
+    {
+        category: "Systems & Security",
+        items: [
+            { name: "OS Focus", description: ["Linux Power User (Fedora Workstation / Server, Debian)"] },
+            { name: "Hardening", description: ["Nginx Hardening", "SSH Security", "Systemd Management"] },
+            { name: "Observability", description: ["Datadog", "Prometheus & Grafana (Self-hosted)"] }
+        ]
+    },
+    {
+        category: "Backend Development",
+        items: [
+            { name: "Languages", description: ["PHP 8+ (Laravel)"] },
+            { name: "Databases", description: ["MySQL", "MariaDB", "Query Optimization"] }
+        ]
+    }
+];
+
+export const experience = [
+    {
+        role: "Systems Administrator & Project Lead",
+        company: "UPN-162 (CEV Environment)",
+        period: "2024 - Present",
+        link: "#ecosystem",
+        achievements: [
+            "Lead Architect of 'Control Escolar Virtual': Distributed ecosystem with environment separation (Local/Web) under Zero-Trust principles.",
+            "Technical leadership in migrating stochastic relational databases to modern RESTful APIs (Diana API).",
+            "Implementation of Mesh VPN (Tailscale) and perimeter Hardening (OPNsense) to shield internal services.",
+            "Massive optimization of local deployment through Docker containers and DDEV workflows."
+        ]
+    },
+    {
+        role: "Cloud Infrastructure Architect (HomeLab & Freelance)",
+        company: "V-Net Labs",
+        period: "2022 - Present",
+        link: "https://github.com/Jov-glitch",
+        achievements: [
+            "Design and deployment of gaming community infrastructures on AWS (EC2/GCP), managing resource auto-scaling.",
+            "Linux systems administrator for high-availability deployments, integrating advanced monitoring (Datadog/Prometheus).",
+            "Specialist in SSH and Nginx server Hardening to mitigate automated attacks and brute force attempts."
+        ]
+    }
+];
+
+export const upnEcosystem = {
+    title: "UPN-162 Digital Ecosystem",
+    subtitle: "Critical Infrastructure & Distributed Academic Management",
+    tagline: "Modernizing legacy systems through hybrid architectures and Zero-Trust security.",
+    stack: ["PHP 8.2", "Laravel 11", "Docker", "DDEV", "Tailscale", "Proxmox", "OPNsense"],
+
+    overview: {
+        problem: "A +20-year legacy monolithic system with accumulated technical debt, data integrity risks, and unnecessary public network exposure.",
+        solution: "Design of a decoupled ecosystem that separates administrative management (Local) from public inquiries (Web) via a high-availability Middleware.",
+        impact: "Guaranteeing historical data persistence and modernizing user experience without interrupting institutional operations."
+    },
+
+    modules: [
+        {
+            id: "cev-maestro",
+            title: "CEV: Master System (Cev-Local)",
+            subtitle: "High-Resilience Administrative Control Panel",
+            stack: ["PHP 8.2+", "MariaDB", "Automated Scripting", "UIkit", "FPDF/PHPExcel"],
+            description: "Operational core in charge of high-density academic data management and critical institutional processes (enrollments, records, and files). Acts as a heavy-management 'digital vault' under a controlled and redundant environment.",
+            implementation: {
+                architecture: "Isolation of administrative logic to shield the academic database from external queries.",
+                automation: "Automated workflows for integrating and sanitizing historical records in real-time.",
+                reporting: "Generation of official documents with institutional parity using raw data transformation engines."
+            },
+            engineering: {
+                security: {
+                    concept: "Hardening & Perimeter Control",
+                    features: [
+                        "Timed Security: Delayed download protocol to protect sensitive data assets.",
+                        "Identity Binding: Access restriction based on verified identities and authorized network perimeters."
+                    ]
+                },
+                reliability: {
+                    concept: "Operational Continuity (Disaster Recovery)",
+                    features: [
+                        "Sandboxing: Cloning production environments for validating critical changes without integrity risk.",
+                        "Idempotency: System stability guarantee in any recovery or deployment scenario."
+                    ]
+                },
+                integrity: {
+                    concept: "Persistence & Audit",
+                    features: [
+                        "Forensic Obfuscation: Digital asset protection using proprietary formats to mitigate external identification.",
+                        "Dual Logging: Systematic operation traceability for post-event technical audits."
+                    ]
+                }
+            },
+            solution_rationale: "CEV-Local guarantees institutional Technological Sovereignty, providing operational independence and absolute control over academic accountability under advanced security standards."
+        },
+        {
+            id: "diana-api",
+            title: "Diana API: Core Middleware",
+            subtitle: "Abstraction Layer & Institutional Integration",
+            stack: ["Laravel 11", "PHP 8.2+", "Token-Based Auth", "SQL Triggers"],
+            description: "RESTful services infrastructure designed as the single point of truth for the ecosystem. Provides a standardized and secure interface for interaction between academic resources and end clients.",
+            engineering: {
+                security: {
+                    concept: "Identity & Session Isolation",
+                    features: [
+                        "Multi-layer Architecture: Strict logical separation between access management and business database.",
+                        "Single-Session Policy: Automatic access revocation mechanism to prevent unauthorized concurrent use."
+                    ]
+                },
+                integrity: {
+                    concept: "Native Forensic Audit",
+                    features: [
+                        "Immutable Triggers: Change logging at the data engine level, independent of application logic.",
+                        "IP Audit: Linking critical actions to digital identity and network origin for total traceability."
+                    ]
+                },
+                scalability: {
+                    concept: "Interoperability & Performance",
+                    features: [
+                        "RESTful Architecture: Standardized communication for web, mobile clients, and analytical dashboards.",
+                        "Data Normalization: Direct access to sanitized data schemas for low-latency responses."
+                    ]
+                }
+            },
+            solution_rationale: "Diana API consolidates a professional base for digital service expansion, ensuring information is accessible and auditable without compromising institutional privacy."
+        },
+        {
+            id: "secure-infra-orch",
+            title: "Infrastructure Architecture & Secure Orchestration",
+            subtitle: "Private Data Center & High-Availability Mesh Network",
+            stack: ["Virtualization (L1)", "Security Gateway", "Mesh VPN", "Private DNS", "Docker"],
+            description: "Design and deployment of a segmented and virtualized network ecosystem. The infrastructure is designed to eliminate exposure of critical services to the public internet, centralizing management through encrypted tunnels and logical traffic segmentation.",
+            engineering: {
+                security: {
+                    concept: "Defense in Depth & Zero-Trust",
+                    features: [
+                        "Stealth Infrastructure: Services invisible to external scans via encrypted mesh network.",
+                        "Micro-segmentation: Strict isolation of academic resources through logical perimeters."
+                    ]
+                },
+                reliability: {
+                    concept: "Institutional Resilience",
+                    features: [
+                        "Snapshot-Based Recovery: Immediate restoration points to guarantee operational continuity.",
+                        "Hardened Recursive DNS: Private name resolution improving internal security and speed."
+                    ]
+                },
+                scalability: {
+                    concept: "Innovation Capacity (Future-Proof)",
+                    features: [
+                        "Modular Architecture: Ready to integrate local AI, IoT, and private cloud services.",
+                        "Containerization: Agile deployment of isolated, replicable, and scalable microservices."
+                    ]
+                }
+            },
+            solution_rationale: "This architecture grants Technological Sovereignty to the institution, transforming its infrastructure into a private fortress capable of supporting the next generation of digital educational services."
+        },
+        {
+            id: "restoration-engine",
+            title: "Core Data Restoration & Migration Engine",
+            subtitle: "ETL Process Automation & Disaster Recovery",
+            stack: ["Bash", "MySQL CLI", "Linux Utils"],
+            description: "Automation engine in charge of rebuilding, sanitizing, and patching the data infrastructure. Reduces deployment time and guarantees information integrity through idempotent processes.",
+            engineering: {
+                automation: {
+                    concept: "Infrastructure as Code (IaC)",
+                    features: [
+                        "Idempotency: Guarantee of return to a stable state regardless of previous executions.",
+                        "Automatic Patching: Evolution of legacy data schemas to modern structures in real-time."
+                    ]
+                },
+                reliability: {
+                    concept: "Disaster Recovery",
+                    features: [
+                        "Dual Logging: Forensic traceability of successes and failures for deployment audit.",
+                        "Optimized RTO: Total recovery of the academic ecosystem in minutes."
+                    ]
+                },
+                security: {
+                    concept: "Asset Protection",
+                    features: [
+                        "Backup Obfuscation: Use of proprietary formats (.cevsys) to mitigate external identification.",
+                        "Data Sanitization: Automatic cleaning of inconsistencies before production rollout."
+                    ]
+                }
+            },
+            solution_rationale: "This engine eliminates human error and ensures the institution is resilient against any failure, enabling digital sovereignty based on automatic and auditable processes."
+        }
+    ],
+
+    tooling: [
+        {
+            name: "Core Restoration Engine",
+            language: "Bash",
+            purpose: "ETL process automation and Disaster Recovery.",
+            features: ["Dual logging", "Idempotency", "Automatic database patching"]
+        }
+    ]
+};
+
+export const projects = [
+    {
+        title: "Minecraft Distributed Node (GCP)",
+        description: "Deployment of a productive Minecraft server using Google Cloud. Includes Nginx reverse proxy, 3D web visualization (BlueMap), and optimized mod pack.",
+        stack: ["Docker", "GCP", "Nginx", "Cloudflare"],
+        purpose: "Community event with real-time monitoring and secure network architecture."
+    },
+    {
+        title: "Ryzen Bare-Metal HomeLab",
+        description: "A persistent test environment based on a Ryzen 2600x running Fedora Server with distributed orchestration.",
+        stack: ["Docker Swarm", "Ansible", "Nginx", "Prometheus"],
+        purpose: "Experimentation with high availability and resilience of self-hosted services."
+    },
+    {
+        title: "Infrastructure as Code (IaC) Workflows",
+        description: "Development of Ansible Playbooks and Bash scripts for automatic workstation deployment and server hardening.",
+        stack: ["Bash", "Ansible", "Hyprland", "Fedora"],
+        purpose: "Eliminating 'manual configuration via SSH' and standardizing web server deployments."
+    }
+];
+
+export const minecraftEvent = {
+    active: false,
+    title: "🧱 MINECRAFT HUB EVENT ARCHIVE 🧱",
+    description: "The Minecraft event is now closed, but I'm keeping this space as an archive and a thank-you.",
+    buttonText: "EVENT CLOSED",
+    link: "/minecraft-project/",
+    serverIp: "mc.jessvega.me",
+    mapLink: "https://mapa.jessvega.me",
+    closingTitle: "THANK YOU FOR MAKING IT HAPPEN",
+    closingDescription: "Thanks to everyone involved: players, builders, testers, and technical support. Your energy, ideas, and reports helped bring the server to life.",
+    closingMessage: "This project closes with appreciation and as a reminder of the team effort that made it possible.",
+    modpack: {
+        link: "https://www.mediafire.com/file/vv3k5wlxkxg327j/ModPack-PrismLauncher%2528recomended%2529.zip/file",
+        description: "Official server modpack. Includes Aether, owo-lib, and Simple Voice Chat.",
+        instructions: "It is recommended to use Prism Launcher to import the .zip file directly."
+    },
+    aboutEvent: "I've enabled a temporary Minecraft server (for 1 month). It's a space for us to relax, build cool things, and share.",
+    gamerStory: "Beyond containers and code, I am a gamer. It was through games that I discovered my passion for technology; from optimizing FPS settings because my computer couldn't run them, to managing Minecraft servers over 10 years ago. I'm that hardcore fan of retro games. Yes, I'm a 'flamer' at heart when things aren't done with excellence, because I believe that in both gaming and engineering, one must give their absolute best.",
+    bgImage: "/src/img/dirty_bg_mc.jpg",
+    rules: [
+        { title: "Mutual Respect", desc: "Treat others as you would like to be treated." },
+        { title: "No Griefing", desc: "Respect others' constructions (including signs)." },
+        { title: "Fair Use", desc: "Avoid farms that could cause extreme server lag." },
+        { title: "Have Fun", desc: "That is the event's main goal." }
+    ],
+    architecture: [
+        {
+            title: "1. Compute Layer (Cloud & Virtualization)",
+            details: [
+                "Provider: Google Cloud Platform (GCP).",
+                "Instance: VM on Compute Engine running Ubuntu 25.10 (Plucky Puffin).",
+                "Orchestration: Docker and Docker Compose were used to encapsulate services."
+            ]
+        },
+        {
+            title: "2. Network & Web Access Layer (Networking)",
+            details: [
+                "Reverse Proxy (Nginx): Receives requests on port 80 and redirects them internally.",
+                "DNS Security (Cloudflare): The jessvega.me domain is behind Cloudflare's proxy.",
+                "Perimeter Firewall: Ports limited to 22 SSH, 80 Web, and 25565 Game."
+            ]
+        }
+    ],
+    monitoring: [
+        {
+            title: "Homelab Bare-Metal Metrics",
+            description: "Persistent monitoring of my local infrastructure based on Ryzen 5 2600x. Granular tracking of CPU (System/Idle), physical RAM vs Swap usage, and Docker container consumption visualization.",
+            dashboard_url: "https://p.us5.datadoghq.com/sb/f837429d-eb8d-11f0-91c7-ca160a8299b1-df2cb84313a1251e968213a617859b0c"
+        },
+        {
+            title: "GCP Virtual Node Status",
+            description: "Operational status of the Google Cloud node (mc-server-violet.red). Monitoring of NTP latency, incoming/outgoing network traffic, and FileSystem state for the Minecraft server.",
+            dashboard_url: "https://p.us5.datadoghq.com/sb/f837429d-eb8d-11f0-91c7-ca160a8299b1-ac69c0c7bfdeeeccccac56c01b68c366"
+        }
+    ]
+};

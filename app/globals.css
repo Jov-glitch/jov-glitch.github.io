@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brutal-black: #000000;
+  --color-brutal-white: #ffffff;
+  --color-brutal-red: #ff0000;
+  --color-brutal-green: #00ff00;
+  --color-brutal-dark: #1a1a1a;
+  --color-brutal-light: #f5f5f5;
+  --color-brutal-gray: #999999;
+
+  --shadow-brutal: 8px 8px 0px rgba(0, 0, 0, 0.8);
+  --shadow-brutal-hover: 12px 12px 0px rgba(0, 0, 0, 0.95);
+  --shadow-brutal-sm: 4px 4px 0px rgba(0, 0, 0, 0.6);
+
+  --radius-brutal: 2px;
+  --spacing-brutal: 2rem;
+
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+  --font-sans: "Inter", "Helvetica Neue", sans-serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-brutal-white text-brutal-black;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* Neo-Brutalista base styles */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-brutal-light;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-brutal-black;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-brutal-dark;
+  }
+
+  /* Selection styles */
+  ::selection {
+    @apply bg-brutal-red text-brutal-white;
+  }
+
+  ::-moz-selection {
+    @apply bg-brutal-red text-brutal-white;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button,
+  a {
+    @apply transition-all duration-200;
+  }
+}
+
+
+
+@layer utilities {
+  .card-brutal {
+    @apply bg-brutal-white border-2 border-brutal-black p-brutal shadow-brutal;
+  }
+
+  .card-brutal:hover {
+    @apply shadow-brutal-hover;
+    transform: translateY(-2px);
+  }
+}
+
+/* Utility animations */
+@keyframes stagger-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes line-draw {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pulse-brutal {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@layer utilities {
+  .animate-stagger-in {
+    animation: stagger-in 0.6s ease-out forwards;
+  }
+
+  .animate-pop-in {
+    animation: pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+
+  .animate-line-draw {
+    animation: line-draw 1.2s ease-out forwards;
+  }
+
+  .animate-pulse-brutal {
+    animation: pulse-brutal 2s ease-in-out infinite;
+  }
+
+  /* Stagger animation delays */
+  .delay-stagger-1 {
+    animation-delay: 0ms;
+  }
+
+  .delay-stagger-2 {
+    animation-delay: 80ms;
+  }
+
+  .delay-stagger-3 {
+    animation-delay: 160ms;
+  }
+
+  .delay-stagger-4 {
+    animation-delay: 240ms;
+  }
+
+  .delay-stagger-5 {
+    animation-delay: 320ms;
+  }
+
+  .delay-stagger-6 {
+    animation-delay: 400ms;
+  }
+
+  .delay-stagger-7 {
+    animation-delay: 480ms;
+  }
+
+  .delay-stagger-8 {
+    animation-delay: 560ms;
+  }
+
+  /* Text reveal line-by-line */
+  .text-reveal {
+    line-height: 1.6;
+    overflow: hidden;
+  }
+
+  .text-reveal-line {
+    animation: slide-up 0.8s ease-out forwards;
+  }
+
+  /* Brutal borders */
+  .border-brutal-thick {
+    border-width: 3px;
+    border-color: black;
+  }
+
+  .border-brutal-thick-red {
+    border-width: 3px;
+    border-color: #ff0000;
+  }
+
+  /* Focus states */
+  button:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brutal-black;
+  }
+
+  a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-brutal-black;
+  }
+
+  /* Dossier Grid Background */
+  .dossier-grid-pattern {
+    background-size: 24px 24px;
+    background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  }
+
+  .dark .dossier-grid-pattern {
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  }
+}
+
+/* Print styles for PDF export */
+@media print {
+  body {
+    @apply bg-brutal-white;
+  }
+
+  button {
+    display: none;
+  }
+}
