@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { staggerContainerVariants, staggerItemVariants } from "@/lib/animations";
-import * as dockerData from "../../docker_stacks";
+import * as dockerData from "@/data/docker_stacks";
 
 interface StackData {
   name: string;

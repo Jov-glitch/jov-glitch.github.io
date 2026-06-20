@@ -2,8 +2,8 @@ import './styles/main.scss';
 import './styles/portfolio.scss';
 import './styles/dossier.scss';
 
-import * as dataEN from './data';
-import * as dataES from './data_es';
+import * as dataEN from './data/data';
+import * as dataES from './data/data_es';
 
 // --- Global State ---
 if (history.scrollRestoration) {
@@ -55,7 +55,7 @@ const closeRetroModal = () => {
  * Injects HTML based on state (mode/lang) and re-attaches events.
  */
 function render() {
-  const { profile, skills, experience, projects, minecraftEvent, upnEcosystem } = getLanguageData();
+  const { profile, skills, experience, projects, minecraftEvent, upnEcosystem, certifications } = getLanguageData();
 
   const seriousLabel = currentLang === 'es' ? 'SERIO' : 'PROFESSIONAL';
   const creativeLabel = currentLang === 'es' ? 'RETRO' : 'CREATIVE';
@@ -67,6 +67,7 @@ function render() {
     footprint: currentLang === 'es' ? 'Trayectoria Profesional' : 'Professional Footprint',
     ecosystem: currentLang === 'es' ? 'Ecosistema CEV' : 'CEV Ecosystem',
     stack: currentLang === 'es' ? 'Stack Principal' : 'Core Stack',
+    certifications: currentLang === 'es' ? 'Certificaciones Técnicas' : 'Technical Certifications',
     projects: currentLang === 'es' ? 'Proyectos Destacados' : 'Featured Projects',
     vision: currentLang === 'es' ? 'Visión Operativa' : 'Operational Vision',
     contact: currentLang === 'es' ? 'Contacto' : "Let's Connect",
@@ -74,6 +75,7 @@ function render() {
     navExperience: currentLang === 'es' ? 'Experiencia' : 'Experience',
     navEcosystem: currentLang === 'es' ? 'Ecosistema' : 'Ecosystem',
     navStack: currentLang === 'es' ? 'Tecnologías' : 'Stack',
+    navCertifications: currentLang === 'es' ? 'Certificaciones' : 'Certifications',
     navProjects: currentLang === 'es' ? 'Proyectos' : 'Projects',
     navVision: currentLang === 'es' ? 'Visión' : 'Vision',
     navContact: currentLang === 'es' ? 'Contacto' : 'Contact',
@@ -467,6 +469,7 @@ function render() {
               <a href="#d-experience" class="nav-link"><i class="fa-solid fa-briefcase"></i> ${dossierText.navExperience}</a>
               <a href="#d-ecosystem" class="nav-link"><i class="fa-solid fa-network-wired"></i> ${dossierText.navEcosystem}</a>
               <a href="#d-stack" class="nav-link"><i class="fa-solid fa-layer-group"></i> ${dossierText.navStack}</a>
+              <a href="#d-certifications" class="nav-link"><i class="fa-solid fa-certificate"></i> ${dossierText.navCertifications}</a>
               <a href="#d-projects" class="nav-link"><i class="fa-solid fa-diagram-project"></i> ${dossierText.navProjects}</a>
               <a href="#d-vision" class="nav-link"><i class="fa-solid fa-bullseye"></i> ${dossierText.navVision}</a>
               <a href="#d-contact" class="nav-link"><i class="fa-solid fa-id-card"></i> ${dossierText.navContact}</a>
@@ -527,6 +530,31 @@ function render() {
                       <span class="skill-meta">${(s.description || []).slice(0, 2).join(' · ')}</span>
                     </div>
                   `).join('')).join('')}
+              </section>
+
+              <section class="dossier-section" id="d-certifications">
+                <h2>${dossierText.certifications}</h2>
+                <div class="dossier-project-grid">
+                  ${certifications.map((cat: any) => `
+                    <div class="dossier-card">
+                      <h3 class="module-title" style="display: flex; align-items: center; gap: 0.5rem; text-align: left;">
+                        <i class="${cat.category.toLowerCase().includes('redes') || cat.category.toLowerCase().includes('network') ? 'ph ph-broadcast text-brutal-blue' : 'ph ph-shield-check text-brutal-green'}"></i>
+                        ${cat.category}
+                      </h3>
+                      <div class="space-y-3 font-mono" style="margin-top: 1rem;">
+                        ${cat.items.map((item: any) => `
+                          <div style="display: flex; justify-content: space-between; align-items: start; gap: 1rem; padding: 0.6rem; background: rgba(128,128,128,0.05); border: 1px solid rgba(128,128,128,0.15); border-radius: 4px; margin-bottom: 0.5rem;">
+                            <span style="font-size: 0.8rem; font-weight: 600; font-family: 'Outfit'; text-align: left;">
+                              ${item.name}
+                            </span>
+                            <span style="font-size: 0.7rem; background: rgba(128,128,128,0.12); padding: 0.1rem 0.4rem; white-space: nowrap; font-weight: bold; border-radius: 2px;">
+                              ${item.date}
+                            </span>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  `).join('')}
                 </div>
               </section>
 

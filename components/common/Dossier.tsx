@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import * as dockerData from "../../docker_stacks";
+import * as dockerData from "@/data/docker_stacks";
 import { RetroBackground } from "@/components/common/RetroBackground";
 
 interface StackData {
@@ -60,6 +60,10 @@ interface DossierProps {
     detail: string;
     icon: string;
   }[];
+  certifications: {
+    category: string;
+    items: { name: string; date: string; description?: string; details?: string[]; rolesEnabled?: string[] }[];
+  }[];
   lang: "es" | "en";
   onClose: () => void;
 }
@@ -71,6 +75,7 @@ export function Dossier({
   upnEcosystem,
   projects,
   kpis,
+  certifications,
   lang,
   onClose,
 }: DossierProps) {
@@ -84,6 +89,7 @@ export function Dossier({
       "d-experience",
       "d-ecosystem",
       "d-stack",
+      "d-certifications",
       "d-projects",
       "d-stacks",
       "d-vision",
@@ -115,6 +121,7 @@ export function Dossier({
       footprint: "Trayectoria Profesional",
       ecosystem: "Proyecto Destacado: Ecosistema CEV",
       stack: "Competencias Técnicas",
+      certifications: "Certificaciones Técnicas",
       projects: "Otros Proyectos",
       stacks: "Orquestación Docker (Stacks)",
       vision: "Visión Técnica",
@@ -126,6 +133,7 @@ export function Dossier({
       navExperience: "Experiencia",
       navEcosystem: "Ecosistema CEV",
       navStack: "Habilidades",
+      navCertifications: "Certificaciones",
       navProjects: "Proyectos",
       navStacks: "Docker Stacks",
       navVision: "Visión",
@@ -137,6 +145,7 @@ export function Dossier({
       footprint: "Professional Footprint",
       ecosystem: "Featured Project: CEV Ecosystem",
       stack: "Technical Expertise",
+      certifications: "Technical Certifications",
       projects: "Other Projects",
       stacks: "Docker Orchestration Stacks",
       vision: "Operational Vision",
@@ -148,6 +157,7 @@ export function Dossier({
       navExperience: "Experience",
       navEcosystem: "CEV Ecosystem",
       navStack: "Skills",
+      navCertifications: "Certifications",
       navProjects: "Projects",
       navStacks: "Docker Stacks",
       navVision: "Vision",
@@ -315,6 +325,17 @@ export function Dossier({
               )}
             >
               <i className="ph ph-wrench text-base"></i> {t.navStack}
+            </a>
+            <a
+              href="#d-certifications"
+              className={cn(
+                "px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors w-full border-l-2 flex items-center gap-2",
+                activeSection === "d-certifications"
+                  ? "border-brutal-red text-brutal-red bg-slate-200/50 dark:bg-slate-800/50 font-bold"
+                  : "border-slate-300 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
+              )}
+            >
+              <i className="ph ph-certificate text-base"></i> {t.navCertifications}
             </a>
             <a
               href="#d-projects"
@@ -553,6 +574,55 @@ export function Dossier({
                     </div>
                   </div>
                 ))}
+              </div>
+            </section>
+
+            {/* Certifications */}
+            <section id="d-certifications" className="space-y-6 scroll-mt-6">
+              <h2 className="text-xl sm:text-2xl font-bold font-mono tracking-tight uppercase text-brutal-red border-b border-slate-200 dark:border-slate-800 pb-2">
+                {t.certifications}
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {certifications.map((cat, idx) => (
+                  <div
+                    key={`${cat.category}-${idx}`}
+                    className="p-6 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-sm space-y-4 flex flex-col justify-between h-full"
+                  >
+                    <div className="space-y-4">
+                      <h3 className="font-bold font-mono text-sm uppercase text-slate-900 dark:text-slate-100 border-b border-slate-200 dark:border-slate-800 pb-1.5 flex items-center gap-2">
+                        <i className={cat.category.toLowerCase().includes("redes") || cat.category.toLowerCase().includes("network") ? "ph ph-broadcast text-brutal-blue" : "ph ph-shield-check text-brutal-green"}></i>
+                        {cat.category}
+                      </h3>
+                      <div className="space-y-3 font-mono">
+                        {cat.items.map((item) => (
+                          <div key={item.name} className="flex flex-col gap-2 p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80 rounded-sm text-left">
+                            <div className="flex justify-between items-start gap-4">
+                              <span className="text-xs font-bold text-slate-900 dark:text-slate-100 font-sans leading-snug">
+                                {item.name}
+                              </span>
+                              <span className="text-[9px] bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 whitespace-nowrap font-bold font-mono">
+                                {item.date}
+                              </span>
+                            </div>
+                            {item.description && (
+                              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-sans leading-normal">
+                                {item.description}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="pt-4 text-center print:hidden">
+                <a
+                  href="/certifications"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-indigo-600 text-indigo-650 hover:bg-indigo-600 hover:text-white transition-all text-xs font-mono font-bold rounded-sm cursor-pointer"
+                >
+                  {lang === "es" ? "CONOCE MÁS Y VERIFICA TEMARIOS ↗" : "LEARN MORE & VERIFY SYLLABUS ↗"}
+                </a>
               </div>
             </section>
 

@@ -16,6 +16,7 @@ const config: Config = {
         "brutal-white": "#FFFFFF",
         "brutal-red": "#FF0000",
         "brutal-green": "#00FF00",
+        "brutal-blue": "#0066ff",
         "brutal-dark": "#1a1a1a",
         "brutal-light": "#f5f5f5",
       },

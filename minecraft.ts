@@ -4,7 +4,7 @@
 import './styles/main.scss';
 import './styles/minecraft-framework.css';
 import './styles/minecraft-page.scss';
-import { minecraftEvent } from './data';
+import { minecraftEvent } from './data/data';
 
 // Clase especial para el body
 document.body.classList.add('mc-page-body');

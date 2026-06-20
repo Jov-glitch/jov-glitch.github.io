@@ -6,50 +6,155 @@ export const profile = {
     email: "contact@jessvega.me",
     github: "https://github.com/Jov-glitch",
     linkedin: "https://www.linkedin.com/in/jose-vega-a477b13a3/",
-    about: `Soy un Ingeniero en Sistemas en formación (8vo Semestre, TecNM Zamora) apasionado por la Infraestructura como Código (IaC) y la automatización de sistemas Linux. Mi enfoque profesional se centra en eliminar la intervención manual mediante el uso de herramientas de orquestación y provisión, bajo la premisa de que si un sistema se configura manualmente por SSH, es una falla de diseño.
+    about: `Tecnólogo en Sistemas y Redes con un perfil híbrido enfocado en la Administración de Infraestructura, Ciberseguridad y Desarrollo de Software. Cuento con una sólida base en el diseño y optimización de redes empresariales (CCNA), ciberseguridad aplicada y gestión de entornos virtuales. Actualmente lidero equipos de desarrollo para la entrega de proyectos complejos de software y administro infraestructuras locales y en la nube (Docker/Linux), garantizando la escalabilidad, seguridad y alta disponibilidad de los servicios.
 
-Actualmente gestiono la infraestructura crítica de una institución pública de educación superior, donde lidero la migración de servicios legacy hacia arquitecturas containerizadas, optimizando la resiliencia y escalabilidad de los sistemas académicos.`,
+Bajo la premisa de que si un sistema se configura manualmente por SSH es una falla de diseño, enfoco mi labor profesional en la eliminación de la intervención manual mediante automatización, orquestación y principios Zero-Trust.`,
     vision: "Mi meta a corto plazo es obtener la certificación Google Cloud Associate (GCP ACE) y profundizar en el ecosistema de Kubernetes (Helm) para la orquestación a gran escala. Creo firmemente que en la era de la IA, el valor diferencial de un ingeniero radica en la capacidad de garantizar la confiabilidad, seguridad y persistencia de la infraestructura que soporta los modelos."
 };
 
 export const skills = [
     {
-        category: "Cloud & Orchestration",
+        category: "Virtualización y Contenedores",
+        description: "Aislamiento de infraestructura y optimización de recursos mediante contenedorización e hipervisores. Priorizo la construcción de entornos reproducibles e inmutables frente a las configuraciones manuales.",
+        details: [
+            "Diseño e implementación de topologías multi-contenedor usando Docker Compose",
+            "Despliegue de contenedores, gestión de redes y volúmenes con Docker y Podman",
+            "Administración de hipervisores bare-metal y orquestación de VMs con Proxmox VE",
+            "Configuración de entornos de prueba aislados y entornos de desarrollo local"
+        ],
+        applications: [
+            "Orquestación de contenedores locales y de producción para el Ecosistema CEV",
+            "Mantenimiento de home labs y servidores de juegos corriendo en Fedora Server con Docker/Portainer",
+            "Configuración de plantillas de VM en Proxmox VE para aprovisionamiento automatizado"
+        ],
         items: [
-            { name: "Public Cloud", description: ["AWS (EC2, S3, IAM)", "GCP (Associate Cloud Engineer Candidate)"] },
-            { name: "Containers", description: ["Docker", "Docker Swarm", "Portainer", "Proxmox VE"] },
-            { name: "IaC & Automation", description: ["Terraform", "Advanced Bash Scripting"] },
-            { name: "Networking", description: ["Tailscale (Mesh VPN)", "OPNsense", "Zero-Trust Architecture"] }
+            { name: "Contenedores", description: ["Docker", "Podman", "Portainer", "Proxmox VE"] },
+            { name: "Hipervisores", description: ["QEMU/KVM", "VirtualBox (Kali Linux pentesting)"] }
         ]
     },
     {
-        category: "Systems & Security",
+        category: "Infraestructura Cloud y Servidores",
+        description: "Administración de servidores de nivel empresarial, scripting en shell y arquitectura en la nube pública. Me enfoco en la gestión automatizada de configuraciones y el hardening de servidores.",
+        details: [
+            "Aprovisionamiento y gestión del ciclo de vida de recursos en AWS (EC2, S3, IAM)",
+            "Patrones de arquitectura de GCP, candidato para GCP Associate Cloud Engineer (ACE)",
+            "Administración avanzada de sistemas Linux (Fedora Server, Debian) y bash scripting",
+            "Estandarización de entornos de desarrollo local utilizando DDEV y Docker Compose"
+        ],
+        applications: [
+            "Despliegue de clústeres de servidores gaming en AWS EC2 y GCP con políticas de autoescalado",
+            "Escritura de scripts de Bash automatizados para backups y auditorías de seguridad",
+            "Estandarización de flujos de desarrollo para el equipo UPN-162 usando entornos locales DDEV"
+        ],
         items: [
-            { name: "OS Focus", description: ["Linux Power User (Fedora Workstation / Server, Debian)"] },
-            { name: "Hardening", description: ["Nginx Hardening", "SSH Security", "Systemd Management"] },
-            { name: "Observability", description: ["Datadog", "Prometheus & Grafana (Self-hosted)"] }
+            { name: "Plataformas Cloud", description: ["AWS (EC2, S3, IAM)", "GCP (Candidato a Associate Cloud Engineer)"] },
+            { name: "Sistemas Linux", description: ["Fedora Server/Workstation", "Debian Linux", "Advanced Bash Scripting"] },
+            { name: "Entornos Locales", description: ["DDEV", "Docker Compose"] }
         ]
     },
     {
-        category: "Backend Development",
+        category: "Enrutamiento y Seguridad de Red",
+        description: "Diseño de topologías de red resilientes, control de tráfico y medidas de seguridad proactivas. Guiado por los estándares de CCNA y el diseño de accesos Zero-Trust.",
+        details: [
+            "Protocolos de enrutamiento dinámico (OSPFv2) y segmentación lógica (VLANs y Trunking)",
+            "Configuración de listas de control de acceso a la red (ACLs IPv4) y filtrado de tráfico",
+            "Redes superpuestas Zero-Trust mediante Tailscale mesh VPN para aislar bases de datos sensibles",
+            "Administración de firewall OPNsense, redirección de puertos y hardening de proxy inverso Nginx"
+        ],
+        applications: [
+            "Diseño e implementación de una red mesh privada con Tailscale para proteger las bases de datos de CEV",
+            "Configuración de protocolos de enrutamiento OSPF y enlaces troncales en entornos simulados empresariales",
+            "Mitigación de amenazas de seguridad (Inyección SQL, accesos no autorizados) en portales escolares públicos"
+        ],
         items: [
-            { name: "Languages", description: ["PHP 8+ (Laravel)"] },
-            { name: "Databases", description: ["MySQL", "MariaDB", "Optimización de consultas"] }
+            { name: "Enrutamiento y Conmutación", description: ["Protocolo OSPFv2", "VLANs y Trunking", "Especificaciones CCNA Enterprise"] },
+            { name: "Seguridad Aplicada", description: ["ACLs IPv4", "Defensa de Red & Hardening", "Mitigación de SQL Injection"] },
+            { name: "Zero-Trust y VPNs", description: ["Tailscale Mesh VPN", "OPNsense Firewall", "SSH/Nginx Security"] }
+        ]
+    },
+    {
+        category: "Desarrollo Backend y Frameworks",
+        description: "Desarrollo de APIs estructuradas de alto rendimiento y gestión de motores de bases de datos relacionales transaccionales. Creo en el código limpio, migraciones automatizadas y sistemas de tipos estrictos.",
+        details: [
+            "Desarrollo moderno de APIs backend con PHP 8+ (Laravel) y TypeScript (Next.js)",
+            "Administración de bases de datos, migraciones de esquema y optimización de índices (MySQL, MariaDB)",
+            "Diseño de pipelines ETL seguros para sincronización de datos offline-a-online",
+            "Tuning de consultas para lograr bajos tiempos de respuesta (<8ms promedio)"
+        ],
+        applications: [
+            "Diseño de Diana API en Laravel 11 como la pasarela central de datos para sistemas escolares",
+            "Migración y consolidación de más de 12,000 registros escolares históricos en MySQL",
+            "Integración de aplicaciones frontend React/Next.js con backends centralizados"
+        ],
+        items: [
+            { name: "Lenguajes y Frameworks", description: ["PHP 8+ (Laravel)", "TypeScript (React, Next.js)"] },
+            { name: "Bases de Datos y ETL", description: ["MySQL", "MariaDB", "Optimización de Consultas"] }
+        ]
+    },
+    {
+        category: "Metodologías y Estándares",
+        description: "Adhesión a estándares internacionales de calidad para la gestión de la seguridad, el aseguramiento de la calidad del software y la entrega de servicios de TI.",
+        details: [
+            "Alineación del Sistema de Gestión de Seguridad de la Información basado en normas ISO 27001",
+            "Determinación de la Capacidad y Mejora del Proceso de Software (SPICE / ISO 33000)",
+            "Principios de Gestión de Servicios de TI para operaciones y entrega (ISO 20000)",
+            "Documentación de procesos de despliegue y planes de recuperación ante desastres (DRP)"
+        ],
+        applications: [
+            "Diseño del plan de recuperación ante desastres (DRP) para la base de datos de CEV con un RTO probado de 4.8s",
+            "Implementación de auditorías de acceso y reglas de cumplimiento de seguridad en el ecosistema escolar",
+            "Estructuración de pautas de desarrollo siguiendo mejores prácticas de ingeniería de software"
+        ],
+        items: [
+            { name: "Buenas Prácticas", description: ["ISO 27001 (Seguridad)", "ISO 33000 (Calidad SPICE)", "ISO 20000 (Gestión de Servicios TI)"] }
         ]
     }
 ];
 
 export const experience = [
     {
-        role: "Administrador de Sistemas & Líder de Proyecto",
+        role: "Líder de Proyecto & Administrador de Sistemas",
         company: "CEV Environment (Universidad Pública)",
-        period: "2024 - Actual",
+        period: "Febrero 2026 - Actual",
         link: "#ecosystem",
+        description: "Dirección estratégica y administración de la infraestructura del ecosistema escolar distribuido, coordinando flujos de trabajo e implementando políticas de seguridad Zero-Trust.",
+        stack: ["Docker", "Tailscale", "Fedora Linux", "MySQL", "DDEV", "Nginx"],
         achievements: [
-            "Arquitecto Jefe del 'Control Escolar Virtual': Ecosistema distribuido con separación de entornos (Local/Web) bajo principios Zero-Trust.",
-            "Liderazgo técnico en la migración de bases de datos relacionales estocásticas hacia APIs RESTful modernas (Diana API).",
-            "Implementación de redes Mesh VPN (Tailscale) y Hardening perimetral (OPNsense) para blindar servicios internos.",
-            "Optimización masiva del despliegue local mediante contenedores Docker y flujos de trabajo con DDEV."
+            "Dirección y administración del equipo de desarrollo a cargo de la fase de mantenimiento, escalabilidad y despliegue del ecosistema integral.",
+            "Coordinación de flujos de trabajo ágiles y supervisión de la arquitectura local y en la nube.",
+            "Hardening de servidores y políticas de acceso Zero-Trust para garantizar la inmutabilidad y confidencialidad académica."
+        ],
+        details: [
+            "Gestión técnica de entornos y flujos de trabajo locales basados en DDEV y contenedores Docker.",
+            "Administración de accesos y túneles VPN privados utilizando Tailscale para aislar bases de datos de alumnos.",
+            "Implementación de monitoreo proactivo y registros de auditoría de seguridad perimetral."
+        ],
+        impact: [
+            "Garantía de alta disponibilidad de los servicios durante los periodos de alta concurrencia de inscripciones.",
+            "Cero incidencias de seguridad de red registradas bajo el nuevo esquema de administración local y políticas VPN mesh."
+        ]
+    },
+    {
+        role: "Desarrollador de Sistemas de Software (CEV Local, CEV Web & Diana API)",
+        company: "CEV Environment (Universidad Pública)",
+        period: "2024 - Febrero 2026",
+        link: "#ecosystem",
+        description: "Diseño e implementación desde cero de los tres componentes clave del Ecosistema CEV: la aplicación local de escritorio (.NET/C#), el portal institucional responsivo y la API Laravel unificada.",
+        stack: ["Laravel", "PHP", "MySQL", "C#", ".NET", "Tailwind CSS", "JavaScript"],
+        achievements: [
+            "Diseño y desarrollo completo de 'CEV Local', un aplicativo de escritorio robusto en .NET/C# para la captura académica offline.",
+            "Desarrollo de 'Diana API' en Laravel 11.x, sirviendo como pasarela de datos unificada con disparadores inmutables de base de datos.",
+            "Implementación de 'CEV Web', un portal institucional responsivo para la consulta e inscripción escolar en línea."
+        ],
+        details: [
+            "Programación de lógica de base de datos relacional y migraciones para consolidar registros históricos académicos.",
+            "Construcción de flujos ETL eficientes para sincronizar datos locales a la API centralizada.",
+            "Integración de interfaces de usuario optimizadas y accesibles con Tailwind CSS en portales web."
+        ],
+        impact: [
+            "Consolidación exitosa de más de 12,000 registros escolares históricos en un motor relacional unificado.",
+            "Tiempo de respuesta de API optimizado a menos de 8ms promedio mediante almacenamiento en caché y consultas preparadas.",
+            "Reducción del RTO a 4.8 segundos en simulacros de recuperación ante desastres (DRP) del motor de datos."
         ]
     },
     {
@@ -57,10 +162,24 @@ export const experience = [
         company: "V-Net Labs",
         period: "2022 - Actual",
         link: "https://github.com/Jov-glitch",
+        description: "Diseño, administración y auditoría de infraestructuras autohospedadas (HomeLab) y servidores en la nube para comunidades y clientes privados.",
+        stack: ["Fedora Linux", "Docker", "AWS", "GCP", "Portainer", "Prometheus", "Datadog", "Nginx"],
         achievements: [
+            "Gestión de Infraestructura Autohospedada: Diseño e implementación de laboratorios y entornos de producción locales basados en Fedora Linux.",
+            "Gestión de microservicios y herramientas de monitoreo mediante contenedores Docker y Portainer, optimizando el rendimiento de almacenamiento avanzado (NVMe) y la seguridad de red.",
             "Diseño y despliegue de infraestructuras para comunidades gaming sobre AWS (EC2/GCP), gestionando auto-scaling de recursos.",
-            "Administrador de sistemas Linux para despliegues de alta disponibilidad, integrando monitoreo avanzado (Datadog/Prometheus).",
-            "Especialista en Hardening de servidores SSH y Nginx para mitigar ataques automatizados y ataques de fuerza bruta."
+            "Administrador de sistemas Linux para despliegues de alta disponibilidad, integrando monitoreo avanzado (Datadog/Prometheus) y hardening de servidores SSH/Nginx."
+        ],
+        details: [
+            "Virtualización y gestión de hardware HomeLab sobre hipervisores Linux y almacenamiento NVMe con arreglos RAID redundantes.",
+            "Provisionamiento e infraestructura como código (IaC) básica para el despliegue dinámico de servidores de juego y servicios web en AWS (EC2/S3) y GCP.",
+            "Configuración de pipelines de monitoreo en tiempo real usando Prometheus, Grafana y Datadog para supervisar métricas de CPU, memoria y tráfico de red.",
+            "Administración de servidores web seguros mediante Nginx, configurando certificados SSL con Let's Encrypt y protección contra ataques por fuerza bruta."
+        ],
+        impact: [
+            "Mantenimiento de un uptime del 99.9% en servicios autohospedados mediante automatización de respaldos y monitoreo proactivo.",
+            "Ahorro de costos del 40% en infraestructura cloud para comunidades gaming mediante optimización de auto-scaling y dimensionamiento de recursos.",
+            "Despliegue y pruebas exitosas de un servidor de Minecraft productivo en la nube integrando proxy inverso y monitoreo dinámico."
         ]
     }
 ];
@@ -435,3 +554,133 @@ export const minecraftEvent = {
         }
     ]
 };
+
+export const certifications = [
+    {
+        category: "Redes (Cisco Certified Network Associate - CCNA)",
+        items: [
+            {
+                name: "CCNA: Enterprise Networking, Security, and Automation (CCNA 3)",
+                date: "Junio 2026",
+                description: "Configuración avanzada de redes empresariales, enfatizando ciberseguridad, virtualización y automatización de flujos de trabajo de red.",
+                details: [
+                    "Configuración y solución de problemas del protocolo de enrutamiento dinámico OSPFv2 (área única y multiárea)",
+                    "Conceptos de seguridad de red incluyendo ACLs de mitigación de amenazas y acceso seguro a dispositivos",
+                    "Tecnologías WAN, virtualización de redes y arquitecturas de túneles VPN (IPsec y GRE)",
+                    "Herramientas y conceptos de automatización de red (APIs, JSON, RESTCONF, Puppet, Chef, Ansible)"
+                ],
+                rolesEnabled: [
+                    "Configurar y resolver problemas en estructuras complejas de enrutamiento y conmutación empresarial",
+                    "Diseñar e implementar túneles VPN de sitio a sitio y segmentar redes lógicas de forma segura",
+                    "Orquestar programáticamente la configuración de dispositivos de red mediante scripts de Python y APIs"
+                ]
+            },
+            {
+                name: "CCNA: Switching, Routing, and Wireless Essentials (CCNA 2)",
+                date: "Junio 2025",
+                description: "Tecnologías clave para el enrutamiento, conmutación y comunicaciones inalámbricas en redes locales (LAN) empresariales.",
+                details: [
+                    "Configuración de VLANs, enlaces troncales (trunking) y técnicas de enrutamiento inter-VLAN",
+                    "Gestión de redundancia lógica mediante Spanning Tree Protocol (STP/RSTP) y agregación de enlaces EtherChannel",
+                    "Configuración de direccionamiento dinámico (DHCPv4 y DHCPv6) y asignación sin estado SLAAC",
+                    "Arquitecturas WLAN, seguridad inalámbrica, enrutamiento estático y resolución de problemas de enrutamiento"
+                ],
+                rolesEnabled: [
+                    "Diseñar y segmentar redes locales mediante VLANs para optimizar el tráfico y mejorar la seguridad",
+                    "Prevenir bucles físicos y configurar redundancia de enlaces para conmutación local de alta disponibilidad",
+                    "Desplegar y asegurar puntos de acceso inalámbrico corporativos y configurar asignación de IPs dinámicas"
+                ]
+            },
+            {
+                name: "CCNA: Introduction to Networks (CCNA 1)",
+                date: "Enero 2025",
+                description: "Modelos fundamentales de red, arquitecturas, protocolos y configuración básica de dispositivos Cisco.",
+                details: [
+                    "Modelo de referencia OSI y suites de protocolos TCP/IP",
+                    "Esquemas de direccionamiento IP (subneteo IPv4 e IPv6 mediante máscara de subred de longitud variable - VLSM)",
+                    "Operaciones de Ethernet, medios físicos, cableado y configuración básica por interfaz de comando de routers y switches Cisco"
+                ],
+                rolesEnabled: [
+                    "Planificar y calcular esquemas de direccionamiento IP eficientes para prevenir el agotamiento de direcciones",
+                    "Realizar la instalación inicial y el hardening básico de terminales en switches y routers Cisco",
+                    "Comprender el flujo básico de paquetes y los requisitos de infraestructura física de red"
+                ]
+            }
+        ]
+    },
+    {
+        category: "Ciberseguridad (Cisco / Especializaciones)",
+        items: [
+            {
+                name: "Introducción a la Ciberseguridad (Badge & Certificate)",
+                date: "Diciembre 2025",
+                description: "Introducción al panorama de la ciberseguridad, análisis de amenazas y gestión de riesgos lógicos.",
+                details: [
+                    "Vulnerabilidades de seguridad comunes, vectores de amenazas, malware y técnicas de ingeniería social",
+                    "Conceptos clave de confidencialidad, integridad y disponibilidad (Tríada CIA)",
+                    "Algoritmos de cifrado básicos y diseño de políticas de seguridad para defensa personal y organizacional"
+                ],
+                rolesEnabled: [
+                    "Identificar y evaluar riesgos de seguridad básicos a nivel organizacional",
+                    "Promover y aplicar políticas y controles de concienciación en ciberseguridad corporativa"
+                ]
+            },
+            {
+                name: "Especialista en Recursos & Defensa de la Red",
+                date: "Diciembre 2025",
+                description: "Técnicas de monitoreo, defensa y hardening de perímetros y recursos de redes empresariales.",
+                details: [
+                    "Administración de reglas de firewalls, Traducción de Direcciones de Red (NAT) segura y listas de control de acceso",
+                    "Configuración de sistemas de detección (IDS) y prevención de intrusos (IPS)",
+                    "Técnicas de escaneo de puertos, registros de auditoría y análisis de tráfico de red"
+                ],
+                rolesEnabled: [
+                    "Gestionar perímetros de seguridad lógicos y aplicar control de acceso estricto mediante firewalls",
+                    "Monitorear el tráfico de red en busca de anomalías y configurar bloqueos automatizados ante vectores de ataque"
+                ]
+            },
+            {
+                name: "Salvaguardias del Sistema",
+                date: "Octubre 2025",
+                description: "Líneas base de seguridad y hardening de endpoints, sistemas operativos y servidores.",
+                details: [
+                    "Listas de control de acceso local, permisos de archivos en SO y auditoría de directorios",
+                    "Hardening de sistemas operativos Linux (Debian/Fedora) y entornos Windows Server",
+                    "Controles de seguridad en bases de datos y auditoría de autorizaciones de acceso"
+                ],
+                rolesEnabled: [
+                    "Aplicar estrategias de hardening en servidores, protegiendo servicios críticos contra fuerza bruta y escalamiento no autorizado",
+                    "Auditar entornos de servidor en busca de permisos de archivos vulnerables y aplicar restricciones de acceso robustas"
+                ]
+            },
+            {
+                name: "Análisis de Amenazas",
+                date: "Septiembre 2025",
+                description: "Auditoría de vulnerabilidades, análisis de logs de seguridad y gestión de información de incidentes.",
+                details: [
+                    "Procesamiento y análisis de datos en plataformas de gestión de eventos de seguridad (SIEM)",
+                    "Captura de paquetes y análisis forense con Wireshark para aislar huellas de intrusión en red",
+                    "Escaneo de vulnerabilidades y auditorías de mitigación de inyecciones SQL"
+                ],
+                rolesEnabled: [
+                    "Auditar capas de datos de aplicaciones web para mitigar inyecciones SQL y asegurar el consumo de APIs",
+                    "Analizar logs de eventos de seguridad y llevar a cabo investigaciones básicas de respuesta ante incidentes"
+                ]
+            },
+            {
+                name: "Administración de Ciberseguridad",
+                date: "Septiembre 2025",
+                description: "Implementación de marcos de ciberseguridad, controles administrativos y políticas de continuidad del negocio.",
+                details: [
+                    "Alineamiento y mapeo de controles de TI con el estándar de seguridad internacional ISO 27001",
+                    "Planes de recuperación ante desastres (DRP), marcos de gestión de riesgos y políticas de continuidad",
+                    "Redacción de planes de respuesta a incidentes y auditoría de controles administrativos"
+                ],
+                rolesEnabled: [
+                    "Mapear controles de TI de una organización bajo estándares internacionales como la norma ISO 27001",
+                    "Redactar planes de respuesta ante incidentes y protocolos de recuperación ante desastres"
+                ]
+            }
+        ]
+    }
+];

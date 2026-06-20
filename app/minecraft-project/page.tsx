@@ -6,8 +6,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { staggerContainerVariants, staggerItemVariants } from "@/lib/animations";
-import * as dataEn from "@/data";
-import * as dataEs from "@/data_es";
+import * as dataEn from "@/data/data";
+import * as dataEs from "@/data/data_es";
 
 export default function MinecraftProjectPage() {
   const [lang, setLang] = useState<"es" | "en">("es");

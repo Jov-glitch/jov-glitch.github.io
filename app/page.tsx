@@ -21,10 +21,11 @@ import { ComposeHub } from "@/components/projects/ComposeHub";
 import { InteractiveConsole } from "@/components/projects/InteractiveConsole";
 import { BrutalWindow } from "@/components/ui/BrutalWindow";
 import { RetroBackground } from "@/components/common/RetroBackground";
+import { Certifications } from "@/components/skills/Certifications";
 
 // Data imports
-import * as dataEn from "@/data";
-import * as dataEs from "@/data_es";
+import * as dataEn from "@/data/data";
+import * as dataEs from "@/data/data_es";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,6 +112,7 @@ export default function Home() {
         upnEcosystem={activeData.upnEcosystem}
         projects={activeData.projects}
         kpis={activeData.kpis}
+        certifications={activeData.certifications}
         lang={lang}
         onClose={() => handleModeChange("creativo")}
       />
@@ -143,6 +145,7 @@ export default function Home() {
       />
       <Timeline experience={activeData.experience} lang={lang} />
       <SkillsGrid skills={activeData.skills} lang={lang} />
+      <Certifications certifications={activeData.certifications} lang={lang} />
       <GridProyectos projects={activeData.projects} lang={lang} />
       <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />
       <ComposeHub lang={lang} />
