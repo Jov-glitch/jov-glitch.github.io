@@ -139,10 +139,10 @@ export const experience = [
         company: "CEV Environment (Universidad Pública)",
         period: "2024 - Febrero 2026",
         link: "#ecosystem",
-        description: "Diseño e implementación desde cero de los tres componentes clave del Ecosistema CEV: la aplicación local de escritorio (.NET/C#), el portal institucional responsivo y la API Laravel unificada.",
-        stack: ["Laravel", "PHP", "MySQL", "C#", ".NET", "Tailwind CSS", "JavaScript"],
+        description: "Diseño e implementación desde cero de los tres componentes clave del Ecosistema CEV: la aplicación local de captura (PHP/HTML/UIKit), el portal institucional responsivo y la API Laravel unificada.",
+        stack: ["Laravel", "PHP", "MySQL", "UIKit", "HTML", "CSS", "Tailwind CSS", "JavaScript"],
         achievements: [
-            "Diseño y desarrollo completo de 'CEV Local', un aplicativo de escritorio robusto en .NET/C# para la captura académica offline.",
+            "Diseño y desarrollo completo de 'CEV Local', un aplicativo local offline-first construido con PHP, HTML y UIKit CSS para la captura de datos académicos.",
             "Desarrollo de 'Diana API' en Laravel 11.x, sirviendo como pasarela de datos unificada con disparadores inmutables de base de datos.",
             "Implementación de 'CEV Web', un portal institucional responsivo para la consulta e inscripción escolar en línea."
         ],
@@ -682,5 +682,50 @@ export const certifications = [
                 ]
             }
         ]
+    }
+];
+
+export const services = [
+    {
+        id: "custom-software",
+        title: "Sistemas de Software a Medida",
+        subtitle: "Aplicaciones web y de escritorio empresariales",
+        icon: "ph ph-code",
+        description: "Diseño y desarrollo integral de soluciones de software escalables. Especializado en sistemas locales de captura de datos y backends de APIs unificados.",
+        longDescription: "Desarrollo aplicaciones a medida adaptadas a flujos de trabajo institucionales específicos, priorizando la seguridad, la tolerancia a fallos offline y la sincronización rápida de datos.",
+        useCases: [
+            "Desarrollé 'CEV Local', un aplicativo local offline-first en **[PHP / HTML / UIKit](/skills?cat=3)** que permite capturar datos escolares sin dependencia de internet de forma segura.",
+            "Diseñé e implementé 'Diana API' en **[PHP / Laravel](/skills?cat=3)**, actuando como pasarela unificada con tiempos de respuesta optimizados por debajo de los 8ms.",
+            "Construí portales web responsivos con **[TypeScript / React](/skills?cat=3)** y **[Tailwind CSS](/skills?cat=3)** para la gestión y tramitación administrativa online."
+        ],
+        technicalStack: ["PHP", "Laravel", "MySQL", "UIKit", "TypeScript", "React", "Next.js", "Tailwind CSS"]
+    },
+    {
+        id: "self-hosted-infra",
+        title: "Infraestructura Local y Autohospedada",
+        subtitle: "Nube privada, almacenamiento y repositorios de código",
+        icon: "ph ph-cloud",
+        description: "Despliegue de servicios locales e infraestructuras autohospedadas para organizaciones que no pueden usar la nube pública por políticas legales de confidencialidad o auditoría.",
+        longDescription: "Elimino la dependencia de servicios de nube de terceros mediante el despliegue de servidores locales seguros, garantizando el control absoluto sobre archivos, código fuente y colaboración institucional.",
+        useCases: [
+            "Configuré repositorios de código privados locales utilizando **[Git](/skills?cat=1)** y entornos autohospedados para evitar la exposición externa de código propietario.",
+            "Desplegué **[Nextcloud](/skills?cat=1)** como alternativa privada a Google Drive, cumpliendo con regulaciones estrictas de auditoría y almacenamiento local cifrado.",
+            "Orquesté grupos de contenedores locales con **[Docker Compose](/skills?cat=0)** y configuré respaldos automáticos ante desastres para garantizar la continuidad operativa."
+        ],
+        technicalStack: ["Git", "Nextcloud", "Docker", "Docker Compose", "Fedora Linux", "Debian", "Portainer", "Nginx"]
+    },
+    {
+        id: "networking-security",
+        title: "Seguridad de Red y Hardening",
+        subtitle: "Túneles Zero-Trust y defensa perimetral",
+        icon: "ph ph-broadcast",
+        description: "Diseño de redes superpuestas aisladas y auditorías de seguridad perimetral para proteger bases de datos e infraestructura sensible contra accesos no autorizados.",
+        longDescription: "Diseño redes resilientes bajo políticas de seguridad estrictas, garantizando túneles privados cifrados para la administración y un robusto hardening a nivel de sistemas operativos y servidores.",
+        useCases: [
+            "Establecí túneles privados en malla con **[Tailscale](/skills?cat=2)** para aislar la base de datos escolar, haciéndola accesible únicamente a personal administrativo autorizado.",
+            "Configuré reglas de filtrado y redirección de puertos con **[Firewalls OPNsense](/skills?cat=2)** para bloquear tráfico malicioso y mitigar vectores de intrusión.",
+            "Realicé auditorías de servidores y configuré **[proxies inversos Nginx](/skills?cat=2)** con SSL y SSH seguro para prevenir ataques de fuerza bruta y denegación de servicios."
+        ],
+        technicalStack: ["Tailscale", "OPNsense", "Nginx", "Firewalls", "ISO 27001", "Linux Hardening", "SQL Injection Mitigation"]
     }
 ];

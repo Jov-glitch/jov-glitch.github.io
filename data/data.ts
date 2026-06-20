@@ -139,10 +139,10 @@ export const experience = [
         company: "CEV Environment (Public University)",
         period: "2024 - February 2026",
         link: "#ecosystem",
-        description: "Design and implementation from scratch of the three core components of the CEV Ecosystem: the local desktop app (.NET/C#), the responsive institutional portal, and the unified Laravel API.",
-        stack: ["Laravel", "PHP", "MySQL", "C#", ".NET", "Tailwind CSS", "JavaScript"],
+        description: "Design and implementation from scratch of the three core components of the CEV Ecosystem: the local capture system (PHP/HTML/UIKit), the responsive institutional portal, and the unified Laravel API.",
+        stack: ["Laravel", "PHP", "MySQL", "UIKit", "HTML", "CSS", "Tailwind CSS", "JavaScript"],
         achievements: [
-            "Full design and development of 'CEV Local', a robust desktop application in .NET/C# for offline academic data capture.",
+            "Full design and development of 'CEV Local', an offline-first capture system built with PHP, HTML, and UIKit CSS for academic data capture.",
             "Development of 'Diana API' in Laravel 11.x, serving as a unified data gateway with immutable database triggers.",
             "Implementation of 'CEV Web', a responsive institutional portal for online school queries and registrations."
         ],
@@ -682,5 +682,50 @@ export const certifications = [
                 ]
             }
         ]
+    }
+];
+
+export const services = [
+    {
+        id: "custom-software",
+        title: "Custom Software Systems",
+        subtitle: "Enterprise-grade desktop & web applications",
+        icon: "ph ph-code",
+        description: "End-to-end design and coding of scalable software solutions. I specialize in building robust local capture systems and unified web API backends.",
+        longDescription: "I develop tailored applications designed to fit specific institutional workflows, prioritizing security, offline reliability, and fast synchronization protocols.",
+        useCases: [
+            "Developed 'CEV Local', an offline-first capture system using **[PHP / HTML / UIKit](/skills?cat=3)** to allow field workers to capture data securely without internet.",
+            "Designed and implemented 'Diana API' using **[PHP / Laravel](/skills?cat=3)** as a unified, cached gateway with response times below 8ms.",
+            "Built responsive web portals using **[TypeScript / React](/skills?cat=3)** and **[Tailwind CSS](/skills?cat=3)** for online administrative processing."
+        ],
+        technicalStack: ["PHP", "Laravel", "MySQL", "UIKit", "TypeScript", "React", "Next.js", "Tailwind CSS"]
+    },
+    {
+        id: "self-hosted-infra",
+        title: "Local & Self-Hosted Infrastructure",
+        subtitle: "Private cloud, storage, and code hosting",
+        icon: "ph ph-cloud",
+        description: "Deploying local, self-hosted services for organizations that cannot permit public cloud hosting due to legal, audit, or confidentiality restrictions.",
+        longDescription: "I specialize in removing reliance on third-party cloud services by deploying secure local servers, offering complete control over institutional files, code repositories, and user collaborations.",
+        useCases: [
+            "Configured local private code repositories using **[Git](/skills?cat=1)** and self-hosted environments to prevent external leakage of proprietary source code.",
+            "Deployed **[Nextcloud](/skills?cat=1)** as a highly secure, private alternative to Google Drive, ensuring full file audit compliance and local encryption.",
+            "Orchestrated local container groups using **[Docker Compose](/skills?cat=0)** and monitored logs to guarantee high availability and easy disaster recovery."
+        ],
+        technicalStack: ["Git", "Nextcloud", "Docker", "Docker Compose", "Fedora Linux", "Debian", "Portainer", "Nginx"]
+    },
+    {
+        id: "networking-security",
+        title: "Network Security & Hardening",
+        subtitle: "Zero-Trust tunnels & perimeter defense",
+        icon: "ph ph-broadcast",
+        description: "Designing isolated networking overlays and auditing perimeters to protect databases and systems from unauthorized access or injections.",
+        longDescription: "I design resilient network structures adhering to strict security policies, ensuring encrypted private tunnels for administration and robust server-level hardening.",
+        useCases: [
+            "Established private mesh VPN networks using **[Tailscale](/skills?cat=2)** to isolate student databases, making them accessible only to audited administrators.",
+            "Implemented security rules and port-forwarding with **[OPNsense Firewalls](/skills?cat=2)** to filter malicious traffic and mitigate intrusion vectors.",
+            "Conducted server audits and configured **[Nginx reverse proxies](/skills?cat=2)** with SSL and hardened SSH profiles to prevent brute force attacks."
+        ],
+        technicalStack: ["Tailscale", "OPNsense", "Nginx", "Firewalls", "ISO 27001", "Linux Hardening", "SQL Injection Mitigation"]
     }
 ];

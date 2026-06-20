@@ -10,6 +10,7 @@ import { Navbar } from "@/components/common/Navbar";
 import { Hero } from "@/components/hero/Hero";
 import { About } from "@/components/common/About";
 import { SkillsGrid } from "@/components/skills/SkillsGrid";
+import { ServicesSection } from "@/components/skills/ServicesSection";
 import { GridProyectos } from "@/components/projects/GridProyectos";
 import { Ecosystem } from "@/components/projects/Ecosystem";
 import { Telemetry } from "@/components/projects/Telemetry";
@@ -145,6 +146,7 @@ export default function Home() {
       />
       <Timeline experience={activeData.experience} lang={lang} />
       <SkillsGrid skills={activeData.skills} lang={lang} />
+      <ServicesSection services={activeData.services} lang={lang} />
       <Certifications certifications={activeData.certifications} lang={lang} />
       <GridProyectos projects={activeData.projects} lang={lang} />
       <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />

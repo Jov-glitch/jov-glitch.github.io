@@ -55,7 +55,7 @@ const closeRetroModal = () => {
  * Injects HTML based on state (mode/lang) and re-attaches events.
  */
 function render() {
-  const { profile, skills, experience, projects, minecraftEvent, upnEcosystem, certifications } = getLanguageData();
+  const { profile, skills, experience, projects, minecraftEvent, upnEcosystem, certifications, services } = getLanguageData();
 
   const seriousLabel = currentLang === 'es' ? 'SERIO' : 'PROFESSIONAL';
   const creativeLabel = currentLang === 'es' ? 'RETRO' : 'CREATIVE';
