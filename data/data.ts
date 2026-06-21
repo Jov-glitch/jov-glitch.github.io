@@ -527,16 +527,16 @@ export const minecraftEvent = {
         {
             title: "1. Compute Layer (Cloud & Virtualization)",
             details: [
-                "Provider: Google Cloud Platform (GCP).",
+                "Provider: **[Google Cloud Platform (GCP)](/skills?cat=1)**.",
                 "Instance: VM on Compute Engine running Ubuntu 25.10 (Plucky Puffin).",
-                "Orchestration: Docker and Docker Compose were used to encapsulate services."
+                "Orchestration: **[Docker](/skills?cat=0)** and **[Docker Compose](/skills?cat=0)** were used to encapsulate services."
             ]
         },
         {
             title: "2. Network & Web Access Layer (Networking)",
             details: [
-                "Reverse Proxy (Nginx): Receives requests on port 80 and redirects them internally.",
-                "DNS Security (Cloudflare): The jessvega.me domain is behind Cloudflare's proxy.",
+                "Reverse Proxy: **[Nginx](/skills?cat=2)** receives requests on port 80 and redirects them internally.",
+                "DNS Security: The domain is behind **[Cloudflare's Proxy](/skills?cat=2)**.",
                 "Perimeter Firewall: Ports limited to 22 SSH, 80 Web, and 25565 Game."
             ]
         }

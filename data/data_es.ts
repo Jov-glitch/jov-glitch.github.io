@@ -527,16 +527,16 @@ export const minecraftEvent = {
         {
             title: "1. Capa de Cómputo (Cloud & Virtualización)",
             details: [
-                "Proveedor: Google Cloud Platform (GCP).",
+                "Proveedor: **[Google Cloud Platform (GCP)](/skills?cat=1)**.",
                 "Instancia: VM en Compute Engine corriendo Ubuntu 25.10 (Plucky Puffin).",
-                "Orquestación: Se utilizó Docker y Docker Compose para encapsular los servicios."
+                "Orquestación: Se utilizó **[Docker](/skills?cat=0)** y **[Docker Compose](/skills?cat=0)** para encapsular los servicios."
             ]
         },
         {
             title: "2. Capa de Red y Acceso Web (Networking)",
             details: [
-                "Proxy Inverso (Nginx): Recibe las peticiones en el puerto 80 y las redirige internamente.",
-                "Seguridad DNS (Cloudflare): El dominio jessvega.me está detrás del proxy de Cloudflare.",
+                "Proxy Inverso: **[Nginx](/skills?cat=2)** recibe las peticiones en el puerto 80 y las redirige internamente.",
+                "Seguridad DNS: El dominio está detrás del proxy de **[Cloudflare](/skills?cat=2)**.",
                 "Firewall Perimetral: Puertos limitados a 22 SSH, 80 Web y 25565 Juego."
             ]
         }

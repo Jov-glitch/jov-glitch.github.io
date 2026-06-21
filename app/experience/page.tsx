@@ -75,6 +75,7 @@ export default function ExperiencePage() {
       projects: "Proyectos",
       ecosystem: "Ecosistema CEV",
       experience: "Experiencia",
+      workDemos: "Demos de Trabajo",
       creative: "RETRO",
       serious: "SERIO",
     },
@@ -93,6 +94,7 @@ export default function ExperiencePage() {
       projects: "Projects",
       ecosystem: "CEV Ecosystem",
       experience: "Experience",
+      workDemos: "Work Demos",
       creative: "CREATIVE",
       serious: "SERIOUS",
     },
@@ -131,6 +133,9 @@ export default function ExperiencePage() {
             </a>
             <a href="/#ecosystem" className="hover:text-teal-600 hover:underline transition-all">
               {t.ecosystem}
+            </a>
+            <a href="/work-demos" className="hover:text-teal-600 hover:underline transition-all">
+              {t.workDemos}
             </a>
 
             <div className="h-6 w-0.5 bg-brutal-black mx-2" />
@@ -202,6 +207,9 @@ export default function ExperiencePage() {
             </a>
             <a href="/#ecosystem" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all">
               {t.ecosystem}
+            </a>
+            <a href="/work-demos" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all">
+              {t.workDemos}
             </a>
           </div>
         )}

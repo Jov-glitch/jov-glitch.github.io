@@ -1,81 +1,53 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import React from "react";
+import { motion } from "framer-motion";
+import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { staggerContainerVariants, staggerItemVariants } from "@/lib/animations";
-import * as dockerData from "@/data/docker_stacks";
-
-interface StackData {
-  name: string;
-  title: string;
-  tag: string;
-  environment: string;
-  description: string;
-  compose: string;
-}
 
 interface ComposeHubProps {
   lang: "es" | "en";
 }
 
 export function ComposeHub({ lang }: ComposeHubProps) {
-  // Extract stacks starting with "docker_"
-  const allStacks: StackData[] = Object.keys(dockerData)
-    .filter((key) => key.startsWith("docker_"))
-    .map((key) => (dockerData as any)[key] as StackData);
-
-  const [activeTab, setActiveTab] = useState<"trabajo" | "homelab">("trabajo");
-  const filteredStacks = allStacks.filter((s) => s.tag === activeTab);
-  
-  // Set default selected stack for the tab
-  const [selectedStack, setSelectedStack] = useState<StackData>(
-    filteredStacks[0] || allStacks[0]
-  );
-
-  // If tab changes, auto-select first stack of that tab
-  const handleTabChange = (tab: "trabajo" | "homelab") => {
-    setActiveTab(tab);
-    const firstOfTab = allStacks.find((s) => s.tag === tab);
-    if (firstOfTab) {
-      setSelectedStack(firstOfTab);
-    }
-  };
-
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(selectedStack.compose);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   const t = {
     es: {
-      sectionTitle: "Repositorio Docker Compose",
+      sectionTitle: "Demos de Trabajo",
       sectionSubtitle: "Catálogo interactivo de infraestructura como código auto-hospedada.",
-      tabWork: "Trabajo / Entorno Institucional",
-      tabHomelab: "HomeLab / Red Personal",
-      copyBtn: "Copiar YAML",
-      copiedBtn: "¡Copiado!",
-      sidebarTitle: "SELECCIONA UN STACK",
-      noStacks: "No hay stacks disponibles para este entorno.",
-      yamlHeader: "VIRTUAL_TERMINAL // DOCKER_COMPOSE.YML",
+      description: "Colección de 14 entornos listos para producción y laboratorios locales configurados mediante Docker Compose. Incluye wikis colaborativas, tableros Kanban, servidores de medios, bloqueadores de anuncios DNS y plataformas Git auto-hospedadas con Single Sign-On (OIDC).",
+      ctaBtn: "Ver Stacks y Demos de Trabajo ↗",
+      previewHeader: "PREVISUALIZACIÓN // COMPOSE_HUB",
     },
     en: {
-      sectionTitle: "Docker Compose Repository",
+      sectionTitle: "Work Demos",
       sectionSubtitle: "Interactive catalog of self-hosted infrastructure as code.",
-      tabWork: "Work / Institutional Environment",
-      tabHomelab: "HomeLab / Personal Net",
-      copyBtn: "Copy YAML",
-      copiedBtn: "Copied!",
-      sidebarTitle: "SELECT A STACK",
-      noStacks: "No stacks available for this environment.",
-      yamlHeader: "VIRTUAL_TERMINAL // DOCKER_COMPOSE.YML",
+      description: "Collection of 14 production-ready environments and homelab configurations deployed via Docker Compose. Features collaborative wikis, Kanban boards, media servers, DNS adblockers, and self-hosted Git portals integrated with Single Sign-On (OIDC).",
+      ctaBtn: "View Stacks & Work Demos ↗",
+      previewHeader: "PREVIEW // COMPOSE_HUB",
     },
   }[lang];
+
+  const staticPreviewCode = `version: '3.8'
+
+services:
+  outline:
+    image: docker.getoutline.com/outlinewiki/outline:latest
+    container_name: dev_outline
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - URL=http://docs.institutional.local
+      - DATABASE_URL=postgres://outline_user:***@outline_db:5432/outline
+      - REDIS_URL=redis://outline_redis:6379
+      # Integración Gitea (SSO / OIDC)
+      - OIDC_CLIENT_ID=gitea_sso_client
+      - OIDC_CLIENT_SECRET=***
+      - OIDC_AUTH_URI=http://git.institutional.local/login/oauth/authorize
+    depends_on:
+      - outline_db
+      - outline_redis`;
 
   return (
     <section id="compose-hub" className="py-24 px-4 bg-brutal-light border-t-4 border-brutal-black w-full select-none">
@@ -87,7 +59,7 @@ export function ComposeHub({ lang }: ComposeHubProps) {
         variants={staggerContainerVariants}
       >
         {/* Section Header */}
-        <motion.div variants={staggerItemVariants} className="text-center mb-16">
+        <motion.div variants={staggerItemVariants} className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold uppercase tracking-tighter mb-4 flex items-center justify-center gap-3">
             <i className="ph ph-cube"></i>
             {t.sectionTitle}
@@ -95,105 +67,59 @@ export function ComposeHub({ lang }: ComposeHubProps) {
           <p className="text-base sm:text-lg md:text-xl font-mono text-brutal-gray uppercase tracking-widest max-w-3xl mx-auto mb-6">
             {t.sectionSubtitle}
           </p>
-          <div className="h-1 w-20 bg-brutal-red mx-auto mb-8" />
-
-          {/* Environment Tabs */}
-          <div className="flex border-4 border-brutal-black font-mono text-sm max-w-xl mx-auto shadow-brutal">
-            <button
-              onClick={() => handleTabChange("trabajo")}
-              className={`flex-1 py-3 px-4 font-bold cursor-pointer transition-colors border-r-4 border-brutal-black ${
-                activeTab === "trabajo" ? "bg-brutal-red text-brutal-white" : "bg-brutal-white hover:bg-brutal-light text-brutal-black"
-              }`}
-            >
-              {t.tabWork}
-            </button>
-            <button
-              onClick={() => handleTabChange("homelab")}
-              className={`flex-1 py-3 px-4 font-bold cursor-pointer transition-colors ${
-                activeTab === "homelab" ? "bg-brutal-red text-brutal-white" : "bg-brutal-white hover:bg-brutal-light text-brutal-black"
-              }`}
-            >
-              {t.tabHomelab}
-            </button>
-          </div>
+          <div className="h-1 w-20 bg-amber-600 mx-auto" />
         </motion.div>
 
-        {/* Interactive Stacks Dashboard */}
-        <motion.div variants={staggerItemVariants} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Stacks Sidebar Selector */}
-          <div className="lg:col-span-4 flex flex-col gap-3 max-h-[580px] overflow-y-auto scrollbar-thin pr-2">
-            <h3 className="font-mono font-bold text-xs uppercase text-brutal-gray tracking-wider mb-1">
-              {t.sidebarTitle}
-            </h3>
-            {filteredStacks.length > 0 ? (
-              filteredStacks.map((stack, idx) => {
-                const isSelected = selectedStack.name === stack.name;
-                return (
-                  <button
-                    key={stack.name}
-                    onClick={() => setSelectedStack(stack)}
-                    className={`w-full text-left p-4 border-2 border-brutal-black shadow-brutal-sm cursor-pointer transition-all ${
-                      isSelected
-                        ? "bg-brutal-black text-brutal-white -translate-y-1 shadow-brutal"
-                        : "bg-brutal-white text-brutal-black hover:bg-brutal-light hover:-translate-y-0.5 hover:shadow-brutal"
-                    }`}
-                  >
-                    <p className="font-mono text-[9px] uppercase opacity-75 font-semibold mb-1">
-                      STACK 0{idx + 1}
-                    </p>
-                    <h4 className="font-mono font-bold text-sm sm:text-base uppercase tracking-wider truncate">
-                      {stack.title}
-                    </h4>
-                  </button>
-                );
-              })
-            ) : (
-              <p className="text-sm font-mono text-brutal-gray">{t.noStacks}</p>
-            )}
-          </div>
-
-          {/* Stacks Content Viewer */}
-          <div className="lg:col-span-8">
-            <Card brutal className="border-2 border-brutal-black p-0 h-[580px] flex flex-col bg-brutal-white">
-              {/* Header Title Bar */}
-              <div className="bg-brutal-black text-brutal-white p-3 flex justify-between items-center border-b-2 border-brutal-black select-none">
-                <div className="font-mono text-xs font-bold tracking-widest flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 bg-brutal-green rounded-full animate-pulse inline-block"></span>
-                  <span>{selectedStack.title.toUpperCase()}</span>
+        {/* Teaser Content Panel */}
+        <motion.div variants={staggerItemVariants}>
+          <Card brutal className="border-4 border-brutal-black bg-white p-0 overflow-hidden shadow-brutal hover:shadow-brutal-hover transition-all">
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+              
+              {/* Left Column (Details & CTA) */}
+              <div className="lg:col-span-6 p-6 sm:p-8 flex flex-col justify-between text-left">
+                <div className="space-y-4">
+                  <div className="flex gap-2">
+                    <Badge variant="outline" className="border-2 border-brutal-black bg-amber-600 text-white font-mono text-xs py-1 px-3 rounded-none uppercase font-bold">
+                      Docker Compose
+                    </Badge>
+                    <Badge variant="outline" className="border-2 border-brutal-black bg-white text-brutal-black font-mono text-xs py-1 px-3 rounded-none uppercase font-bold">
+                      14 Stacks Deployed
+                    </Badge>
+                  </div>
+                  <p className="font-sans font-medium text-slate-800 text-sm sm:text-base leading-relaxed">
+                    {t.description}
+                  </p>
                 </div>
-                <Badge variant="outline" className="text-[10px] font-mono px-2 py-0.5 border-brutal-white/40 text-brutal-white bg-transparent">
-                  {selectedStack.environment}
-                </Badge>
+
+                <div className="mt-8">
+                  <a href="/work-demos">
+                    <Button variant="default" className="font-mono font-black text-sm cursor-pointer border-4 border-brutal-black shadow-brutal bg-amber-600 hover:bg-amber-700 text-white py-6 px-6 hover:-translate-y-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:translate-y-0 active:shadow-brutal-sm transition-all flex items-center gap-2">
+                      <i className="ph ph-arrow-square-out text-lg"></i>
+                      {t.ctaBtn}
+                    </Button>
+                  </a>
+                </div>
               </div>
 
-              {/* Description box */}
-              <div className="border-b-2 border-brutal-black bg-brutal-light/50 p-4">
-                <h4 className="font-mono font-bold text-sm uppercase mb-1">
-                  {selectedStack.name}
-                </h4>
-                <p className="text-xs sm:text-sm font-sans text-brutal-dark leading-relaxed">
-                  {selectedStack.description}
-                </p>
-              </div>
-
-              {/* Terminal code view */}
-              <div className="flex-1 bg-brutal-black text-brutal-green font-mono p-4 text-xs overflow-y-auto relative flex flex-col">
-                <div className="text-brutal-gray pb-2 border-b border-brutal-dark/40 text-[10px] mb-3 flex justify-between items-center select-none">
-                  <span>{t.yamlHeader}</span>
-                  <Button
-                    onClick={handleCopy}
-                    variant="default"
-                    className="h-6 text-[9px] bg-brutal-white text-brutal-black hover:bg-brutal-red hover:text-brutal-white transition-all cursor-pointer border border-brutal-black font-bold px-2 py-0 rounded-sm"
-                  >
-                    {copied ? t.copiedBtn : t.copyBtn}
-                  </Button>
+              {/* Right Column (Terminal Preview) */}
+              <div className="lg:col-span-6 border-t-4 lg:border-t-0 lg:border-l-4 border-brutal-black bg-brutal-black text-white p-0 flex flex-col font-mono text-xs h-[320px] lg:h-auto min-h-[300px]">
+                {/* Terminal Titlebar */}
+                <div className="bg-neutral-900 border-b-2 border-brutal-black p-3 flex justify-between items-center select-none">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 bg-red-600 rounded-full inline-block"></span>
+                    <span className="w-3 h-3 bg-yellow-500 rounded-full inline-block"></span>
+                    <span className="w-3 h-3 bg-green-500 rounded-full inline-block"></span>
+                    <span className="text-[10px] text-neutral-400 font-bold uppercase tracking-wider ml-2">{t.previewHeader}</span>
+                  </div>
                 </div>
-                <pre className="flex-1 overflow-x-auto whitespace-pre font-mono text-[11px] leading-relaxed select-text text-slate-100 selection:bg-brutal-red selection:text-white">
-                  {selectedStack.compose}
+                {/* Code Pre */}
+                <pre className="p-4 overflow-hidden select-none text-left text-emerald-400 font-semibold leading-relaxed flex-1 bg-neutral-950 opacity-80">
+                  <code>{staticPreviewCode}</code>
                 </pre>
               </div>
-            </Card>
-          </div>
+
+            </div>
+          </Card>
         </motion.div>
       </motion.div>
     </section>

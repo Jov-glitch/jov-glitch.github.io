@@ -42,7 +42,7 @@ export default function Home() {
     const savedMode = localStorage.getItem("portfolio_mode") as "creativo" | "serio";
     if (savedLang) setLang(savedLang);
     if (savedMode) setMode(savedMode);
-    
+
     setMounted(true);
   }, []);
 
@@ -151,7 +151,7 @@ export default function Home() {
       <GridProyectos projects={activeData.projects} lang={lang} />
       <Ecosystem ecosystem={activeData.upnEcosystem} lang={lang} />
       <ComposeHub lang={lang} />
-      <Telemetry minecraftEvent={activeData.minecraftEvent} lang={lang} />
+      {/* <Telemetry minecraftEvent={activeData.minecraftEvent} lang={lang} />*/}
       <KpisSection kpis={activeData.kpis} lang={lang} />
       <Footer
         email={activeData.profile.email}

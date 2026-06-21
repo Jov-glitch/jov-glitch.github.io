@@ -19,6 +19,7 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
       projects: "Proyectos",
       ecosystem: "Ecosistema CEV",
       experience: "Experiencia",
+      workDemos: "Demos de Trabajo",
       creative: "CREATIVO",
       serious: "SERIO",
     },
@@ -27,6 +28,7 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
       projects: "Projects",
       ecosystem: "CEV Ecosystem",
       experience: "Experience",
+      workDemos: "Work Demos",
       creative: "CREATIVE",
       serious: "SERIOUS",
     },
@@ -54,6 +56,9 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
           </a>
           <a href="#ecosystem" className="hover:text-brutal-red hover:underline transition-all">
             {t.ecosystem}
+          </a>
+          <a href="#compose-hub" className="hover:text-brutal-red hover:underline transition-all">
+            {t.workDemos}
           </a>
 
           <div className="h-6 w-0.5 bg-brutal-black mx-2" />
@@ -161,6 +166,13 @@ export function Navbar({ lang, setLang, mode, setMode }: NavbarProps) {
             className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all"
           >
             {t.ecosystem}
+          </a>
+          <a
+            href="#compose-hub"
+            onClick={() => setIsOpen(false)}
+            className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all"
+          >
+            {t.workDemos}
           </a>
         </div>
       )}

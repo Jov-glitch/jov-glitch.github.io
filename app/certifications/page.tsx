@@ -84,6 +84,7 @@ export default function CertificationsPage() {
       projects: "Proyectos",
       ecosystem: "Ecosistema CEV",
       experience: "Experiencia",
+      workDemos: "Demos de Trabajo",
       creative: "RETRO",
       serious: "SERIO",
       navCertifications: "Certificaciones",
@@ -101,6 +102,7 @@ export default function CertificationsPage() {
       projects: "Projects",
       ecosystem: "CEV Ecosystem",
       experience: "Experience",
+      workDemos: "Work Demos",
       creative: "CREATIVE",
       serious: "SERIOUS",
       navCertifications: "Certifications",
@@ -148,6 +150,9 @@ export default function CertificationsPage() {
             </a>
             <a href="/#ecosystem" className="hover:text-purple-600 hover:underline transition-all">
               {t.ecosystem}
+            </a>
+            <a href="/work-demos" className="hover:text-purple-600 hover:underline transition-all">
+              {t.workDemos}
             </a>
 
             <div className="h-6 w-0.5 bg-brutal-black mx-2" />
@@ -219,6 +224,9 @@ export default function CertificationsPage() {
             </a>
             <a href="/#ecosystem" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all">
               {t.ecosystem}
+            </a>
+            <a href="/work-demos" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:bg-brutal-light border border-transparent hover:border-brutal-black transition-all">
+              {t.workDemos}
             </a>
           </div>
         )}
