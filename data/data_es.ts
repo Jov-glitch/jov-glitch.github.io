@@ -503,7 +503,7 @@ export const minecraftEvent = {
     title: "🧱 ARCHIVO DEL EVENTO: MINECRAFT HUB 🧱",
     description: "El evento de Minecraft ya quedó cerrado, pero dejo este espacio como archivo y agradecimiento.",
     buttonText: "EVENTO FINALIZADO",
-    link: "/minecraft-project/",
+    link: "https://mc.jessvega.me/",
     serverIp: "mc.jessvega.me",
     mapLink: "https://mapa.jessvega.me",
     closingTitle: "GRACIAS POR HACERLO POSIBLE",

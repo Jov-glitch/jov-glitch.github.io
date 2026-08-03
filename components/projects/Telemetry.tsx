@@ -122,7 +122,7 @@ export function Telemetry({ minecraftEvent, lang }: TelemetryProps) {
 
         {/* View Full Event Archive & Telemetry CTA */}
         <motion.div variants={staggerItemVariants} className="mt-12 text-center">
-          <a href="/minecraft-project">
+          <a href="https://mc.jessvega.me/" target="_blank" rel="noopener noreferrer">
             <button className="bg-brutal-red text-brutal-white font-mono font-black text-sm px-8 py-4 border-4 border-brutal-black shadow-brutal hover:bg-brutal-white hover:text-brutal-black transition-colors cursor-pointer inline-flex items-center gap-2">
               <span>{t.ctaBtn}</span>
               <i className="ph ph-arrow-right text-lg"></i>

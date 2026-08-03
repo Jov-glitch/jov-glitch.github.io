@@ -28,11 +28,15 @@ export function Hero({ profile, lang }: HeroProps) {
       available: "Disponible para Trabajar",
       viewProjects: "Ver Proyectos →",
       getInTouch: "Contactar",
+      serverAccess: "Entrar al servidor Minecraft",
+      serverSubtitle: "Servidor con mods hosteado por mí mismo en mi infraestructura",
     },
     en: {
       available: "Available for Work",
       viewProjects: "View Projects →",
       getInTouch: "Get in Touch",
+      serverAccess: "Join the Minecraft server",
+      serverSubtitle: "Modded server hosted by me on my own infrastructure",
     },
   }[lang];
 
@@ -79,7 +83,7 @@ export function Hero({ profile, lang }: HeroProps) {
 
         <motion.div
           variants={staggerItemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
         >
           <Link href="#projects">
             <Button variant="default" className="font-mono text-base font-bold w-full sm:w-auto px-8 py-5 h-auto cursor-pointer">
@@ -90,6 +94,28 @@ export function Hero({ profile, lang }: HeroProps) {
             <Button variant="outline" className="font-mono text-base font-bold w-full sm:w-auto px-8 py-5 h-auto cursor-pointer">
               {t.getInTouch}
             </Button>
+          </a>
+        </motion.div>
+
+        <motion.div
+          variants={staggerItemVariants}
+          className="mb-12 flex justify-center"
+        >
+          <a
+            href="https://mc.jessvega.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 border-4 border-brutal-black bg-brutal-black text-brutal-white px-6 py-4 shadow-brutal hover:bg-brutal-red hover:text-brutal-white transition-all cursor-pointer"
+          >
+            <i className="ph ph-game-controller text-xl"></i>
+            <span className="text-left">
+              <span className="block font-mono font-black uppercase tracking-wider text-sm">
+                {t.serverAccess}
+              </span>
+              <span className="block font-sans text-xs sm:text-sm text-brutal-light mt-1">
+                {t.serverSubtitle}
+              </span>
+            </span>
           </a>
         </motion.div>
 
